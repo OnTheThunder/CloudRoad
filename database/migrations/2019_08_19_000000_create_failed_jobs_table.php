@@ -11,7 +11,7 @@ class CreateFailedJobsTable extends Migration
      *
      * @return void
      */
-    public function up()
+/*    public function up()
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -22,14 +22,15 @@ class CreateFailedJobsTable extends Migration
             $table->timestamp('failed_at')->useCurrent();
         });
     }
-
+*/
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
+/*    public function down()
     {
         Schema::dropIfExists('failed_jobs');
     }
+*/
 }
