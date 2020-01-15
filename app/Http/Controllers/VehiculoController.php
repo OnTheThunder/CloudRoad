@@ -24,24 +24,33 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        //
+        $vehiculos = Vehiculo::all();
+        return view('vehiculo-pruebas', ['vehiculos' => $vehiculos]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $vehiculo = new Vehiculo;
+        $vehiculo->matricula = $request->matricula;
+        $vehiculo->modelo = $request->modelo;
+        $vehiculo->marca = $request->marca;
+        $vehiculo->aseguradora = $request->aseguradora;
+        $vehiculo->cliente_id = $request->cliente_id;
+        $vehiculo->save();
+
+        return redirect()->route('vehiculo.create');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Vehiculo  $vehiculo
+     * @param \App\Vehiculo $vehiculo
      * @return \Illuminate\Http\Response
      */
     public function show(Vehiculo $vehiculo)
@@ -52,7 +61,7 @@ class VehiculoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Vehiculo  $vehiculo
+     * @param \App\Vehiculo $vehiculo
      * @return \Illuminate\Http\Response
      */
     public function edit(Vehiculo $vehiculo)
@@ -63,8 +72,8 @@ class VehiculoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vehiculo  $vehiculo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Vehiculo $vehiculo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Vehiculo $vehiculo)
@@ -75,7 +84,7 @@ class VehiculoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vehiculo  $vehiculo
+     * @param \App\Vehiculo $vehiculo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vehiculo $vehiculo)
