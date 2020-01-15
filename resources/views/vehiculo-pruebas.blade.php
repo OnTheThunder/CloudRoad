@@ -18,7 +18,7 @@
         <label>Modelo<input type="text" name="modelo"></label><br>
         <label>Marca<input type="text" name="marca"></label><br>
         <label>Aseguradora<input type="text" name="aseguradora"></label><br>
-        <label>id_cliente<input type="text" name="cliente_id" disabled value="1"></label><br>
+        <label>id_cliente<input type="text" name="cliente_id"  value="1"></label><br>
         <button type="submit">Guardar</button>
     </form>
 </div>
