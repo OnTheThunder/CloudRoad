@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', 'VehiculoController@create')->name('vehiculo.create');
+Route::post('/', 'VehiculoController@store')->name('vehiculo.store');
