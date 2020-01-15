@@ -13,6 +13,7 @@
 
 <div>
     <form method="post" action="{{route('vehiculo.store')}}">
+        @csrf
         <label>Matricula<input type="text" name="matricula"></label><br>
         <label>Modelo<input type="text" name="modelo"></label><br>
         <label>Marca<input type="text" name="marca"></label><br>
