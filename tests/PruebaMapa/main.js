@@ -40,6 +40,7 @@ function calcRoute(puntoOrigen, puntoDestino, directionsService, directionsRende
             directionsRenderer.setDirections(response);
             console.log(response);
             console.log(Math.round(response.routes[0].legs[0].distance.value) / 1000 + "km"); //Obtiene los kilometros
+            console.log(Math.round(response.routes[0].legs[0].duration.value / 60) + " minutos"); //Obtiene los minutos que lleva completar el recorrido
         }
         else{
             console.log("Este punto no es accesible en coche")
