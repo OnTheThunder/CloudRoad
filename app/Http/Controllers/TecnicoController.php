@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tecnico;
+use App\Incidencia;
 use Illuminate\Http\Request;
 
 class TecnicoController extends Controller
