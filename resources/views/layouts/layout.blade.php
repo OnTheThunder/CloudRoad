@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CloudRoad</title>
     <!-- BOOTSTRAP -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     <!-- Font awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -29,5 +31,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <!-- BOOTSTRAP JS -->
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ secure_asset('js/app.js') }}"></script>
 </html>
