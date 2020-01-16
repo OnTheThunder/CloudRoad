@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-primary ">
 
     <div class="navbar col d-flex justify-content-center" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#">CloudRodad</a>
