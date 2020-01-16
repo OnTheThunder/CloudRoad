@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\incidencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
@@ -14,7 +15,9 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        //
+        //$incidencias = Incidencia::where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
+        $user = 1;
+        return view('Tecnico/incidencias', ['user' => $user, /*'incidencias' => $incidencias*/]);
     }
 
     /**
