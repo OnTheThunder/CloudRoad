@@ -16,8 +16,8 @@ class IncidenciaController extends Controller
     public function index()
     {
         //$incidencias = Incidencia::where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
-        $user = 1;
-        return view('Tecnico/incidencias', ['user' => $user, /*'incidencias' => $incidencias*/]);
+        $user = 3;
+        return view('incidencias', ['user' => $user, /*'incidencias' => $incidencias*/]);
     }
 
     /**
@@ -27,7 +27,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Operador/incidenciaForm');
     }
 
     /**
