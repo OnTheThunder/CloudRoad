@@ -7,7 +7,9 @@
             <img id="img-footer" src="{{ secure_asset('img/onTheThunder.png') }}" alt="img-equipo"
                  class="img-fluid figure-img">
             <span>© 2020 OnTheThunder: </span>
-            <a class="" href="https://github.com/OnTheThunder/CloudRoad"> Github</a>
+            <a class="text-dark" href="https://github.com/OnTheThunder/CloudRoad">
+                <i class="fab fa-github-square"></i>
+            </a>
         </div>
     </div>
 </footer>
