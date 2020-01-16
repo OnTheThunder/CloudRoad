@@ -1,4 +1,4 @@
-@extends('layouts/layout')
+@extends('layouts.layout')
 
 @section('content')
     <div class="row">
@@ -15,14 +15,20 @@
                 </div>
             @elseif($user == 2)
                 <div class="d-flex flex-column">
-                    <button type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</button>
+                    <a type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</a>
                 </div>
             @endif
         </div>
         <div class="col-6 d-flex flex-column">
-            <div class="d-flex justify-content-center my-4">
-                <button class="btn btn-primary btn-lg btn-block" id="incidencia">Nueva Incidencia <i class="fas fa-bell" id="notificacion"></i></button>
-            </div>
+            @if($user == 2)
+                <div class="d-flex justify-content-center my-4">
+                    <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-plus"></i> Crear Incidencia</a>
+                </div>
+            @elseif($user == 3)
+                <div class="d-flex justify-content-center my-4">
+                    <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block">Nueva Incidencia <i class="fas fa-bell"></i></a>
+                </div>
+            @endif
 
             <div class="d-flex justify-content-between my-2">
                 <h2>Historial</h2>
@@ -46,7 +52,9 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/notificacion.js') }}"></script>
+    @if($user = 3)
+        <script src="{{ asset('js/notificacion.js') }}"></script>
+    @endif
 @endsection
 
 
