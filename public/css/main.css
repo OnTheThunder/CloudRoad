@@ -6,3 +6,8 @@ footer {
     width: 75px;
     height: 75px;
 }
+
+/* modificado del de bootstrap*/
+.dropdown-menu {
+    margin-left: -120px;
+}
