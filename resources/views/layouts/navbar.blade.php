@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-primary ">
 
     <div class="navbar col d-flex justify-content-center" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">CloudRodad</a>
+        <a class="navbar-brand" href="#">CloudRoad</a>
     </div>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
