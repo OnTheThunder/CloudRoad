@@ -15,6 +15,7 @@ class CreateTallersTable extends Migration
     {
         Schema::create('tallers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nombre');
             $table->float('latitud');
             $table->float('longitud');
             $table->string('provincia');
