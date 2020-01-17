@@ -25,6 +25,7 @@ Route::get('/', 'MainController@index')->name('main.index');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create');
+Route::get('/incidencias/create/taller', 'TallerController@index')->name('taller.index');
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
 
 
