@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Tecnico;
-use App\Incidencia;
+use App\Operario;
 use Illuminate\Http\Request;
 
-class TecnicoController extends Controller
+class MainController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $value = $request->session()->get('user');
+
+        //ver si se inició sesion
+        if ($value != null) {
+            //entra a la pagina del usuario
+            return view('coordinador.coordinador', ['value' => $value]);
+        } else {
+            //pasar el login
+            return view('coordinador.coordinador', ['value' => $value]);
+        }
+
     }
 
     /**
@@ -31,7 +40,7 @@ class TecnicoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,10 +51,10 @@ class TecnicoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tecnico  $tecnico
+     * @param \App\Operario $operario
      * @return \Illuminate\Http\Response
      */
-    public function show(Tecnico $tecnico)
+    public function show(Operario $operario)
     {
         //
     }
@@ -53,10 +62,10 @@ class TecnicoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tecnico  $tecnico
+     * @param \App\Operario $operario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tecnico $tecnico)
+    public function edit(Operario $operario)
     {
         //
     }
@@ -64,11 +73,11 @@ class TecnicoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tecnico  $tecnico
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Operario $operario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tecnico $tecnico)
+    public function update(Request $request, Operario $operario)
     {
         //
     }
@@ -76,10 +85,10 @@ class TecnicoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tecnico  $tecnico
+     * @param \App\Operario $operario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tecnico $tecnico)
+    public function destroy(Operario $operario)
     {
         //
     }

@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+/*Route::get('/', 'VehiculoController@create')->name('vehiculo.create');
+Route::post('/', 'VehiculoController@store')->name('vehiculo.store');*/
+
+Route::get('/', 'MainController@index')->name('main.index');
+//Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
+
+Route::get('/incidencias', 'IncidenciaController@index')->name('Incidencia.index');
+Route::get('/incidencias/{id}', 'TecnicoController@show')->name('Tecnico.show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
