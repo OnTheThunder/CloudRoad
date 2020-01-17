@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
             <div class="d-flex justify-content-between my-4">
@@ -109,6 +108,5 @@
                 </form>
             </div>
         </div>
-    </div>
     <script src="{{ asset('js/validacionForm.js') }}"></script>
 @endsection

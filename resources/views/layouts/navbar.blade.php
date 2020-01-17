@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-primary shadow-sm mb-2">
+<nav class="row navbar navbar-light bg-primary ">
 
     <div class="navbar col d-flex justify-content-center " id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{{route('main.index')}}">{{ config('app.name') }}</a>

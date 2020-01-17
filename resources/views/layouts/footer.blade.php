@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="text-small mt-5 pt-4 bg-secondary">
+<footer class="row text-small mt-5 pt-4 ">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
         <!-- Copyright -->

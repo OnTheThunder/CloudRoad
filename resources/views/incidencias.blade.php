@@ -1,24 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="row">
-        <div class="col-3">
-            @if($user == 1)
-                <div class="d-flex flex-column">
-                    <button type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</button>
-
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action "> <i class="fas fa-user-plus"></i> Nuevo usuario</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Estadisticas</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Datos</a>
-                    </div>
-                </div>
-            @elseif($user == 2)
-                <div class="d-flex flex-column">
-                    <a type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</a>
-                </div>
-            @endif
-        </div>
         <div class="col-6 d-flex flex-column">
             @if($user == 2)
                 <div class="d-flex justify-content-center my-4">
@@ -51,7 +33,7 @@
                 @endforeach
             </div>
         </div>
-    </div>
+
     @if($user = 3)
         <script src="{{ asset('js/notificacion.js') }}"></script>
     @endif

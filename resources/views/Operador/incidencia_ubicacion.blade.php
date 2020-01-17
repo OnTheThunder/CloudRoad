@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
             <div class="d-flex justify-content-center my-4">
@@ -41,5 +40,4 @@
 
            </div>
         </div>
-    </div>
 @endsection
