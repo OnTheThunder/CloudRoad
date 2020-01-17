@@ -9,18 +9,22 @@ use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
+
     public function coordinador()
     {
         return $this->hasOne('App\Coordinador');
     }
+
     public function tecnico()
     {
         return $this->hasOne('App\Tecnico');
     }
+
     public function operario()
     {
         return $this->hasOne('App\Operario');
     }
+
     use Notifiable;
 
     /**
@@ -29,7 +33,7 @@ class Usuario extends Authenticatable
      * @var array
      */
     protected $fillable = [
-         'email', 'password',
+       'nombre', 'email', 'password',
     ];
 
     /**
@@ -38,7 +42,7 @@ class Usuario extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
