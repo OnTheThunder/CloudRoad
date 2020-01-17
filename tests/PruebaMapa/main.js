@@ -23,8 +23,11 @@ function initMap() {
         center: defaultLatLng
     });
 
+
     //RUTAS POR CLICK
     google.maps.event.addDomListener(map, 'click', function( event ){
+
+        document.getElementById("mapsearch").value = "";
 
         //Eliminar el render de la anterior ruta
         deleteRouteRender();
