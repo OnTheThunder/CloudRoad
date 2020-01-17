@@ -16,10 +16,6 @@
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
-Usuario:
-@if(Auth::user() != null)
-    {{ Auth::user() }}
-@endif
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
