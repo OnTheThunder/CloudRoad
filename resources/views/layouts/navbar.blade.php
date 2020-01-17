@@ -8,7 +8,7 @@
                 aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-cog"></i>
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-navbar" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Cambiar contraseña</a>
             <a class="dropdown-item" href="#">Cerrar sesión</a>
         </div>

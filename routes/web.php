@@ -32,3 +32,5 @@ Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.s
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');

@@ -13,11 +13,11 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('coordinador', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
-            $table->string('password');
-            $table->string('rol');
+            $table->string('password')->default("12345Abcde");
+            $table->string('rol')->default("jefe");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coordinador');
+        Schema::dropIfExists('usuarios');
     }
 }

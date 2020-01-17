@@ -16,6 +16,7 @@
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
+usuario: {{ Auth::user()->nombre }}
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
@@ -31,6 +32,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <!-- BOOTSTRAP JS -->
-<script src="{{ asset('js/app.js') }}"></script>
+<!-- DESCOMENTAR SI FALLA EL HTTPS <script src="{{ asset('js/app.js') }}"></script> -->
 <script src="{{ secure_asset('js/app.js') }}"></script>
 </html>
