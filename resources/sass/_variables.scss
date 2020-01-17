@@ -22,6 +22,11 @@ $cyan: #6cb2eb;
 $colorLogo: #fcda06;
 $colorPrincipal: #75cf93;
 
+
 // modificado
-$primary: $colorPrincipal !default;
-$secondary: $colorLogo !default
+//$primary: $colorPrincipal !default;
+//$secondary: $colorLogo !default;
+$theme-colors: (
+    "color-primario": $colorPrincipal,
+    "color-secundario": $colorLogo
+);

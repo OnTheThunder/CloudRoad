@@ -1,19 +1,19 @@
-<nav class="navbar navbar-light bg-primary shadow-sm mb-2">
+<nav class="navbar navbar-light bg-color-primario shadow-sm mb-2">
 
-    <div class="navbar col d-flex justify-content-center " id="navbarTogglerDemo01">
+    <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{{route('main.index')}}">{{ config('app.name') }}</a>
     </div>
 
     <!-- si esta logeado o no  vea unas opciones u otras-->
     @if(Auth::user() == null)
-        <ul class="navbar-nav ">
+        <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item">
+                <li class="nav-item m-2">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
-                    <li class="nav-item">
+                    <li class="nav-item m-2">
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
@@ -41,7 +41,7 @@
         <!-- ver el dropdown de cambiar contraseña y cerrar sesion -->
     @else
         <div class="dropdown">
-            <button class="border-0 bg-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+            <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span>Bienvenido, {{ Auth::user()->nombre }} </span>
