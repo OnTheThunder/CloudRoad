@@ -42,13 +42,13 @@
 
             </div>
             <div>
-                {{--@foreach($incidencias as $incidencia)
+                @foreach($incidencias as $incidencia)
                     <div>
                         <h3>{{ $incidencia->tipo }}</h3>
                         <p>{{ $incidencia->descripcion }}</p>
                         <p>{{ $incidencia->estado }}</p>
                     </div>
-                @endforeach--}}
+                @endforeach
             </div>
         </div>
     </div>
