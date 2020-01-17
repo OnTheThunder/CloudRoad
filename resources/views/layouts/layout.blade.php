@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CloudRoad</title>
+    <title>{{ config('app.name') }}</title>
     <!-- BOOTSTRAP -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
@@ -16,7 +16,10 @@
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
-usuario: {{ Auth::user()->nombre }}
+Usuario:
+@if(Auth::user() != null)
+    {{ Auth::user() }}
+@endif
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->

@@ -9,14 +9,23 @@ use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
+
+    use Notifiable;
+    public $table = 'usuarios';
+
+    protected $guard = 'usuarios';
+
+
     public function coordinador()
     {
         return $this->hasOne('App\Coordinador');
     }
+
     public function tecnico()
     {
         return $this->hasOne('App\Tecnico');
     }
+
     public function operario()
     {
         return $this->hasOne('App\Operario');
