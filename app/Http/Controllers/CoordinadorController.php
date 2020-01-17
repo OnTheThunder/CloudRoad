@@ -82,4 +82,8 @@ class CoordinadorController extends Controller
     {
         //
     }
+
+    public function datos(Coordinador $coordinador){
+        return view('datos');
+    }
 }
