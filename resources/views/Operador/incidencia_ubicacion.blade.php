@@ -2,13 +2,17 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <div class="d-flex justify-content-center my-4">
-                <h2>Seleccionar ubicación</h2>
-            </div>
-            <div>
-                <!--Mapa-->
+        <div class="col-md-12 pl-0 pr-0">
+            <div id="map-container">
+                <div id="map-search-container">
+                    <input class="form-control" type="text" id="mapsearch" placeholder="Realiza tu búsqueda">
+                </div>
+                <div id="map-legend-container">
+                    <div id="map-legend">
+                        <span>Selecciona la ubicación del incidente</span>
+                    </div>
+                </div>
+                <div id="map"></div>
             </div>
             <div>
                 {{--<h3>{{ $taller->Nombre }}</h3>
@@ -38,8 +42,8 @@
                    @endforeach--}}
                    </tbody>
                </table>
-
            </div>
         </div>
     </div>
+    <script src="{{ asset('js/mapaOperador.js') }}"></script>
 @endsection

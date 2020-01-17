@@ -121,4 +121,8 @@ class IncidenciaController extends Controller
     {
         //
     }
+
+    public function displayMap(){
+        return view('Operador/incidencia_ubicacion');
+    }
 }
