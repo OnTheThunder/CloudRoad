@@ -22,11 +22,10 @@ Route::post('/', 'VehiculoController@store')->name('vehiculo.store');*/
 //Route::get('/', 'MainController@index')->name('main.index');
 Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
 
-Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
-Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create');
-Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
-Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
-
+Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store')->middleware('auth');
+Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
+Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
+Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index')->middleware('auth');
 
 
 Auth::routes();
