@@ -35,10 +35,10 @@ function initMap() {
 
         document.getElementById("mapsearch").value = "";
 
+        let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+
         //Eliminar el render de la anterior ruta
         deleteRouteRender();
-
-        let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
 
         //createMarker(lugarIncidencia);
 
