@@ -16,6 +16,7 @@
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
+usuario: {{ Auth::user()->nombre }}
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->

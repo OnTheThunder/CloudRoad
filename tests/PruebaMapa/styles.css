@@ -4,9 +4,20 @@
 #map {
     height: 100%;
 }
+#mapsearch{
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 1;
+    width: 800px;
+}
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.gmnoprint{
+    display: none;
 }
