@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\incidencia;
+use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +18,7 @@ class IncidenciaController extends Controller
     public function index()
     {
         //$incidencias = Incidencia::where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
-        $user = 3;
+        $user = 2;
         return view('incidencias', ['user' => $user, /*'incidencias' => $incidencias*/]);
     }
 
@@ -27,7 +29,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('Operador/incidenciaForm');
+        return view('Operador/incidencia_create');
     }
 
     /**
@@ -38,8 +40,42 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Registrar un cliente
+        $cliente = new Cliente();
+
+        $cliente->nombre = request('nombre');
+        $cliente->apellidos = request ('apellidos');
+        $cliente->telefono = request ('telefono');
+        $cliente->dni = request ('dni');
+
+        $cliente->save();
+
+        //Registrar un vehiculo
+        $cliente_dni = request ('dni');
+        $cliente_id = Cliente::where('dni', $cliente_dni)->value('id');
+        $vehiculo = new Vehiculo();
+
+        $vehiculo->marca = request ('marca');
+        $vehiculo->modelo = request ('modelo');
+        $vehiculo->matricula = request ('matricula');
+        $vehiculo->aseguradora = request ('aseguradora');
+        $vehiculo->cliente_id = $cliente_id;
+
+        $vehiculo->save();
+
+        //Registrar una incidencia
+        $incidencia = new Incidencia();
+
+        $incidencia->descripcion = request('descripcion');
+        $incidencia->estado = "En proceso";
+        $incidencia->tipo = request ('tipo');
+        $incidencia->cliente_id = $cliente_id;
+
+        $incidencia->save();
+
+        return redirect('/incidencias');
     }
+
 
     /**
      * Display the specified resource.

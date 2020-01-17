@@ -26,7 +26,7 @@
                 </div>
             @elseif($user == 3)
                 <div class="d-flex justify-content-center my-4">
-                    <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block">Nueva Incidencia <i class="fas fa-bell"></i></a>
+                    <a href="" class="btn btn-primary btn-lg btn-block">Nueva Incidencia <i class="fas fa-bell"></i></a>
                 </div>
             @endif
 
