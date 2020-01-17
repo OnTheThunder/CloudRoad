@@ -1,6 +1,10 @@
 @extends('layouts.layout')
 
 @section('content')
+    <div class="row">
+        <div class="col-3">
+            @include('layouts.aside')
+        </div>
         <div class="col-6 d-flex flex-column">
             @if($user == 2)
                 <div class="d-flex justify-content-center my-4">
@@ -33,7 +37,7 @@
                 @endforeach
             </div>
         </div>
-
+    </div>
     @if($user = 3)
         <script src="{{ asset('js/notificacion.js') }}"></script>
     @endif

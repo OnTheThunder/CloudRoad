@@ -16,22 +16,16 @@
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid">
+
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
-    <div class="row">
-        <div class="col-3">
-            @include('layouts.aside')
-        </div>
-        @yield('content')
-    </div>
-
-
-
+<div class="container-fluid">
+@yield('content')
+</div>
 <!-- Footer -->
 @include('layouts.footer')
-</div>
+
 
 </body>
 <!-- jQuery CDN -->
