@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\incidencia;
+use App\Tecnico;
 use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Taller;
 
 class IncidenciaController extends Controller
 {
@@ -29,7 +31,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('Operador/incidencia_create');
+        return view('operador/incidencia_create');
     }
 
     /**
@@ -123,6 +125,28 @@ class IncidenciaController extends Controller
     }
 
     public function displayMap(){
-        return view('Operador/incidencia_ubicacion');
+        return view('operador/incidencia_ubicacion');
+    }
+
+    public function getTalleres(){
+        return json_encode(Taller::all());
+    }
+
+    public function getTecnicosByTaller($idTaller){
+        date_default_timezone_set('Europe/Madrid');
+
+        if(date('H') < 8){
+            $turno = 'noche';
+        }
+        elseif (date('H') < 16){
+            $turno = 'manana';
+        }
+        else{
+            $turno = 'tarde';
+        }
+
+        $matchThese = ['taller_id' => $idTaller, 'disponibilidad' => 1, 'turno' => $turno];
+        $tecnicos = Tecnico::where($matchThese)->get();
+        return json_encode($tecnicos);
     }
 }

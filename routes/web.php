@@ -29,6 +29,9 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
+Route::get('/incidencias/create/map/getTalleres', 'IncidenciaController@getTalleres')->name('incidencia.getTalleres');
+Route::get('/incidencias/create/map/taller/{idTaller}/getTecnicos', 'IncidenciaController@getTecnicosByTaller')->name('incidencia.getTecnicosByTaller');
+
 
 
 

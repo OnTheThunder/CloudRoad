@@ -7,26 +7,33 @@ let marker;
 let renderFastestRoute;
 let map;
 let objetoResponse;
+let talleres;
+let tecnicos;
+let oTallerMasCercano;
 
-//Variables globales de prueba
-let vitoria;
-let bilbao;
-let donosti;
+window.onload = function () {
+    $('html, body').scrollTop(0);
+    $('body').css('overflow', 'hidden'); //Mapa en fullscreen
+    $(function () {$('[data-toggle="tooltip"]').tooltip()});//Activate tooltips
+};
 
 //Inicializar mapa
 function initMap() {
+    getTalleresAJAX();
+
     let searchBox = new google.maps.places.SearchBox(document.getElementById("mapsearch"));
     let defaultLatLng = {lat: 42.842326386012516, lng: -2.691612846296414}; //Punto en el que está centrado el mapa por defecto
     let directionsService = new google.maps.DirectionsService();
     let directionsRenderer = new google.maps.DirectionsRenderer();
-    vitoria = new google.maps.LatLng(42.842326386012516, -2.691612846296414); //Ubicación taller de prueba
-    bilbao = new google.maps.LatLng(43.24478743516591, -2.927818900983914); //Ubicación taller de prueba
-    donosti = new google.maps.LatLng(43.3019993718923, -1.969261772077664); //Ubicación taller de prueba
+
 
     //Crea el mapa
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 9,
-        center: defaultLatLng
+        center: defaultLatLng,
+        options: {
+            gestureHandling: 'greedy'
+        }
     });
 
 
@@ -42,14 +49,11 @@ function initMap() {
 
         //createMarker(lugarIncidencia);
 
-        //Select talleres a base de datos
-        let talleres = getTalleres();
-
         //Resetear los calculos de las rutas
         resetRouteValues();
 
         //Iterar a traves de los talleres para obtener el más cercano a la incidencia
-        iterateTalleresRoutes(talleres, lugarIncidencia, directionsService, directionsRenderer);
+        iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
 
         //deletePreviousMarker();
         //getLatLngOnClick(lugarIncidencia);
@@ -66,14 +70,11 @@ function initMap() {
 
         //createMarker(lugarIncidencia);
 
-        //Select talleres a base de datos
-        let talleres = getTalleres();
-
         //Resetear los calculos de las rutas
         resetRouteValues();
 
         //Iterar a traves de los talleres para obtener el más cercano a la incidencia
-        iterateTalleresRoutes(talleres, lugarIncidencia, directionsService, directionsRenderer);
+        iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
 
         //deletePreviousMarker();
     })
@@ -88,7 +89,7 @@ function calcRoute(talleres, numeroTaller, puntoOrigen, puntoDestino, directions
         unitSystem: google.maps.UnitSystem.METRIC
     };
     directionsService.route(request, function(response, status) {
-        if (status == 'OK') {
+        if (status === 'OK') {
             directionsRenderer.setDirections(response);
             let tiempoDesdeTallerActual = response.routes[0].legs[0].duration.value;
             //Asigna el taller y el tiempo de recorrido en caso de ser el más rapido
@@ -101,9 +102,11 @@ function calcRoute(talleres, numeroTaller, puntoOrigen, puntoDestino, directions
                 //Creamos un objeto render con la ruta mas rapida para luego poder displayearlo
                 renderFastestRoute = new google.maps.DirectionsRenderer();
                 renderFastestRoute.setDirections(objetoResponse);
+                //Guardamos el objeto de BD del taller mas cercano
+                oTallerMasCercano = talleres[numeroTaller];
             }
             //Get Data Iteración Actual
-            consoleLogIteracionRuta(numeroTaller, tiempoDesdeTallerActual);
+            //consoleLogIteracionRuta(numeroTaller, tiempoDesdeTallerActual);
 
             //Si hemos iterado a través de todos los talleres muestra el más eficiente
             if(contadorTalleres === talleres.length -1){
@@ -113,9 +116,12 @@ function calcRoute(talleres, numeroTaller, puntoOrigen, puntoDestino, directions
                 renderFastestRoute.setMap(map);
 
                 createInfoBox(tallerAddress, incidenciaAddress);
+                createTecnicoButton();
+                renderTableHeader();
+                findTecnicos(oTallerMasCercano.id);
 
                 //Get Data Best Route
-                consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia);
+                //consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia);
             }
         }
         else{
@@ -138,9 +144,6 @@ function deletePreviousMarker() {
     }
 }
 
-function getTalleres() {
-    return [vitoria, bilbao, donosti]; //Array prueba
-}
 
 function resetRouteValues() {
     tiempoAlTallerMasCercano = undefined;
@@ -148,9 +151,11 @@ function resetRouteValues() {
     contadorTalleres = 0;
 }
 
-function iterateTalleresRoutes(talleres, lugarIncidencia, directionsService, directionsRenderer) {
+function iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer) {
+    console.log(talleres);
     talleres.forEach((item, i)=>{
-        calcRoute(talleres, i, talleres[i], lugarIncidencia, directionsService, directionsRenderer);
+        let coordenadasTallerActual = new google.maps.LatLng(talleres[i].latitud, talleres[i].longitud);
+        calcRoute(talleres, i, coordenadasTallerActual, lugarIncidencia, directionsService, directionsRenderer);
     });
 }
 
@@ -170,6 +175,9 @@ function getProvinciaIncidencia(incidenciaAddress) {
     else if(incidenciaAddress.includes('Bizkaia') || incidenciaAddress.includes('Vizcaya')){
         return 'Bizkaia';
     }
+    else if(incidenciaAddress.includes('Navarra') || incidenciaAddress.includes('Nafarroa') || incidenciaAddress.includes('Navarre')){
+        return 'Nafarroa';
+    }
 }
 
 function getLatLngOnClick(lugarIncidencia) {
@@ -187,7 +195,7 @@ function consoleLogIteracionRuta(numeroTaller, tiempoDesdeTallerActual) {
 
 function consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia) {
     console.log("%c ---RESULTADO FINAL---", "color: red; font-weight: bold;");
-    console.log("Lugar del taller mas cercano: " + talleres[numeroTallerMasCercano]);
+    console.log("Lugar del taller mas cercano: " + objetoResponse.routes[0].legs[0].start_address);
     console.log("Lugar de la incidencia: " + incidenciaAddress)
     console.log("Tiempo desde el taller + cercano: " + Math.round(tiempoAlTallerMasCercano / 60) + " minutos");
     console.log("Km desde el taller + cercano: " + Math.round(kmAlTallerMasCercano / 1000) + "km"); //Obtiene los kilometros
@@ -195,20 +203,22 @@ function consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia) {
 }
 
 function createInfoBox(tallerAddress, incidenciaAddress) {
-    $('#map').append('<div class="infoBox panel panel-default">\n' +
+    $('#map').append('<div class="infoBox">\n' +
         '    <div id="infoBoxInsideWrapper">\n' +
-        '        <div class="container panel-body">\n' +
+        '        <div class="container">\n' +
         '           <div class="row justify-content-center">\n' +
-        '              <span id="infoBoxTitle">Taller más cercano</span>\n' +
+        `              <span id="infoBoxTitle">${oTallerMasCercano.nombre}</span>\n` +
         '           </div>\n' +
         '           <hr id="infoBoxSeparator">\n' +
         '           <div class="row mb-2">\n' +
-        `              <span class="infoBoxDataTitles">Lugar del taller: </span>
-                                   <span class="infoBoxData">${tallerAddress}</span>\n` +
+        '              <i class="fas fa-map-marker-alt"></i>' +
+        `              <span class="infoBoxDataTitles">Lugar del taller:&nbsp;</span>
+                       <span class="infoBoxData">${tallerAddress}</span>\n` +
         '           </div>\n' +
         '           <div class="row mb-2">\n' +
-        `              <span class="infoBoxDataTitles">Lugar de la incidencia: </span>
-                                   <span class="infoBoxData">${incidenciaAddress}</span>\n` +
+        '              <i class="fas fa-directions"></i>' +
+        `              <span class="infoBoxDataTitles">Lugar de la incidencia:&nbsp;</span>
+                       <span class="infoBoxData">${incidenciaAddress}</span>\n` +
         '           </div>\n' +
         '           <div class="row justify-content-end" id="infoBoxkmTime">\n' +
         `              <span>${Math.round(kmAlTallerMasCercano / 1000)} km</span>\n` +
@@ -216,6 +226,94 @@ function createInfoBox(tallerAddress, incidenciaAddress) {
         '           </div>\n' +
         '        </div>\n' +
         '    </div>')
+}
+
+function createTecnicoButton() {
+    if($('#btn-tecnicos').length === 0){
+        $('#map').append('<div class="btn-scrollers" id="btn-tecnicos">\n' +
+                            '<i class="fas fa-user-cog"></i>\n' +
+                        '</div>')
+    }
+
+    $('#btn-tecnicos').on('click', function(e){
+        //Scroll to data section
+        let posTop = $("#tecnico-fullscreen-data").offset().top;
+        e.preventDefault();
+        e.stopPropagation();
+        $('html, body').scrollTop(posTop);
+    })
+}
+
+function getTalleresAJAX() {
+    $.ajax({
+        type: 'get',
+        url: '/incidencias/create/map/getTalleres',
+        dataType: 'json',
+        success: function(result){
+            talleres = result;
+        }
+    });
+}
+
+function getTecnicosByTallerAJAX(idTaller) {
+    let url = `/incidencias/create/map/taller/${idTaller}/getTecnicos`;
+    $.ajax({
+        type: 'get',
+        url: url,
+        dataType: 'json',
+        success: function(result){
+            tecnicos = result;
+            renderTecnicos();
+            renderButtonUp();
+        }
+    });
+}
+
+function renderTableHeader() {
+    $('body').css('overflow', 'visible');
+    let listaTecnicosTooltip = $('#lista-tecnicos-info');
+
+    listaTecnicosTooltip.on('hover', function () {
+        listaTecnicosTooltip.tooltip('show')
+    })
+}
+
+
+function findTecnicos(idTaller) {
+    getTecnicosByTallerAJAX(idTaller);
+}
+
+function renderTecnicos() {
+    let tablaTecnicos = $("#tabla-tecnicos-disponibles");
+    let cabeceraTablaTecnicos = $('#table-header-container');
+    tablaTecnicos.css('display', 'table');
+    cabeceraTablaTecnicos.css('display', 'flex');
+    let tableBody = tablaTecnicos.find( "tbody" );
+    tableBody.empty();
+
+    tecnicos.forEach((item)=>{
+        tableBody.append('<tr>\n' +
+                            `<td>${item.nombre}</td>\n` +
+                            `<td>${item.apellidos}</td>\n` +
+                            `<td>${item.telefono}</td>\n` +
+                            `<td>${item.email}</td>\n` +
+                            '<td>\n' +
+                                '<button class="btn btn-outline-primary">Notificar</button>\n' +
+                            '</td>\n' +
+                        '</tr>')
+    })
+}
+
+function renderButtonUp() {
+    if($('#btn-scrollUp').length === 0){
+        $('#tecnico-fullscreen-data')
+            .append('<div class="btn-scrollers" id="btn-scrollUp">\n' +
+                '<i class="fas fa-chevron-up"></i>\n' +
+                '</div>');
+        $('#btn-scrollUp').on('click', function () {
+            $('html, body').scrollTop(0);
+        })
+    }
 }
 
 

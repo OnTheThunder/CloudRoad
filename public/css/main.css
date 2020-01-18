@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 #img-footer {
     width: 75px;
     height: 75px;
@@ -8,11 +12,13 @@
 }
 
 /* MAPA DEL OPERADOR */
+#map-container, #tecnico-fullscreen-data{
+    font-family: 'Montserrat', sans-serif;
+}
 #map-container{
     height: 92vh;
     position: relative;
     margin-top: -0.5rem !important;
-    margin-bottom: 3rem;
     overflow-x: hidden;
 }
 #map {
@@ -25,6 +31,8 @@
     z-index: 3;
     width: 30%;
 }
+
+
 #map-legend-container{
     position: absolute;
     top: 10px;
@@ -35,14 +43,13 @@
 
 #map-legend{
     margin: 0 auto;
-    width: 30%;
+    width: 20%;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 0.25rem;
+    border: 1px solid #ced4da;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Roboto, serif;
-    font-weight: 300;
     font-size: 0.9rem;
     height: calc(1.6em + 0.75rem);
 }
@@ -64,7 +71,6 @@
     background: #fdfdfd;
     border-radius: 5px;
     padding: 10px 15px;
-    font-family: 'Montserrat', sans-serif;
     font-size: 0.95rem;
     -webkit-box-shadow: 4px 4px 5px -6px rgba(89,89,89,1);
     -moz-box-shadow: 4px 4px 5px -6px rgba(89,89,89,1);
@@ -104,6 +110,71 @@
 .infoBoxData{
     font-weight: 300;
 }
+
+.btn-scrollers{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-scrollers:hover{
+    cursor: pointer;
+}
+
+/*Tabla Tecnicos*/
+
+#table-header-container{
+    display: none;
+    text-align: center;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#table-header-container .fas{
+    margin: 0 0 5px 15px;
+    font-size: 1rem;
+}
+
+#tabla-tecnicos-disponibles{
+    display: none;
+    margin: 0 auto;
+    width: 60%;
+}
+
+#tabla-tecnicos-disponibles th{
+    width: 22.5%;
+}
+
+#tabla-tecnicos-disponibles th:nth-last-child(1) {
+    width: 10%;
+}
+#tecnico-fullscreen-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#tecnico-data-container{
+    font-weight: 400;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+#infoBoxInsideWrapper .fas{
+    display: flex;
+    align-items: center;
+    margin-right: 0.5em;
+}
+
 
 /*QUITAR*/
 .navbar-brand, .nav-link{
