@@ -19,12 +19,33 @@
 /*Route::get('/', 'VehiculoController@create')->name('vehiculo.create');
 Route::post('/', 'VehiculoController@store')->name('vehiculo.store');*/
 
-Route::get('/', 'MainController@index')->name('main.index');
-//Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
 
-Route::get('/incidencias', 'IncidenciaController@index')->name('Incidencia.index');
-Route::get('/incidencias/{id}', 'TecnicoController@show')->name('Tecnico.show');
+//Route::get('/', 'MainController@index')->name('main.index');
+Route::get('/', 'MainController@index')->name('main.index');
+
+
+Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
+Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create');
+Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
+
+
+Route::get('bodegas/{id}', 'BodegaController@show')->name('bodegas.show');
+Route::get('bodegas/create', 'BodegaController@create')->name('bodegas.create');
+
+Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
+Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map');
+Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
+
+//Llamadas desde AJAX
+Route::get('/incidencias/create/map/getTalleres', 'IncidenciaController@getTalleres')->name('incidencia.getTalleres');
+Route::get('/incidencias/create/map/taller/{idTaller}/getTecnicos', 'IncidenciaController@getTecnicosByTaller')->name('incidencia.getTecnicosByTaller');
+
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
+Route::get('/admin/datos', 'CoordinadorController@datos')->name('coordinador.datos'); //Tenemos que meterle middleware

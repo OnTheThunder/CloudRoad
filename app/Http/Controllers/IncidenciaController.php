@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\incidencia;
+use App\Tecnico;
+use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Taller;
 
 class IncidenciaController extends Controller
 {
@@ -15,9 +19,9 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        //$incidencias = Incidencia::where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
-        $user = 1;
-        return view('Tecnico/incidencias', ['user' => $user, /*'incidencias' => $incidencias*/]);
+        $incidencias = Incidencia::all();//where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
+        $user = 2;
+        return view('incidencias', ['user' => $user, 'incidencias' => $incidencias]);
     }
 
     /**
@@ -27,19 +31,22 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('operador/incidencia_create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param $oDatosIncidencia
+     * @return void
      */
     public function store(Request $request)
     {
-        //
+        echo "hola";
+        return view('/login');
     }
+
 
     /**
      * Display the specified resource.
@@ -85,4 +92,32 @@ class IncidenciaController extends Controller
     {
         //
     }
+
+
+    public function getTalleres(){
+        return json_encode(Taller::all());
+    }
+
+    public function getTecnicosByTaller($idTaller){
+        date_default_timezone_set('Europe/Madrid');
+
+        if(date('H') < 8){
+            $turno = 'noche';
+        }
+        elseif (date('H') < 16){
+            $turno = 'manana';
+        }
+        else{
+            $turno = 'tarde';
+        }
+
+        $matchThese = ['taller_id' => $idTaller, 'disponibilidad' => 1, 'turno' => $turno];
+        $tecnicos = Tecnico::where($matchThese)->get();
+        return json_encode($tecnicos);
+    }
+
+    public function displayMap(){
+        return view('operador/incidencia_ubicacion');
+    }
+
 }
