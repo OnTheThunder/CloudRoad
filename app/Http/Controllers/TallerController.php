@@ -14,7 +14,7 @@ class TallerController extends Controller
      */
     public function index()
     {
-        return view('Operador/incidencia_ubicacion');
+
     }
 
     /**

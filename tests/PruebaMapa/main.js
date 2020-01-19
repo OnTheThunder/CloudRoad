@@ -6,6 +6,7 @@ let contadorTalleres = 0;
 let marker;
 let renderFastestRoute;
 let map;
+let objetoResponse;
 
 //Variables globales de prueba
 let vitoria;
@@ -34,13 +35,12 @@ function initMap() {
 
         document.getElementById("mapsearch").value = "";
 
+        let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+
         //Eliminar el render de la anterior ruta
         deleteRouteRender();
 
-        let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
-
-        //Crear Marca
-        createMarker(lugarIncidencia);
+        //createMarker(lugarIncidencia);
 
         //Select talleres a base de datos
         let talleres = getTalleres();
@@ -51,11 +51,8 @@ function initMap() {
         //Iterar a traves de los talleres para obtener el más cercano a la incidencia
         iterateTalleresRoutes(talleres, lugarIncidencia, directionsService, directionsRenderer);
 
-        deletePreviousMarker();
-
-        //Coordenadas marker
-        //console.log("Lat: " + lugarIncidencia.lat);
-        //console.log("Long: " + lugarIncidencia.lng);
+        //deletePreviousMarker();
+        //getLatLngOnClick(lugarIncidencia);
     });
 
     //RUTAS POR BUSQUEDAS
@@ -66,11 +63,8 @@ function initMap() {
 
         let places = searchBox.getPlaces();
         let lugarIncidencia = {lat: places[0].geometry.location.lat(), lng: places[0].geometry.location.lng()};
-        let bounds = new google.maps.LatLngBounds();
-        let i, place;
 
-        //Crear Marca
-        createMarker(lugarIncidencia);
+        //createMarker(lugarIncidencia);
 
         //Select talleres a base de datos
         let talleres = getTalleres();
@@ -81,16 +75,7 @@ function initMap() {
         //Iterar a traves de los talleres para obtener el más cercano a la incidencia
         iterateTalleresRoutes(talleres, lugarIncidencia, directionsService, directionsRenderer);
 
-        for (i = 0; place=places[i]; i++) {
-            bounds.extend(place.geometry.location);
-            marker.setPosition(place.geometry.location);
-        }
-
-        map.fitBounds(bounds);
-        map.setZoom(11);
-
-
-        deletePreviousMarker();
+        //deletePreviousMarker();
     })
 }
 
@@ -105,33 +90,32 @@ function calcRoute(talleres, numeroTaller, puntoOrigen, puntoDestino, directions
     directionsService.route(request, function(response, status) {
         if (status == 'OK') {
             directionsRenderer.setDirections(response);
-            console.log(response);
-            //console.log(Math.round(response.routes[0].legs[0].distance.value) / 1000 + "km"); //Obtiene los kilometros
-
+            let tiempoDesdeTallerActual = response.routes[0].legs[0].duration.value;
             //Asigna el taller y el tiempo de recorrido en caso de ser el más rapido
-            if(tiempoAlTallerMasCercano === undefined || tiempoAlTallerMasCercano > response.routes[0].legs[0].duration.value) {
-                tiempoAlTallerMasCercano = response.routes[0].legs[0].duration.value;
-                kmAlTallerMasCercano = response.routes[0].legs[0].distance.value;
-                console.log("kmAlTallerMasCercano: " + kmAlTallerMasCercano)
+            if(tiempoAlTallerMasCercano === undefined || tiempoAlTallerMasCercano > tiempoDesdeTallerActual) {
+                //Guardamos el objeto response de esta iteracion para coger sus datos mas adelante
+                objetoResponse = response;
+                tiempoAlTallerMasCercano = tiempoDesdeTallerActual;
+                kmAlTallerMasCercano = objetoResponse.routes[0].legs[0].distance.value;
                 numeroTallerMasCercano = numeroTaller;
                 //Creamos un objeto render con la ruta mas rapida para luego poder displayearlo
                 renderFastestRoute = new google.maps.DirectionsRenderer();
-                renderFastestRoute.setDirections(response);
+                renderFastestRoute.setDirections(objetoResponse);
             }
-            console.log("%c ---ITERACION--- " + numeroTaller, "color: orange; font-weight: bold;")
-            console.log("Tiempo desde este taller: " + Math.round(response.routes[0].legs[0].duration.value / 60) + " minutos");
-            console.log("Tiempo desde el taller + cercano: " + Math.round(tiempoAlTallerMasCercano / 60) + " minutos");
-            console.log("Numero taller + cercano: " + numeroTallerMasCercano);
+            //Get Data Iteración Actual
+            consoleLogIteracionRuta(numeroTaller, tiempoDesdeTallerActual);
 
             //Si hemos iterado a través de todos los talleres muestra el más eficiente
             if(contadorTalleres === talleres.length -1){
-                console.log("%c ---RESULTADO FINAL---", "color: red; font-weight: bold;");
-                console.log("Lugar del taller mas cercano: " + talleres[numeroTallerMasCercano]);
-                console.log("Lugar de la incidencia: " + response.routes[0].legs[0].end_address)
-                console.log("Tiempo desde el taller + cercano: " + Math.round(tiempoAlTallerMasCercano / 60) + " minutos");
-                console.log("Km desde el taller + cercano: " + Math.round(kmAlTallerMasCercano / 1000 + "km")); //Obtiene los kilometros
+                let tallerAddress = objetoResponse.routes[0].legs[0].start_address;
+                let incidenciaAddress = objetoResponse.routes[0].legs[0].end_address;
+                let provinciaIncidencia = getProvinciaIncidencia(incidenciaAddress);
                 renderFastestRoute.setMap(map);
 
+                createInfoBox(tallerAddress, incidenciaAddress);
+
+                //Get Data Best Route
+                consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia);
             }
         }
         else{
@@ -176,6 +160,63 @@ function deleteRouteRender() {
     }
 }
 
+function getProvinciaIncidencia(incidenciaAddress) {
+    if(incidenciaAddress.includes('Araba') || incidenciaAddress.includes('Álava')){
+        return 'Araba';
+    }
+    else if(incidenciaAddress.includes('Gipuzkoa') || incidenciaAddress.includes('Guipuzcoa')){
+        return 'Gipuzkoa';
+    }
+    else if(incidenciaAddress.includes('Bizkaia') || incidenciaAddress.includes('Vizcaya')){
+        return 'Bizkaia';
+    }
+}
+
+function getLatLngOnClick(lugarIncidencia) {
+    console.log("Lat: " + lugarIncidencia.lat);
+    console.log("Long: " + lugarIncidencia.lng);
+}
+
+
+function consoleLogIteracionRuta(numeroTaller, tiempoDesdeTallerActual) {
+    console.log("%c ---ITERACION--- " + numeroTaller, "color: orange; font-weight: bold;")
+    console.log("Tiempo desde este taller: " + Math.round(tiempoDesdeTallerActual / 60) + " minutos");
+    console.log("Tiempo desde el taller + cercano: " + Math.round(tiempoAlTallerMasCercano / 60) + " minutos");
+    console.log("Numero taller + cercano: " + numeroTallerMasCercano);
+}
+
+function consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia) {
+    console.log("%c ---RESULTADO FINAL---", "color: red; font-weight: bold;");
+    console.log("Lugar del taller mas cercano: " + talleres[numeroTallerMasCercano]);
+    console.log("Lugar de la incidencia: " + incidenciaAddress)
+    console.log("Tiempo desde el taller + cercano: " + Math.round(tiempoAlTallerMasCercano / 60) + " minutos");
+    console.log("Km desde el taller + cercano: " + Math.round(kmAlTallerMasCercano / 1000) + "km"); //Obtiene los kilometros
+    console.log("Provincia de la incidencia: " + provinciaIncidencia);
+}
+
+function createInfoBox(tallerAddress, incidenciaAddress) {
+    $('#map').append('<div class="infoBox panel panel-default">\n' +
+                    '    <div id="infoBoxInsideWrapper">\n' +
+                    '        <div class="container panel-body">\n' +
+                    '           <div class="row justify-content-center">\n' +
+                    '              <span id="infoBoxTitle">Taller más cercano</span>\n' +
+                    '           </div>\n' +
+                    '           <hr id="infoBoxSeparator">\n' +
+                    '           <div class="row mb-2">\n' +
+                    `              <span class="infoBoxDataTitles">Lugar del taller: </span>
+                                   <span class="infoBoxData">${tallerAddress}</span>\n` +
+                    '           </div>\n' +
+                    '           <div class="row mb-2">\n' +
+                    `              <span class="infoBoxDataTitles">Lugar de la incidencia: </span>
+                                   <span class="infoBoxData">${incidenciaAddress}</span>\n` +
+                    '           </div>\n' +
+                    '           <div class="row justify-content-end" id="infoBoxkmTime">\n' +
+                    `              <span>${Math.round(kmAlTallerMasCercano / 1000)} km</span>\n` +
+                    `              <span>${Math.round(tiempoAlTallerMasCercano / 60)} minutos</span>\n` +
+                    '           </div>\n' +
+                    '        </div>\n' +
+                    '    </div>')
+}
 
 
 

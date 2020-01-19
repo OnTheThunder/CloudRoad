@@ -9,8 +9,7 @@
                 <a href="{{ route('incidencia.index') }}" class="btn btn-primary">Volver</a>
             </div>
             <div>
-                <form action="{{ route('incidencia.index') }}" method="POST" class="needs-validation" novalidate>
-                    @csrf
+                <form action="{{ route('incidencia.map') }}" method="get"> <!--class="needs-validation" novalidate>-->
                     <h3>Datos Cliente</h3>
                     <div class="form-group row">
                         <div class="col">
@@ -80,15 +79,9 @@
                     <h3>Datos Incidencia</h3>
                     <div class="form-group row">
                         <div class="col">
-                            <label for="lugar">Lugar</label>
-                            <input type="text" class="form-control" id="lugar" name="lugar" required>
-                            <div class="invalid-feedback">
-                                Hay que introducir un lugar.
-                            </div>
-                        </div>
-                        <div class="col">
                             <label for="tipo">Tipo</label>
                             <select class="form-control" id="tipo" name="tipo">
+                                <option selected disabled>Selecciona el tipo de Avería</option>
                                 <option>Avería</option>
                                 <option>Pinchazo</option>
                                 <option>Golpe</option>
@@ -105,10 +98,11 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
+                    <button id="btn-crear-incidencia" type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
                 </form>
             </div>
         </div>
     </div>
     <script src="{{ asset('js/validacionForm.js') }}"></script>
+    <script src="{{ asset('js/formOperador.js') }}"></script>
 @endsection
