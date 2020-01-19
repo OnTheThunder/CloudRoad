@@ -110,16 +110,11 @@ function calcRoute(talleres, numeroTaller, puntoOrigen, puntoDestino, directions
 
             //Si hemos iterado a través de todos los talleres muestra el más eficiente
             if(contadorTalleres === talleres.length -1){
-                let tallerAddress = objetoResponse.routes[0].legs[0].start_address;
-                let incidenciaAddress = objetoResponse.routes[0].legs[0].end_address;
-                let provinciaIncidencia = getProvinciaIncidencia(incidenciaAddress);
                 renderFastestRoute.setMap(map);
-
-                createInfoBox(tallerAddress, incidenciaAddress);
+                createInfoBox();
                 createTecnicoButton();
                 renderTableHeader();
-                findTecnicos(oTallerMasCercano.id);
-
+                findTecnicos();
                 //Get Data Best Route
                 //consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia);
             }
@@ -169,7 +164,7 @@ function getProvinciaIncidencia(incidenciaAddress) {
     if(incidenciaAddress.includes('Araba') || incidenciaAddress.includes('Álava')){
         return 'Araba';
     }
-    else if(incidenciaAddress.includes('Gipuzkoa') || incidenciaAddress.includes('Guipuzcoa')){
+    else if(incidenciaAddress.includes('Gipuzkoa') || incidenciaAddress.includes('Guipúzcoa')){
         return 'Gipuzkoa';
     }
     else if(incidenciaAddress.includes('Bizkaia') || incidenciaAddress.includes('Vizcaya')){
@@ -202,7 +197,10 @@ function consoleLogBestRuta(talleres, incidenciaAddress, provinciaIncidencia) {
     console.log("Provincia de la incidencia: " + provinciaIncidencia);
 }
 
-function createInfoBox(tallerAddress, incidenciaAddress) {
+function createInfoBox() {
+    let tallerAddress = objetoResponse.routes[0].legs[0].start_address;
+    let incidenciaAddress = objetoResponse.routes[0].legs[0].end_address;
+
     $('#map').append('<div class="infoBox">\n' +
         '    <div id="infoBoxInsideWrapper">\n' +
         '        <div class="container">\n' +
@@ -231,8 +229,8 @@ function createInfoBox(tallerAddress, incidenciaAddress) {
 function createTecnicoButton() {
     if($('#btn-tecnicos').length === 0){
         $('#map').append('<div class="btn-scrollers" id="btn-tecnicos">\n' +
-                            '<i class="fas fa-user-cog"></i>\n' +
-                        '</div>')
+            '<i class="fas fa-user-cog"></i>\n' +
+            '</div>')
     }
 
     $('#btn-tecnicos').on('click', function(e){
@@ -255,7 +253,8 @@ function getTalleresAJAX() {
     });
 }
 
-function getTecnicosByTallerAJAX(idTaller) {
+function getTecnicosByTallerAJAX() {
+    let idTaller = oTallerMasCercano.id;
     let url = `/incidencias/create/map/taller/${idTaller}/getTecnicos`;
     $.ajax({
         type: 'get',
@@ -279,8 +278,8 @@ function renderTableHeader() {
 }
 
 
-function findTecnicos(idTaller) {
-    getTecnicosByTallerAJAX(idTaller);
+function findTecnicos() {
+    getTecnicosByTallerAJAX();
 }
 
 function renderTecnicos() {
@@ -293,14 +292,22 @@ function renderTecnicos() {
 
     tecnicos.forEach((item)=>{
         tableBody.append('<tr>\n' +
-                            `<td>${item.nombre}</td>\n` +
-                            `<td>${item.apellidos}</td>\n` +
-                            `<td>${item.telefono}</td>\n` +
-                            `<td>${item.email}</td>\n` +
-                            '<td>\n' +
-                                '<button class="btn btn-outline-primary">Notificar</button>\n' +
-                            '</td>\n' +
-                        '</tr>')
+            `<td>${item.nombre}</td>\n` +
+            `<td>${item.apellidos}</td>\n` +
+            `<td>${item.telefono}</td>\n` +
+            `<td>${item.email}</td>\n` +
+            '<td>\n' +
+            `<button value="${item.id}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</button>\n` +
+            '</td>\n' +
+            '</tr>')
+    });
+
+    //Crear evento onClick para el boton notificar tecnico
+    let btnNotificarTecnico = $('.btn-notificar-tecnico');
+
+    btnNotificarTecnico.on('click', function () {
+        let oDatosIncidencia = prepareIncidenciaData(this.value);
+        storeIncidenciaAJAX(oDatosIncidencia);
     })
 }
 
@@ -317,9 +324,48 @@ function renderButtonUp() {
 }
 
 
+function prepareIncidenciaData(idTecnico) {
+    let coordenadasIncidencia = {};
+    let datosTecnico = {};
+
+    coordenadasIncidencia.latitud = objetoResponse.routes[0].legs[0].end_location.lat();
+    coordenadasIncidencia.longitud = objetoResponse.routes[0].legs[0].end_location.lng();
+    coordenadasIncidencia.provincia = getProvinciaIncidencia(objetoResponse.routes[0].legs[0].end_address);
+    datosTecnico.id = idTecnico;
+
+    let oDatosIncidencia = getJSONfromCookie();
+
+    oDatosIncidencia.coordenadasIncidencia = coordenadasIncidencia;
+    oDatosIncidencia.tecnico = datosTecnico;
+
+    return oDatosIncidencia;
+}
+
+function storeIncidenciaAJAX(oDatosIncidencia) {
+    console.log(oDatosIncidencia)
+    $.ajax({
+        type: 'POST',
+        url: '/incidencias/store',
+        data: oDatosIncidencia,
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(result){
+            console.log(result);
+        }
+    });
+}
 
 
-
+function getJSONfromCookie() {
+    let cookiesString = document.cookie;
+    let handledCookie = "";
+    for (let i = 0; cookiesString.charAt(i) !== ";"; i++) {
+        handledCookie += cookiesString.charAt(i);
+    }
+    return JSON.parse(handledCookie);
+}
 
 
 

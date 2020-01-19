@@ -20,24 +20,20 @@
                         <h2 id="table-header">Notifica a un técnico</h2>
                         <i class="fas fa-info-circle" id="lista-tecnicos-info" data-toggle="tooltip" data-placement="right" title="Técnicos del taller más cercano, dentro de su jornada laboral y disponibles para atender incidencias."></i>
                     </div>
-                    <form action="/" method="POST">
-                        @method('POST')
-                        @csrf
-                        <table id="tabla-tecnicos-disponibles" class="table table-bordered">
-                           <thead>
-                               <tr>
-                                   <th>Nombre</th>
-                                   <th>Apellidos</th>
-                                   <th>Teléfono</th>
-                                   <th>Email</th>
-                                   <th>Acciones</th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                           <!-- Lo llenamos con JS -->
-                           </tbody>
-                        </table>
-                    </form>
+                    <table id="tabla-tecnicos-disponibles" class="table table-bordered">
+                       <thead>
+                           <tr>
+                               <th>Nombre</th>
+                               <th>Apellidos</th>
+                               <th>Teléfono</th>
+                               <th>Email</th>
+                               <th>Acciones</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                       <!-- Lo llenamos con JS -->
+                       </tbody>
+                    </table>
                 </div>
             </div>
         </div>
