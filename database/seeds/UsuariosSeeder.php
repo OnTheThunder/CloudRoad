@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsuariosSeeder extends Seeder
@@ -12,8 +13,15 @@ class UsuariosSeeder extends Seeder
      */
     public function run()
     {
-          $this->call(\App\Usuario::class);
+       // $this->call(\App\Usuario::class);
         $faker = Faker\Factory::create();
+
+//        DB::table('usuarios')->insert([
+//            'nombre' => $faker->name,
+//            'email' => 'jefe@jefe.com',
+//            'password' => Hash::make('12345678'),
+//            'rol' => 'jefe'
+//        ]);
 
         $usuarioJefe = new \App\Usuario;
         $usuarioJefe->nombre = $faker->name;
