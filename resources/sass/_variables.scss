@@ -21,7 +21,13 @@ $cyan: #6cb2eb;
 //Nuevos añadidos
 $colorLogo: #fcda06;
 $colorPrincipal: #75cf93;
+//$colorPrincipal: #ee7236;
+
 
 // modificado
-$primary: $colorPrincipal !default;
-$secondary: $colorLogo !default
+//$primary: $colorPrincipal !default;
+//$secondary: $colorLogo !default;
+$theme-colors: (
+    "color-primario": $colorPrincipal,
+    "color-secundario": $colorLogo
+);

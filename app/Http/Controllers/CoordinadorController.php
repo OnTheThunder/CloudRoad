@@ -83,8 +83,7 @@ class CoordinadorController extends Controller
         //
     }
 
-    public function estadisticas(Request $request,Coordinador $coordinador)
-    {
-        return view('coordinador/estadisticas');
+    public function datos(Coordinador $coordinador){
+        return view('datos');
     }
 }
