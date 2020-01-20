@@ -24,6 +24,7 @@ class TecnicosTableSeeder extends Seeder
                 'email' => $faker->email,
                 'taller_id' => $faker->numberBetween($min = 1, $max = 8)
             ]);
+
         }
 
 
