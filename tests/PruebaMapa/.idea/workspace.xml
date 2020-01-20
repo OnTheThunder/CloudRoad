@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="897255ef-64bf-496f-8aa4-a94d6eeb1999" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../app/Cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../app/Cliente.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../app/Http/Controllers/IncidenciaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../app/Http/Controllers/IncidenciaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../database/migrations/2020_01_14_122525_create_incidencias_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../database/migrations/2020_01_14_122525_create_incidencias_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../public/js/mapaOperador.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../public/js/mapaOperador.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../resources/views/operador/incidencia_create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../resources/views/operador/incidencia_create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../resources/views/operador/incidencia_ubicacion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../resources/views/operador/incidencia_ubicacion.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,6 +71,7 @@
       <workItem from="1579241581255" duration="442000" />
       <workItem from="1579289359507" duration="351000" />
       <workItem from="1579459741509" duration="1130000" />
+      <workItem from="1579512037590" duration="507000" />
     </task>
     <servers />
   </component>
