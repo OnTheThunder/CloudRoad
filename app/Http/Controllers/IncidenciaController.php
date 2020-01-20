@@ -9,6 +9,7 @@ use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Taller;
+use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
@@ -43,8 +44,62 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        echo "hola";
-        return view('/login');
+        //DATOS QUE RECIBIMOS POR AJAX POST
+        $datosCliente = request()->all()['cliente'];
+        $datosVehiculo = request()->all()['vehiculo'];
+        $datosIncidencia = request()->all()['incidencia'];
+        $datosCoordenadasIncidencia = request()->all()['coordenadasIncidencia'];
+        $datosTecnico = request()->all()['tecnico'];
+
+        //CLIENTE
+        //Comprobamos que no exista ya el cliente en DB
+        $cliente = DB::table('clientes')->where('dni', $datosCliente['dni'])->get();
+
+        if(count($cliente) == 0){
+            $cliente = new Cliente();
+            $cliente->nombre = $datosCliente['nombre'];
+            $cliente->apellidos = $datosCliente['apellidos'];
+            $cliente->telefono = $datosCliente['telefono'];
+            $cliente->dni = $datosCliente['dni'];
+            $cliente->save();
+        }
+        //Guardamos el id del cliente para utilizarlo en las fk de otras tablas
+        $idCliente = Cliente::where('dni', $datosCliente['dni'])->get('id')[0]['id'];
+
+        //VEHICULO
+        //Comprobamos que no exista ya el vehiculo en DB
+        $vehiculo = DB::table('vehiculos')->where('matricula', $datosVehiculo['matricula'])->get();
+
+        if(count($vehiculo) == 0){
+            $vehiculo = new Vehiculo();
+            $vehiculo->matricula = $datosVehiculo['matricula'];
+            $vehiculo->modelo = $datosVehiculo['modelo'];
+            $vehiculo->marca = $datosVehiculo['marca'];
+            $vehiculo->aseguradora = $datosVehiculo['aseguradora'];
+            $vehiculo->cliente_id = $idCliente;
+            $vehiculo->save();
+        }
+
+        //INCIDENCIA
+        $incidencia = new Incidencia();
+        $incidencia->tipo = $datosIncidencia['tipo'];
+        $incidencia->descripcion = $datosIncidencia['descripcion'];
+        $incidencia->latitud = $datosCoordenadasIncidencia['latitud'];
+        $incidencia->longitud = $datosCoordenadasIncidencia['longitud'];
+        $incidencia->provincia = $datosCoordenadasIncidencia['provincia'];
+        $incidencia->descripcion = $datosIncidencia['descripcion'];
+        $incidencia->cliente_id = $idCliente;
+        $incidencia->tecnico_id = $datosTecnico['id'];
+        $incidencia->save();
+        //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
+
+        //Ponemos el tecnico en estado no disponible
+        $tecnico = Tecnico::find($datosTecnico['id']);
+        $tecnico->disponibilidad = 0;
+        $tecnico->save();
+
+
+        return request()->all();
     }
 
 
