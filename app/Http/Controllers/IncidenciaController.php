@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\incidencia;
+use App\Tecnico;
 use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Taller;
 
 class IncidenciaController extends Controller
 {
@@ -29,51 +31,20 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('Operador/incidencia_create');
+        return view('operador/incidencia_create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param $oDatosIncidencia
+     * @return void
      */
     public function store(Request $request)
     {
-        //Registrar un cliente
-        $cliente = new Cliente();
-
-        $cliente->nombre = request('nombre');
-        $cliente->apellidos = request ('apellidos');
-        $cliente->telefono = request ('telefono');
-        $cliente->dni = request ('dni');
-
-        $cliente->save();
-
-        //Registrar un vehiculo
-        $cliente_dni = request ('dni');
-        $cliente_id = Cliente::where('dni', $cliente_dni)->value('id');
-        $vehiculo = new Vehiculo();
-
-        $vehiculo->marca = request ('marca');
-        $vehiculo->modelo = request ('modelo');
-        $vehiculo->matricula = request ('matricula');
-        $vehiculo->aseguradora = request ('aseguradora');
-        $vehiculo->cliente_id = $cliente_id;
-
-        $vehiculo->save();
-
-        //Registrar una incidencia
-        $incidencia = new Incidencia();
-
-        $incidencia->descripcion = request('descripcion');
-        $incidencia->estado = "En proceso";
-        $incidencia->tipo = request ('tipo');
-        $incidencia->cliente_id = $cliente_id;
-
-        $incidencia->save();
-
-        return redirect('/incidencias/create/map');
+        echo "hola";
+        return view('/login');
     }
 
 
@@ -121,4 +92,32 @@ class IncidenciaController extends Controller
     {
         //
     }
+
+
+    public function getTalleres(){
+        return json_encode(Taller::all());
+    }
+
+    public function getTecnicosByTaller($idTaller){
+        date_default_timezone_set('Europe/Madrid');
+
+        if(date('H') < 8){
+            $turno = 'noche';
+        }
+        elseif (date('H') < 16){
+            $turno = 'manana';
+        }
+        else{
+            $turno = 'tarde';
+        }
+
+        $matchThese = ['taller_id' => $idTaller, 'disponibilidad' => 1, 'turno' => $turno];
+        $tecnicos = Tecnico::where($matchThese)->get();
+        return json_encode($tecnicos);
+    }
+
+    public function displayMap(){
+        return view('operador/incidencia_ubicacion');
+    }
+
 }

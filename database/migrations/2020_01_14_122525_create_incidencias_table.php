@@ -16,14 +16,15 @@ class CreateIncidenciasTable extends Migration
         Schema::create('incidencias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descripcion');
-            $table->float('longitud')->nullable();
-            $table->float('latitud')->nullable();
+            $table->double('longitud');
+            $table->double('latitud');
+            $table->string('provincia');
             $table->datetime('hora_fin')->nullable();
-            $table->string('estado');
+            $table->string('estado')->default('abierta');
             $table->string('tipo')->comment('El tipo de incidencia que es, pinchazo, averia, etc');
-            $table->unsignedBigInteger('tecnico_id')->nullable();
+            $table->unsignedBigInteger('tecnico_id');
             $table->unsignedBigInteger('cliente_id');
-            $table->unsignedBigInteger('operador_id')->nullable();
+            $table->unsignedBigInteger('operador_id');
             $table->timestamps();
         });
     }
