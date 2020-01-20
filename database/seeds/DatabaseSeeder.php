@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TecnicosTableSeeder::class,
             TalleresTableSeeder::class,
+            IncidenciasTablaSeeder::class,
         ]);
     }
 }
