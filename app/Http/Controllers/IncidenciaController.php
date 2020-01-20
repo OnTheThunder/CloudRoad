@@ -20,8 +20,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();//where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
-        $user = 2;
+        $incidencias = Incidencia::all();
+        $user = 1;
         return view('incidencias', ['user' => $user, 'incidencias' => $incidencias]);
     }
 

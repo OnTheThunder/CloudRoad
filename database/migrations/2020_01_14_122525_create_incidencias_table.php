@@ -19,7 +19,7 @@ class CreateIncidenciasTable extends Migration
             $table->double('longitud');
             $table->double('latitud');
             $table->string('provincia');
-            $table->datetime('hora_fin')->nullable();
+            $table->time('hora_fin')->nullable();
             $table->string('estado')->default('abierta');
             $table->string('tipo')->comment('El tipo de incidencia que es, pinchazo, averia, etc');
             $table->unsignedBigInteger('tecnico_id');
