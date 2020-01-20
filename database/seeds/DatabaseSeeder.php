@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
             TecnicosTableSeeder::class,
             TalleresTableSeeder::class,
             IncidenciasTablaSeeder::class,
+            ClientesTableSeeder::class,
+            VehiculosTableSeeder::class,
+            ComentariosTableSeeder::class,
         ]);
     }
 }
