@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             ClientesTableSeeder::class,
             VehiculosTableSeeder::class,
             ComentariosTableSeeder::class,
+            OperariosTableSeeder::class,
+            CoordinadoresTableSeeder::class,
         ]);
     }
 }

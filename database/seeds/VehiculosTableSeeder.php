@@ -11,7 +11,7 @@ class VehiculosTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('es_ES');
         $faker->addProvider(new \Faker\Provider\Fakecar($faker));
 
         for($i=0;$i<2000;$i++) {
@@ -20,7 +20,9 @@ class VehiculosTableSeeder extends Seeder
                 'modelo' => $faker->vehicleModel,
                 'matricula' => $faker->vehicleRegistration('[A-Z]{2}-[0-9]{5}'),
                 'aseguradora' => $faker->company,
-                'cliente_id' => $faker->numberBetween($min = 1, $max = 250)
+                'cliente_id' => $faker->numberBetween($min = 1, $max = 250),
+                'created_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
+                'updated_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
             ]);
         }
     }

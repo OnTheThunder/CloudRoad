@@ -11,14 +11,16 @@ class ClientesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('es_ES');
 
         for($i=0;$i<250;$i++) {
             DB::table('clientes')->insert([
                 'nombre' => $faker->firstName,
                 'apellidos' => $faker->lastName,
-                'telefono' => $faker->phoneNumber,
-                'dni' => $faker->regexify('[7][1-9]{7}')
+                'telefono' => $faker->mobileNumber,
+                'dni' => $faker->regexify('[7][1-9]{7}'),
+                'created_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
+                'updated_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
             ]);
         }
     }
