@@ -23,12 +23,15 @@ class UsuariosSeeder extends Seeder
 //            'rol' => 'jefe'
 //        ]);
 
+        // cuando se creen usuarios, tambien sus clases propias de coord, ope., etcl
         $usuarioJefe = new \App\Usuario;
         $usuarioJefe->nombre = $faker->name;
         $usuarioJefe->email = 'jefe@jefe.com';
         $usuarioJefe->password = Hash::make('12345678');
         $usuarioJefe->rol = 'jefe';
         $usuarioJefe->save();
+
+
 
         $usuarioCoor = new \App\Usuario;
         $usuarioCoor->nombre = $faker->name;

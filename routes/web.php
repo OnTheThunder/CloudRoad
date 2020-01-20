@@ -31,6 +31,8 @@ Route::get('/incidencias/create/taller', 'TallerController@index')->name('taller
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index')->middleware('auth');
 
 
+Route::get('/camaras',function (){return view('camara.camara');});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
