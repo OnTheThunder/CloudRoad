@@ -11,7 +11,7 @@ class IncidenciasTablaSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('es_ES');
 
         $ids = array();
         $id = 1;
@@ -32,6 +32,8 @@ class IncidenciasTablaSeeder extends Seeder
                 'tecnico_id' => $faker->randomElement($ids),
                 'cliente_id' => $faker->randomElement($ids),
                 'operador_id' => $faker->randomElement($ids),
+                'created_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
+                'updated_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
             ]);
         }
     }
