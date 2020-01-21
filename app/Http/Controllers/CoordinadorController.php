@@ -91,7 +91,6 @@ class CoordinadorController extends Controller
 
     public function datos(Request $request){
         $tipoDato = request('tipoDato');
-        return Coordinador::all();
         if(isset($tipoDato)){
             $datosVista = [];
             switch ($tipoDato){
@@ -109,7 +108,6 @@ class CoordinadorController extends Controller
                 break;
             }
             return $datosVista;
-            //return view('datos', ["datosVista" => $datosVista]);
         }
         return view('datos');
     }
