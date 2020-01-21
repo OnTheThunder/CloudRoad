@@ -126,7 +126,7 @@ window.onload = function () {
         function anyadirImagenDeCamara(urlImagen) {
             let imagen_caja = $('#imagen');
             imagen_caja.empty();
-            imagen_caja.append('<img src="' + urlImagen + '">');
+            imagen_caja.append('<img alt="Imagen no disponible" class="img-thumbnail" src="' + urlImagen + '">');
         }
 
     });
