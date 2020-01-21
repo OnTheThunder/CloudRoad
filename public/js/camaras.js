@@ -106,7 +106,6 @@ window.onload = function () {
                 map: map
             });
             marker.addListener('click', function () {
-                map.setZoom(11);
                 infowindow.open(marker.get('map'), marker);
                 map.setCenter(marker.getPosition());
                 // poner imagen de la CAMARA quitando antes la anterior
