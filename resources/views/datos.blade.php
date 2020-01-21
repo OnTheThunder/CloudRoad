@@ -12,7 +12,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <select name="selectFiltro" id="selectFiltro">
+                        <select name="selectFiltro" id="selectFiltroDatos">
                             <option selected="selected" disabled="disabled">Filter</option>
                             <option>Clientes</option>
                             <option>Tecnicos</option>
@@ -23,6 +23,7 @@
                         </select>
                     </div>
                 </div>
+                @if isset($datos)
                 <div class="row">
                     <div class="col-md-12">
                         <table>
@@ -32,4 +33,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/datos.js') }}"></script>
 @endsection

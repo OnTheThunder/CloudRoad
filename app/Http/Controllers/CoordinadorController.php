@@ -6,6 +6,9 @@ use App\Charts\prueba;
 use App\Coordinador;
 use App\incidencia;
 use App\Tecnico;
+use App\Cliente;
+use App\Taller;
+use App\Operario;
 use Illuminate\Http\Request;
 
 class CoordinadorController extends Controller
@@ -86,7 +89,25 @@ class CoordinadorController extends Controller
         //
     }
 
-    public function datos(Coordinador $coordinador){
+    public function datos(Request $request){
+        $tipoConsulta = request()->all();
+        if(isset($tipoConsulta)){
+            switch ($tipoConsulta){
+                case "Clientes": $datos = Cliente::all();
+                break;
+                case "Tecnicos": $datos = Tecnico::all();
+                break;
+                case "Talleres": $datos = Taller::all();
+                break;
+                case "Operadores": $datos = Operario::all();
+                break;
+                case "Coordinadores": $datos = Coordinador::where('isJefe', '0')->get();
+                break;
+                case "Jefes": $datos = Coordinador::where('isJefe', '1')->get();
+                break;
+            }
+            return view('datos', ["datos" => $datos]);
+        }
         return view('datos');
     }
 
