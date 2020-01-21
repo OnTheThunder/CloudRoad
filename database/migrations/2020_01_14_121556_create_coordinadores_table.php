@@ -21,7 +21,7 @@ class CreateCoordinadoresTable extends Migration
             $table->string('dni');
             $table->string('email');
             $table->boolean('isJefe');
-            $table->unsignedDecimal('usuarios_id');
+            $table->unsignedBigInteger('usuarios_id');
             $table->timestamps();
         });
     }

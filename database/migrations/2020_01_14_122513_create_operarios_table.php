@@ -20,6 +20,7 @@ class CreateOperariosTable extends Migration
             $table->string('telefono');
             $table->string('dni');
             $table->string('email');
+            $table->unsignedBigInteger('usuarios_id');
             $table->timestamps();
         });
     }

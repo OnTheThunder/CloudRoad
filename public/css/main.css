@@ -10,6 +10,16 @@ html{
 .dropdown-menu-navbar {
     margin-left: -20px;
 }
+/* VISTA de las Cámaras*/
+#mapa-camaras{
+    width: 100%;
+    min-width: 400px;
+    height: 400px;
+}
+
+.resaltar {
+    background: lightblue;
+}
 
 /* MAPA DEL OPERADOR */
 #map-container, #tecnico-fullscreen-data{
