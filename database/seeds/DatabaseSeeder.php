@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
             OperariosTableSeeder::class,
             CoordinadoresTableSeeder::class,
         ]);
+         $this->call(UsuariosSeeder::class);
     }
 }

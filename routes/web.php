@@ -43,6 +43,8 @@ Route::get('/incidencias/create/map/taller/{idTaller}/getTecnicos', 'IncidenciaC
 
 
 
+Route::get('/camaras',function (){return view('camara.camara');});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
