@@ -6,6 +6,9 @@ use App\Charts\prueba;
 use App\Coordinador;
 use App\incidencia;
 use App\Tecnico;
+use App\Cliente;
+use App\Taller;
+use App\Operario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -97,10 +100,30 @@ class CoordinadorController extends Controller
         //
     }
 
-    public function datos(Coordinador $coordinador){
+    public function datos(Request $request){
+        $tipoDato = request('tipoDato');
+        if(isset($tipoDato)){
+            $datosVista = [];
+            switch ($tipoDato){
+                case "Clientes": $datosVista = Cliente::all();
+                break;
+                case "Tecnicos": $datosVista = Tecnico::all();
+                break;
+                case "Talleres": $datosVista = Taller::all();
+                break;
+                case "Operadores": $datosVista = Operario::all();
+                break;
+                case "Coordinadores": $datosVista = Coordinador::where('isJefe', '0')->get();
+                break;
+                case "Jefes": $datosVista = Coordinador::where('isJefe', '1')->get();
+                break;
+            }
+            return $datosVista;
+        }
         return view('datos');
     }
 
+    //Crear los 24 arrays pusheando en un for
     public function estadisticas(Coordinador $coordinador){
         $horas = array
         (
