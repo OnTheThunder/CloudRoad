@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-light bg-color-primario shadow-sm mb-2">
 
     <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
@@ -43,17 +41,6 @@
         </ul>
         <!-- ver el dropdown de cambiar contraseña y cerrar sesion -->
     @else
-        <input id="usuario_id" value="{{ Auth::user()->id}}" hidden>
-        <input id="usuario_rol" value="{{ Auth::user()->rol}}" hidden>
-        <!-- TODO meterle al label el apellido de la tabla a la que pertenece-->
-        <input id="objeto_usuario" hidden>
-        @if(Session::has('usuario'))
-            <div class="">
-                {{ Session::get('usuario')}}
-            </div>
-        @endif
-<label>{{Auth::user()->apellidos}}</label>
-
         <div class="dropdown">
             <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"

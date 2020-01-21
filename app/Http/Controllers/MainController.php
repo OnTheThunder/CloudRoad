@@ -12,28 +12,35 @@ use Illuminate\Support\Facades\Session;
 class MainController extends Controller
 {
 
-    public function getUsuarioTipo(Request $request, int $id, string $rol)
+    public function getUsuarioTipo(int $id, string $rol)
     {
         switch ($rol) {
             case 'jefe':
-                $user = DB::table('coordinadores')
+                $userJ = DB::table('coordinadores')
                     ->select('*')
-                    ->where('usuarios_id','=', $id)
+                    ->where('usuarios_id', '=', $id)
                     ->get();
-                $request->session(['usuario' => 'verde']);
-                //Session::setId('usuario',$user);
-                Auth::user()->apellidos = "apellllllll";
-                return $user;
-                break;
+                return $userJ;
             case 'coordinador':
-                break;
-            case 'coordinador':
-                break;
-            case 'coordinador':
-                break;
+                $userC = DB::table('coordinadores')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userC;
+            case 'tecnico':
+                $userT = DB::table('tecnicos')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userT;
+            case 'operador':
+                $userO = DB::table('operarios')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userO;
         }
-
-
+        return 'error';
     }
 
     /**

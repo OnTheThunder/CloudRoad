@@ -13,7 +13,7 @@ class CreateTalleresTable extends Migration
      */
     public function up()
     {
-        Schema::create('tallers', function (Blueprint $table) {
+        Schema::create('talleres', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->double('latitud');
@@ -30,6 +30,6 @@ class CreateTalleresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tallers');
+        Schema::dropIfExists('talleres');
     }
 }
