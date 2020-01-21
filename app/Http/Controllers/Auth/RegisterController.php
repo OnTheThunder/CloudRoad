@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'rol' => 'jefe',
         ]);
+        // TODO falta que cree tambien coordinador o tecnico , etc
     }
 
 }

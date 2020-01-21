@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-light bg-color-primario shadow-sm mb-2">
 
     <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
@@ -9,14 +11,15 @@
         <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item m-2">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fas fa-sign-in-alt"></i></a>
                 </li>
-                @if (Route::has('register'))
-                    <li class="nav-item m-2">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <!--        @if (Route::has('register'))
+                <li class="nav-item m-2">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
+                -->
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -40,6 +43,17 @@
         </ul>
         <!-- ver el dropdown de cambiar contraseña y cerrar sesion -->
     @else
+        <input id="usuario_id" value="{{ Auth::user()->id}}" hidden>
+        <input id="usuario_rol" value="{{ Auth::user()->rol}}" hidden>
+        <!-- TODO meterle al label el apellido de la tabla a la que pertenece-->
+        <input id="objeto_usuario" hidden>
+        @if(Session::has('usuario'))
+            <div class="">
+                {{ Session::get('usuario')}}
+            </div>
+        @endif
+<label>{{Auth::user()->apellidos}}</label>
+
         <div class="dropdown">
             <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
@@ -59,6 +73,8 @@
             @endif
         </div>
 </nav>
+
+<script src="{{secure_asset('js/usuario.js')}}"></script>
 
 
 

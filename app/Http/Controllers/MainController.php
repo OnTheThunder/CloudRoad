@@ -2,11 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Coordinador;
 use App\Operario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
+
+    public function getUsuarioTipo(Request $request, int $id, string $rol)
+    {
+        switch ($rol) {
+            case 'jefe':
+                $user = DB::table('coordinadores')
+                    ->select('*')
+                    ->where('usuarios_id','=', $id)
+                    ->get();
+                $request->session(['usuario' => 'verde']);
+                //Session::setId('usuario',$user);
+                Auth::user()->apellidos = "apellllllll";
+                return $user;
+                break;
+            case 'coordinador':
+                break;
+            case 'coordinador':
+                break;
+            case 'coordinador':
+                break;
+        }
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *

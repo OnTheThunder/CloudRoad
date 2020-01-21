@@ -7,9 +7,20 @@ use App\Coordinador;
 use App\incidencia;
 use App\Tecnico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CoordinadorController extends Controller
 {
+
+    public function getCoor(int $id, string $rol)
+    {
+        $coor = new Coordinador;
+        $users = DB::table('coordinadores')
+            ->select('*')
+            ->where('')
+            ->get();
+
+    }
     /**
      * Display a listing of the resource.
      *
