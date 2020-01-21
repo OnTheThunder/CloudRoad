@@ -24,7 +24,7 @@ class CreateIncidenciasTable extends Migration
             $table->string('tipo')->comment('El tipo de incidencia que es, pinchazo, averia, etc');
             $table->unsignedBigInteger('tecnico_id');
             $table->unsignedBigInteger('cliente_id');
-            $table->unsignedBigInteger('operador_id');
+            $table->unsignedBigInteger('operador_id')->nullable();
             $table->timestamps();
         });
     }
