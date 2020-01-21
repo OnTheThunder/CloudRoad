@@ -12,7 +12,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <select name="selectFiltro" id="selectFiltro">
+                        <select name="selectFiltro" id="selectFiltroDatos">
                             <option selected="selected" disabled="disabled">Filter</option>
                             <option>Clientes</option>
                             <option>Tecnicos</option>
@@ -25,11 +25,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table>
+                        <table class="table table-bordered" id="tabla-datos">
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/datos.js') }}"></script>
 @endsection
