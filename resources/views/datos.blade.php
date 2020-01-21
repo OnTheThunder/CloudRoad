@@ -23,13 +23,16 @@
                         </select>
                     </div>
                 </div>
-                @if isset($datos)
+                @if (isset($datos))
+                    <p>hola</p>
                 <div class="row">
                     <div class="col-md-12">
                         <table>
+                            {{$datos}}
                         </table>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

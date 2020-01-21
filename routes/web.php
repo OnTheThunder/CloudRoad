@@ -25,12 +25,9 @@ Route::get('/', 'MainController@index')->name('main.index');
 
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
-Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create');
+Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
 
-
-Route::get('bodegas/{id}', 'BodegaController@show')->name('bodegas.show');
-Route::get('bodegas/create', 'BodegaController@create')->name('bodegas.create');
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map');

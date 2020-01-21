@@ -90,27 +90,31 @@ class CoordinadorController extends Controller
     }
 
     public function datos(Request $request){
-        $tipoConsulta = request()->all();
-        if(isset($tipoConsulta)){
-            switch ($tipoConsulta){
-                case "Clientes": $datos = Cliente::all();
+        $tipoDato = request('tipoDato');
+        return Coordinador::all();
+        if(isset($tipoDato)){
+            $datosVista = [];
+            switch ($tipoDato){
+                case "Clientes": $datosVista = Cliente::all();
                 break;
-                case "Tecnicos": $datos = Tecnico::all();
+                case "Tecnicos": $datosVista = Tecnico::all();
                 break;
-                case "Talleres": $datos = Taller::all();
+                case "Talleres": $datosVista = Taller::all();
                 break;
-                case "Operadores": $datos = Operario::all();
+                case "Operadores": $datosVista = Operario::all();
                 break;
-                case "Coordinadores": $datos = Coordinador::where('isJefe', '0')->get();
+                case "Coordinadores": $datosVista = Coordinador::where('isJefe', '0')->get();
                 break;
-                case "Jefes": $datos = Coordinador::where('isJefe', '1')->get();
+                case "Jefes": $datosVista = Coordinador::where('isJefe', '1')->get();
                 break;
             }
-            return view('datos', ["datos" => $datos]);
+            return $datosVista;
+            //return view('datos', ["datosVista" => $datosVista]);
         }
         return view('datos');
     }
 
+    //Crear los 24 arrays pusheando en un for
     public function estadisticas(Coordinador $coordinador){
         $horas = array
         (
