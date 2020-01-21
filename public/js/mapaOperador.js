@@ -331,6 +331,7 @@ function prepareIncidenciaData(idTecnico) {
     coordenadasIncidencia.latitud = objetoResponse.routes[0].legs[0].end_location.lat();
     coordenadasIncidencia.longitud = objetoResponse.routes[0].legs[0].end_location.lng();
     coordenadasIncidencia.provincia = getProvinciaIncidencia(objetoResponse.routes[0].legs[0].end_address);
+    console.log(coordenadasIncidencia.provincia);
     datosTecnico.id = idTecnico;
 
     let oDatosIncidencia = getJSONfromCookie();
@@ -347,11 +348,15 @@ function storeIncidenciaAJAX(oDatosIncidencia) {
         type: 'POST',
         url: '/incidencias/store',
         data: oDatosIncidencia,
-        dataType: 'json',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(result){
+            console.log("SUCCESS")
+            console.log(result);
+        },
+        error: function (result) {
+            console.log("ERROR");
             console.log(result);
         }
     });
