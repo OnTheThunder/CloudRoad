@@ -66,3 +66,4 @@ Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
 Route::get('/admin/datos', 'CoordinadorController@datos')->name('coordinador.datos'); //Tenemos que meterle middleware
 Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('coordinador.estadisticas'); //Tenemos que meterle middleware
 Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')->name('coordinador.cargarGrafico'); //Tenemos que meterle middleware
+Route::get('/admin/estadisticas/cargar/cargarPorHora', 'CoordinadorController@cargarPorHora')->name('coordinador.cargarPorHora'); //Tenemos que meterle middleware
