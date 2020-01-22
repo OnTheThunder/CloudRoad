@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'MainController@index')->name('main.index');
+Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
 
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
@@ -28,12 +28,11 @@ Route::get('/incidencias/create/map/getTalleres', 'IncidenciaController@getTalle
 Route::get('/incidencias/create/map/taller/{idTaller}/getTecnicos', 'IncidenciaController@getTecnicosByTaller')->name('incidencia.getTecnicosByTaller');
 
 
+//para obtener datos de la tabla operario, tecnico, coordinador pasandole datos del usuario autenticado
 Route::get('/getUser/{id}/{rol}', 'MainController@getUsuarioTipo')->name('getUser');
 
 
-Route::get('/camaras', function () {
-    return view('camara.camara');
-});
+Route::get('/camaras', 'MainController@showCamaras')->name('camaras.show');
 
 //Sustitucion de routes() por lo mismo, pero que se pueden editar. ~/vendor/laravel/framework/src/Illuminate/Routing/Router.php
 //Auth::routes();
