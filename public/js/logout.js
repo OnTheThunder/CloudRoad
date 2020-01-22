@@ -1,11 +1,10 @@
 window.onload = function () {
     $(document).ready(function () {
-
-        $('#imagen').append('<img src="../img/logout.gif" >')
-
-        setTimeout(function(){
+        //poner la imagen
+        $('#imagen').append('<img src="../img/logout.gif"  alt="logout">');
+        //simular cerrar sesion y cambiar de pantalla
+        setTimeout(function () {
             window.location.href = '/';
-        }, 3100);
-
+        }, 3010);
     });
 };

@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.logout.logout-layout')
 
 @section('content')
     <script src="{{asset('js/logout.js')}}"></script>
