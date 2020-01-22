@@ -20,7 +20,7 @@ Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.s
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
-Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map');
+Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 
 //Llamadas desde AJAX

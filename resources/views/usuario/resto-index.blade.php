@@ -1,38 +1,43 @@
 @section('content')
     <div class="row">
         <div class="col-3">
-            @if($user == 1)
-                <div class="d-flex flex-column">
-                    <button type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</button>
-
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action "> <i class="fas fa-user-plus"></i> Nuevo usuario</a>
-                        <a href="{{ route('coordinador.estadisticas') }}" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Estadisticas</a>
-                        <a href="{{ route('coordinador.datos') }}" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Datos</a>
-                    </div>
+            <!-- Aside de cosas que puede hacer -->
+            <div class="d-flex flex-column p-2 border h-100">
+                <a type="button" class="btn btn-primary mb-2" href="{{route('camaras.show')}}">
+                    <i class="fas fa-video mr-2"></i>Camaras de tráfico
+                </a>
+                <div class="list-group">
+                    <!-- If de crear usuario -->
+                    @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador')
+                        <a href="#" class="list-group-item list-group-item-action bg-color-anyadir-suave">
+                            <i class="fas fa-user-plus mr-2"></i>Nuevo usuario</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-color-borrar-suave">
+                            <i class="fas fa-user-minus mr-2"></i>Dar de baja usuario</a>
+                    @endif
+                    <a href="{{ route('coordinador.estadisticas') }}"
+                       class="list-group-item list-group-item-action bg-color-estadisticas-suave">
+                        <i class="fas fa-chart-bar mr-2"></i>Estadisticas</a>
+                    <a href="{{ route('coordinador.datos') }}"
+                       class="list-group-item list-group-item-action bg-color-datos-suave">
+                        <i class="fas fa-users mr-2"></i>Datos</a>
                 </div>
-            @elseif($user == 2)
-                <div class="d-flex flex-column">
-                    <a type="button" class="btn btn-primary my-5" href="{{route('camaras.show')}}">
-                        <i class="fas fa-video"></i>Camaras</a>
-                </div>
-            @endif
+            </div>
         </div>
-        <div class="col-6 d-flex flex-column">
-            @if($user == 2)
-                <div class="d-flex justify-content-center my-4">
-                    <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-plus"></i> Crear Incidencia</a>
-                </div>
-            @elseif($user == 3)
-                <div class="d-flex justify-content-center my-4">
-                    <a href="" class="btn btn-primary btn-lg btn-block">Nueva Incidencia <i class="fas fa-bell"></i></a>
-                </div>
-            @endif
 
-            <div class="d-flex justify-content-between my-2">
+        <!-- Main container de ver historial y filtrar -->
+        <div class="col d-flex flex-column mr-2 p-2 border">
+            <div class="d-flex justify-content-center">
+                <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block">
+                    <i class="fas fa-plus mr-2"></i>Crear Incidencia
+                </a>
+            </div>
+
+            <div class="d-flex">
                 <h2>Historial</h2>
                 <div class="dropdown">
-                    <button class="dropdown-toggle btn btn-primary btn-lg" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro</button>
+                    <button class="dropdown-toggle btn btn-primary btn-lg" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Tipo</a>
                         <a class="dropdown-item" href="#">Estado</a>
@@ -55,7 +60,4 @@
             </div>
         </div>
     </div>
-    @if($user = 3)
-        <script src="{{ asset('js/notificacion.js') }}"></script>
-    @endif
 @endsection

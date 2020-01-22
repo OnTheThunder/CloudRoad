@@ -21,11 +21,19 @@ $cyan: #6cb2eb;
 //Nuevos añadidos
 $colorLogo: #fcda06;
 $colorPrincipal: #75cf93;
+$colorRojoSuave: #ff7672;
+$colorNaranjaSuave: #ffa95b;
+$colorAmarilloSuave: #fffe85;
+$colorVerdeSuave: #87ff82;
 //$colorPrincipal: #ee7236;
 
 
 // modificado
 $theme-colors: (
     "color-primario": $colorPrincipal,
-    "color-secundario": $colorLogo
+    "color-secundario": $colorLogo,
+    "color-borrar-suave":$colorRojoSuave,
+    "color-estadisticas-suave":$colorNaranjaSuave,
+    "color-datos-suave":$colorAmarilloSuave,
+    "color-anyadir-suave":$colorVerdeSuave
 );
