@@ -38,6 +38,8 @@ Route::get('/incidencias/create/map/getTalleres', 'IncidenciaController@getTalle
 Route::get('/incidencias/create/map/taller/{idTaller}/getTecnicos', 'IncidenciaController@getTecnicosByTaller')->name('incidencia.getTecnicosByTaller');
 
 
+Route::get('/getUser/{id}/{rol}', 'MainController@getUsuarioTipo')->name('getUser');
+
 
 
 Route::get('/camaras',function (){return view('camara.camara');});

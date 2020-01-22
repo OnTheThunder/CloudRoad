@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TalleresTableSeeder extends Seeder
 {
@@ -63,7 +64,7 @@ class TalleresTableSeeder extends Seeder
         ];
 
         for($i=0;$i<count($arrayTalleres);$i++){
-            DB::table('tallers')->insert([
+            DB::table('talleres')->insert([
                 $arrayTalleres[$i]
             ]);
         }
