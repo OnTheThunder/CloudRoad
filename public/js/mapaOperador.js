@@ -297,7 +297,7 @@ function renderTecnicos() {
             `<td>${item.telefono}</td>\n` +
             `<td>${item.email}</td>\n` +
             '<td>\n' +
-            `<a href="/" value="${item.id}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</a>\n` +
+            `<button value="${item.id},${item.email}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</button>\n` +
             '</td>\n' +
             '</tr>')
     });
@@ -308,7 +308,27 @@ function renderTecnicos() {
     btnNotificarTecnico.on('click', function () {
         let oDatosIncidencia = prepareIncidenciaData(this.value);
         storeIncidenciaAJAX(oDatosIncidencia);
+        sendEmailAJAX(oDatosIncidencia.tecnico.email);
     })
+}
+
+function sendEmailAJAX(emailTecnico) {
+    $.ajax({
+        type: 'GET',
+        url: '/send-mail',
+        data: {'mail': emailTecnico},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(result){
+            console.log("SUCCESS")
+            console.log(result);
+        },
+        error: function (result) {
+            console.log("ERROR");
+            console.log(result);
+        }
+    });
 }
 
 function renderButtonUp() {
@@ -324,15 +344,21 @@ function renderButtonUp() {
 }
 
 
-function prepareIncidenciaData(idTecnico) {
+function prepareIncidenciaData(idEmailTecnico) {
     let coordenadasIncidencia = {};
     let datosTecnico = {};
 
+    //Coordenadas Incidencia
     coordenadasIncidencia.latitud = objetoResponse.routes[0].legs[0].end_location.lat();
     coordenadasIncidencia.longitud = objetoResponse.routes[0].legs[0].end_location.lng();
     coordenadasIncidencia.provincia = getProvinciaIncidencia(objetoResponse.routes[0].legs[0].end_address);
-    console.log(coordenadasIncidencia.provincia);
+    //Tecnico
+    let idTecnico = idEmailTecnico.substr(0, idEmailTecnico.indexOf(','));
+    let emailTecnico = idEmailTecnico.substr(idEmailTecnico.indexOf(',') + 1, idEmailTecnico.length-1);
     datosTecnico.id = idTecnico;
+    datosTecnico.email = emailTecnico;
+    console.log(datosTecnico.id);
+    console.log(datosTecnico.email);
 
     let oDatosIncidencia = getJSONfromCookie();
 

@@ -10,7 +10,8 @@ class MailSendController extends Controller
 {
     public function mailsend()
     {
-        \Mail::to('adrianf1team@gmail.com')->send(new SendMail());
-        //return view('datos'); //Vista a la que te redirecciona tras enviar el correo
+        $mailTecnico =  request()->all()['mail'];
+        \Mail::to($mailTecnico)->send(new SendMail());
+        return view('/incidencias'); //Vista a la que te redirecciona tras enviar el correo
     }
 }
