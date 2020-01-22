@@ -9,7 +9,7 @@
         <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item">
+                <li class="nav-item mr-5">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fas fa-sign-in-alt"></i></a>
                 </li>
             <!--        @if (Route::has('register'))
