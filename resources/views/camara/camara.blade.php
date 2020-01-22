@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('content')
     <!-- Scripts especificos de la pagina de camaras -->
-    <script src="{{asset('js/Camara.js')}}"></script>
     <script src="{{asset('js/camaras.js')}}"></script>
 
     <div class="main ">

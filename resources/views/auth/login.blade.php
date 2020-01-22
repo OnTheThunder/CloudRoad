@@ -36,10 +36,10 @@
                                     </span>
                             @enderror
                         </div>
-                        <div class="row align-items-center remember">
-                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            Recuérdame
-                        </div>
+                        {{--                        <div class="row align-items-center remember">
+                                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                    Recuérdame
+                                                </div>--}}
                         <div class="form-group">
                             <input type="submit" value="Entrar" class="btn float-right login_btn">
                         </div>
