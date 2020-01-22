@@ -297,7 +297,7 @@ function renderTecnicos() {
             `<td>${item.telefono}</td>\n` +
             `<td>${item.email}</td>\n` +
             '<td>\n' +
-            `<button value="${item.id}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</button>\n` +
+            `<a href="/" value="${item.id}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</a>\n` +
             '</td>\n' +
             '</tr>')
     });
