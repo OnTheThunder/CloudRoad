@@ -11,6 +11,7 @@ use App\Taller;
 use App\Operario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Array_;
 
 class CoordinadorController extends Controller
 {
@@ -132,27 +133,29 @@ class CoordinadorController extends Controller
     {
 
         $grafico = request()->all()['elegido'];
-        $chart = new Estadistica();
+        $array = array();
             switch ($grafico){
                 case 'Incidencias por hora':
-                    $chart = CoordinadorController::porHora();
+                    $array = CoordinadorController::porHora();
                     break;
                 case 'Incidencias de cada tecnico':
-                    $chart = porTecnico();
+                    $array = CoordinadorController::porTecnico();
                     break;
                 case 'Incidencias por provincia':
-                    $chart = porProvincia();
+                    $array = CoordinadorController::porProvincia();
                     break;
                 case 'Estado de incidencia':
-                    $chart = porEstado();
+                    $array = CoordinadorController::porEstado();
                     break;
                 case 'Tipo de avería':
-                    $chart = porTipo();
+                    $chart = CoordinadorController::porTipo();
                     break;
             }
-        return json_encode($chart);
+
+            return $array;
+
     }
-  
+
     public function porHora() {
         //Creamos array con 24 arrays dentro uno para cada hora
         $horas = array();
@@ -171,15 +174,7 @@ class CoordinadorController extends Controller
             array_push($horas[intval($hora)], $hora);
         }
 
-        //Creamos el grafico
-        $chart = new Estadistica();
-        $chart->labels(['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']);
-        $chart->dataset('Incidencias por hora', 'bar', [count($horas[0]), count($horas[1]), count($horas[2]), count($horas[3]), count($horas[4]),
-            count($horas[5]), count($horas[6]), count($horas[7]), count($horas[8]), count($horas[9]), count($horas[10]), count($horas[11]), count($horas[12]), count($horas[13]),
-            count($horas[14]), count($horas[15]), count($horas[16]), count($horas[17]), count($horas[18]), count($horas[19]), count($horas[20]), count($horas[21]), count($horas[22]),
-            count($horas[23])]);
-
-        return $chart;
+        return $horas;
     }
 
     public function porTecnico() {
@@ -187,11 +182,59 @@ class CoordinadorController extends Controller
     }
 
     public function porProvincia() {
+        $provincias = array();
 
+        for($x = 0; $x < 4; $x++){
+            $array = array();
+            array_push($provincias, $array);
+        }
+
+        $incidencias_provincia = Incidencia::all('provincia');
+
+        foreach ($incidencias_provincia as $incidencia_provincia ) {
+            $provincia = $incidencia_provincia->provincia;
+            switch($provincia){
+                case 'Alava':
+                    array_push($provincias[0], $provincia);
+                    break;
+                case 'Guipuzcoa':
+                    array_push($provincias[1], $provincia);
+                    break;
+                case 'Vizcaya':
+                    array_push($provincias[2], $provincia);
+                    break;
+                case 'Navarra':
+                    array_push($provincias[3], $provincia);
+                    break;
+            }
+
+        }
+        return $provincias;
     }
 
     public function porEstado() {
+        $estados = array();
 
+        for($x = 0; $x < 2; $x++){
+            $array = array();
+            array_push($estados, $array);
+        }
+
+        $incidencias_estado = Incidencia::all('estado');
+
+        foreach ($incidencias_estado as $incidencia_estado ) {
+            $estado = $incidencia_estado->estado;
+            switch($estado){
+                case 0:
+                    array_push($estados[0], $estado);
+                    break;
+                case 1:
+                    array_push($estados[1], $estado);
+                    break;
+            }
+
+        }
+        return $estados;
     }
 
     public function porTipo() {
