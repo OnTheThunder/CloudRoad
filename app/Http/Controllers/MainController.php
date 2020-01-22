@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Coordinador;
+use App\incidencia;
 use App\Operario;
+use App\Tecnico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,8 +61,17 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
+        //iniciada ya la sesion
         //entra a la pagina del usuario
-        return redirect()->route('incidencia.index');
+        switch (Auth::user()->rol){
+            case 'tecnico':
+                $incidencias = Incidencia::where('tecnico_id', Auth::user()->id)->get();
+                return view('tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
+            break;
+            default:
+                $incidencias = Incidencia::all();
+                return view('resto-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
+        }
     }
 
     /**
