@@ -32,7 +32,7 @@ class UsuariosSeeder extends Seeder
                 ->get();
 
             foreach ($usuario as $user => $value) {
-                DB::table('coordinadores')->insert([
+                DB::table('coordinadors')->insert([
                     'nombre' => $value->nombre,//$faker->firstName,
                     'apellidos' => $faker->lastName,
                     'telefono' => $faker->mobileNumber,
@@ -62,7 +62,7 @@ class UsuariosSeeder extends Seeder
                 ->get();
 
             foreach ($usuario as $user => $value) {
-                DB::table('coordinadores')->insert([
+                DB::table('coordinadors')->insert([
                     'nombre' => $value->nombre,//$faker->firstName,
                     'apellidos' => $faker->lastName,
                     'telefono' => $faker->mobileNumber,
