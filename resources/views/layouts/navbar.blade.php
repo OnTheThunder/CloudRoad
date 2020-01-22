@@ -60,8 +60,3 @@
             @endif
         </div>
 </nav>
-
-<script src="{{secure_asset('js/usuario.js')}}"></script>
-
-
-

@@ -1,5 +1,3 @@
-@extends('layouts.layout')
-
 @section('content')
     <div class="row">
         <div class="col-3">
@@ -61,18 +59,3 @@
         <script src="{{ asset('js/notificacion.js') }}"></script>
     @endif
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
