@@ -15,7 +15,7 @@ window.onload = function () {
                     break;
                     case 'Talleres': crearTablaDatos(['nombre', 'provincia'], result.length, result);
                     break;
-                    case 'Operadores': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni'], result.length, result);
+                    case 'Operadores': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni', 'email'], result.length, result);
                     break;
                     case 'Coordinadores': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni'], result.length, result);
                     break;
@@ -36,13 +36,29 @@ window.onload = function () {
         arrayColumnas.forEach((item, i)=>{
             tablaDatos.find('tr').append(`<td>${item}</td>`);
         });
-        //TR FILAS
-        for (let i = 0; i < nFilas; i++) {
-            tablaDatos.append('<tr></tr>');
-            //TD FILAS
-            for (let j = 0; j < arrayColumnas.length; j++) {
-                tablaDatos.append(`<td>${result[i][arrayColumnas[j]]}</td>`)
+
+        if(selectFiltroDatos.val() !== 'Coordinadores' && selectFiltroDatos.val() !== 'Jefes'){
+            for (let i = 0; i < nFilas; i++) {
+                printRow(tablaDatos, arrayColumnas, i, result)
             }
+        }
+        else{
+            for (let i = 0; i < nFilas; i++) {
+                if(selectFiltroDatos.val() === 'Jefes' && result[i]['isJefe'] === 1){
+                    printRow(tablaDatos, arrayColumnas, i, result)
+                }
+                else if(selectFiltroDatos.val() === 'Coordinadores' && result[i]['isJefe'] === 0){
+                    printRow(tablaDatos, arrayColumnas, i, result)
+                }
+            }
+        }
+    }
+
+    function printRow(tablaDatos, arrayColumnas, i, result) {
+        tablaDatos.append('<tr></tr>');
+        //TD FILAS
+        for (let j = 0; j < arrayColumnas.length; j++) {
+            tablaDatos.append(`<td>${result[i][arrayColumnas[j]]}</td>`)
         }
     }
 };

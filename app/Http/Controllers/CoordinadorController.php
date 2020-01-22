@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\prueba;
+use App\Charts\Estadistica;
 use App\Coordinador;
 use App\incidencia;
 use App\Tecnico;
@@ -123,51 +123,78 @@ class CoordinadorController extends Controller
         return view('datos');
     }
 
-    //Crear los 24 arrays pusheando en un for
-    public function estadisticas(Coordinador $coordinador){
-        $horas = array
-        (
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array(),
-            array()
-        );
+    public function estadisticas(Coordinador $coordinador)
+    {
+        return view('estadisticas/estadisticas');
+    }
 
+    public function cargarGrafico(Request $request, Coordinador $coordinador)
+    {
+
+        $grafico = request()->all()['elegido'];
+        $chart = new Estadistica();
+            switch ($grafico){
+                case 'Incidencias por hora':
+                    $chart = CoordinadorController::porHora();
+                    break;
+                case 'Incidencias de cada tecnico':
+                    $chart = porTecnico();
+                    break;
+                case 'Incidencias por provincia':
+                    $chart = porProvincia();
+                    break;
+                case 'Estado de incidencia':
+                    $chart = porEstado();
+                    break;
+                case 'Tipo de avería':
+                    $chart = porTipo();
+                    break;
+            }
+        return json_encode($chart);
+    }
+  
+    public function porHora() {
+        //Creamos array con 24 arrays dentro uno para cada hora
+        $horas = array();
+
+        for($x = 0; $x < 24; $x++){
+            $array = array();
+            array_push($horas, $array);
+        }
+
+        //Sacamos la hora de todas las incidencias de la base de datos
         $incidencias_hora = Incidencia::all('hora_fin');
 
-        foreach($incidencias_hora as $incidencia_hora){
+        //Llenamos el los arrays de cada hora con la incidencias que le correspondan
+        foreach ($incidencias_hora as $incidencia_hora) {
             $hora = substr($incidencia_hora->hora_fin, 0, 2);
             array_push($horas[intval($hora)], $hora);
         }
 
-        $chart = new prueba;
+        //Creamos el grafico
+        $chart = new Estadistica();
         $chart->labels(['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']);
-        /*$chart->dataset('Incidencas por hora en Alava', 'bar', )*/
         $chart->dataset('Incidencias por hora', 'bar', [count($horas[0]), count($horas[1]), count($horas[2]), count($horas[3]), count($horas[4]),
-        count($horas[5]), count($horas[6]), count($horas[7]), count($horas[8]), count($horas[9]), count($horas[10]), count($horas[11]), count($horas[12]), count($horas[13]),
-        count($horas[14]), count($horas[15]), count($horas[16]), count($horas[17]), count($horas[18]), count($horas[19]), count($horas[20]), count($horas[21]), count($horas[22]),
-        count($horas[23])]);
+            count($horas[5]), count($horas[6]), count($horas[7]), count($horas[8]), count($horas[9]), count($horas[10]), count($horas[11]), count($horas[12]), count($horas[13]),
+            count($horas[14]), count($horas[15]), count($horas[16]), count($horas[17]), count($horas[18]), count($horas[19]), count($horas[20]), count($horas[21]), count($horas[22]),
+            count($horas[23])]);
 
-        return view('coordinador/estadisticas', ['chart' => $chart]);
+        return $chart;
+    }
+
+    public function porTecnico() {
+
+    }
+
+    public function porProvincia() {
+
+    }
+
+    public function porEstado() {
+
+    }
+
+    public function porTipo() {
+
     }
 }
