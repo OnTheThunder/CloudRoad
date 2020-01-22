@@ -21,7 +21,7 @@
 
 
 <!-- Header/navbar -->
-@include('layouts.navbar')
+@include('layouts.logout.logout-navbar')
 <!-- Contenedor principal -->
 <div class="container-fluid">
     @yield('content')

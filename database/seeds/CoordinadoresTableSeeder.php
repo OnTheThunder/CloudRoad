@@ -14,7 +14,7 @@ class CoordinadoresTableSeeder extends Seeder
         $faker = Faker\Factory::create('es_ES');
 
         for($i=0;$i<10;$i++){
-            DB::table('coordinadores')->insert([
+            DB::table('coordinadors')->insert([
                 'nombre' => $faker->firstName,
                 'apellidos' => $faker->lastName,
                 'telefono' => $faker->mobileNumber,

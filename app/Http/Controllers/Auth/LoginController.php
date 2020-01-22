@@ -49,4 +49,17 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         }
     }
+
+    /**
+     * Cuando se cierra sesion
+     * @return int
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
+        //return redirect('/logout');
+        return view('auth.logout');
+    }
 }

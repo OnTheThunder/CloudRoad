@@ -1,0 +1,45 @@
+/* LOGIN url: https://bootsnipp.com/snippets/vl4R7 */
+html, body {
+    background-image: url('https://picsum.photos/1920/1080/?blur=4');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.card {
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+}
+
+.input-group-prepend span {
+    width: 40px;
+    background-color: #FFC312;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login_btn {
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: #75cf93;
+}

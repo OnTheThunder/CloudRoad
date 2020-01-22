@@ -17,8 +17,8 @@ class CreateUsuariosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('email');
-            $table->string('password')->default("12345Abcde");
-            $table->string('rol')->default("jefe");
+            $table->string('password');
+            $table->string('rol');
             $table->timestamps();
         });
     }

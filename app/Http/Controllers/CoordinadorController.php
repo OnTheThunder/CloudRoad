@@ -6,10 +6,24 @@ use App\Charts\Estadistica;
 use App\Coordinador;
 use App\incidencia;
 use App\Tecnico;
+use App\Cliente;
+use App\Taller;
+use App\Operario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CoordinadorController extends Controller
 {
+
+    public function getCoor(int $id, string $rol)
+    {
+        $coor = new Coordinador;
+        $users = DB::table('coordinadores')
+            ->select('*')
+            ->where('')
+            ->get();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -86,7 +100,26 @@ class CoordinadorController extends Controller
         //
     }
 
-    public function datos(Coordinador $coordinador){
+    public function datos(Request $request){
+        $tipoDato = request('tipoDato');
+        if(isset($tipoDato)){
+            $datosVista = [];
+            switch ($tipoDato){
+                case "Clientes": $datosVista = Cliente::all();
+                break;
+                case "Tecnicos": $datosVista = Tecnico::all();
+                break;
+                case "Talleres": $datosVista = Taller::all();
+                break;
+                case "Operadores": $datosVista = Operario::all();
+                break;
+                case "Coordinadores": $datosVista = Coordinador::where('isJefe', '0')->get();
+                break;
+                case "Jefes": $datosVista = Coordinador::where('isJefe', '1')->get();
+                break;
+            }
+            return $datosVista;
+        }
         return view('datos');
     }
 
@@ -117,9 +150,9 @@ class CoordinadorController extends Controller
                     $chart = porTipo();
                     break;
             }
-
         return json_encode($chart);
     }
+  
     public function porHora() {
         //Creamos array con 24 arrays dentro uno para cada hora
         $horas = array();

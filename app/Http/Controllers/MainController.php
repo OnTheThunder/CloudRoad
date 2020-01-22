@@ -2,11 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Coordinador;
 use App\Operario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
+
+    public function getUsuarioTipo(int $id, string $rol)
+    {
+        switch ($rol) {
+            case 'jefe':
+                $userJ = DB::table('coordinadores')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userJ;
+            case 'coordinador':
+                $userC = DB::table('coordinadores')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userC;
+            case 'tecnico':
+                $userT = DB::table('tecnicos')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userT;
+            case 'operador':
+                $userO = DB::table('operarios')
+                    ->select('*')
+                    ->where('usuarios_id', '=', $id)
+                    ->get();
+                return $userO;
+        }
+        return 'error';
+    }
+
+    /**
+     *  Display view camras.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showCamaras()
+    {
+        return view('camara.camara');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +59,8 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
-        $value = $request->session()->get('user');
-
-        //ver si se inició sesion
-        if ($value != null) {
-            //entra a la pagina del usuario
-            return view('coordinador.coordinador', ['value' => $value]);
-        } else {
-            //pasar el login
-            return view('coordinador.coordinador', ['value' => $value]);
-        }
-
+        //entra a la pagina del usuario
+        return redirect()->route('incidencia.index');
     }
 
     /**

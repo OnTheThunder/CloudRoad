@@ -9,14 +9,15 @@
         <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item m-2">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <li class="nav-item mr-5">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fas fa-sign-in-alt"></i></a>
                 </li>
-                @if (Route::has('register'))
-                    <li class="nav-item m-2">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <!--        @if (Route::has('register'))
+                <li class="nav-item m-2">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
+                -->
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -59,6 +60,8 @@
             @endif
         </div>
 </nav>
+
+<script src="{{secure_asset('js/usuario.js')}}"></script>
 
 
 
