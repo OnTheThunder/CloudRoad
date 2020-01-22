@@ -10,6 +10,7 @@ use App\Cliente;
 use App\Taller;
 use App\Operario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CoordinadorController extends Controller
@@ -125,7 +126,7 @@ class CoordinadorController extends Controller
 
     public function estadisticas(Coordinador $coordinador)
     {
-        return view('estadisticas/estadisticas');
+        return view('estadisticas/estadisticas', ['usuario' => Auth::user()]);
     }
 
     public function cargarGrafico(Request $request, Coordinador $coordinador)
@@ -152,7 +153,7 @@ class CoordinadorController extends Controller
             }
         return json_encode($chart);
     }
-  
+
     public function porHora() {
         //Creamos array con 24 arrays dentro uno para cada hora
         $horas = array();
