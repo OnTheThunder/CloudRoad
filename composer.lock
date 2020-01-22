@@ -1131,6 +1131,7 @@
         },
         {
             "name": "nesbot/carbon",
+
             "version": "2.29.1",
             "source": {
                 "type": "git",
@@ -1197,7 +1198,9 @@
                 "datetime",
                 "time"
             ],
+
             "time": "2020-01-21T09:36:43+00:00"
+
         },
         {
             "name": "nikic/php-parser",

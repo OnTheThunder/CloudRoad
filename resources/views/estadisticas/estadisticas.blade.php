@@ -14,24 +14,26 @@
             </div>
         </div>
         <div class="col-6 d-flex flex-column">
-            <div class="d-flex justify-content-between my-2">
+            <div class="row d-flex justify-content-between my-2">
                 <h2>Estadisticas</h2>
-                <div class="dropdown">
-                    <button class="dropdown-toggle btn btn-primary btn-lg" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro</button>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Incidencias por hora</a>
-                        <a class="dropdown-item" href="#">Incidencias de cada tecnico</a>
-                        <a class="dropdown-item" href="#">Incidencias por provincia</a>
-                        <a class="dropdown-item" href="#">Estado de incidencias</a>
-                        <a class="dropdown-item" href="#">Tipo de incidencais</a>
-                    </div>
+                <div class="form-group">
+                    <select class="form-control" id="filtro">
+                        <option>Incidencias por hora</option>
+                        <option>Incidencias de cada tecnico</option>
+                        <option>Incidencias por provincia</option>
+                        <option>Estado de incidencia</option>
+                        <option>Tipo de avería</option>
+                    </select>
                 </div>
             </div>
-            <div>
-                {{ $chart->container() }}
+            <div id="grafico">
+
             </div>
+
         </div>
     </div>
+    <script src="{{ secure_asset('js/filtroGrafico.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-    {!! $chart->script() !!}
+    {{--{{ $chart->script() }}--}}
+
 @endsection
