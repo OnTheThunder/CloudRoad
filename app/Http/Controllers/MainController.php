@@ -59,8 +59,9 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
+        //iniciada ya la sesion
         //entra a la pagina del usuario
-        return redirect()->route('incidencia.index');
+        return view('index');
     }
 
     /**
