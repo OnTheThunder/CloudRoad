@@ -11,6 +11,14 @@ html {
     margin-left: -20px;
 }
 
+.card:hover {
+    background: whitesmoke;
+}
+
+.fondo {
+    margin-top: -8px;
+}
+
 /* VISTA de las Cámaras*/
 #mapa-camaras {
     width: 100%;

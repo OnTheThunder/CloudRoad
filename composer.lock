@@ -1320,7 +1320,10 @@
         },
         {
             "name": "nesbot/carbon",
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             "version": "2.29.1",
             "source": {
                 "type": "git",
@@ -1387,9 +1390,13 @@
                 "datetime",
                 "time"
             ],
+<<<<<<< Updated upstream
 
             "time": "2020-01-21T09:36:43+00:00"
 
+=======
+            "time": "2020-01-21T09:36:43+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "nikic/php-parser",
