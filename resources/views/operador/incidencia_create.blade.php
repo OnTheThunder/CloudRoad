@@ -9,7 +9,7 @@
                 <a href="{{ route('incidencia.index') }}" class="btn btn-primary">Volver</a>
             </div>
             <div>
-                <form action="{{ route('incidencia.map') }}" method="get"> <!--class="needs-validation" novalidate>-->
+                <form action="{{ route('incidencia.map') }}" method="get" class="needs-validation" novalidate>
                     <h3>Datos Cliente</h3>
                     <div class="form-group row">
                         <div class="col">

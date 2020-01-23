@@ -9,13 +9,14 @@
 
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action "> <i class="fas fa-user-plus"></i> Nuevo usuario</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Estadisticas</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Datos</a>
+                        <a href="{{ route('coordinador.estadisticas') }}" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Estadisticas</a>
+                        <a href="{{ route('coordinador.datos') }}" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Datos</a>
                     </div>
                 </div>
             @elseif($user == 2)
                 <div class="d-flex flex-column">
-                    <a type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</a>
+                    <a type="button" class="btn btn-primary my-5" href="{{route('camaras.show')}}">
+                        <i class="fas fa-video"></i>Camaras</a>
                 </div>
             @endif
         </div>
@@ -46,7 +47,11 @@
                     <div>
                         <h3>{{ $incidencia->tipo }}</h3>
                         <p>{{ $incidencia->descripcion }}</p>
-                        <p>{{ $incidencia->estado }}</p>
+                        @if($incidencia->estado)
+                            <p>Resuelta</p>
+                        @else
+                            <p>En proceso</p>
+                        @endif
                     </div>
                 @endforeach
             </div>

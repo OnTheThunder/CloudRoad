@@ -1,4 +1,4 @@
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -7,24 +7,38 @@ html{
     height: 75px;
 }
 
-.dropdown-menu-navbar {
-    margin-left: -20px;
+.card:hover {
+    background: whitesmoke;
+}
+
+/* VISTA de las Cámaras*/
+#mapa-camaras {
+    width: 100%;
+    min-width: 400px;
+    height: 400px;
+}
+
+.resaltar {
+    background: lightblue;
 }
 
 /* MAPA DEL OPERADOR */
-#map-container, #tecnico-fullscreen-data{
+#map-container, #tecnico-fullscreen-data {
     font-family: 'Montserrat', sans-serif;
 }
-#map-container{
+
+#map-container {
     height: 92vh;
     position: relative;
     margin-top: -0.5rem !important;
     overflow-x: hidden;
 }
+
 #map {
     height: 100%;
 }
-#map-search-container{
+
+#map-search-container {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -33,7 +47,7 @@ html{
 }
 
 
-#map-legend-container{
+#map-legend-container {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -41,7 +55,7 @@ html{
     z-index: 2;
 }
 
-#map-legend{
+#map-legend {
     margin: 0 auto;
     width: 20%;
     background-color: rgba(255, 255, 255, 1);
@@ -54,14 +68,15 @@ html{
     height: calc(1.6em + 0.75rem);
 }
 
-.gmnoprint{
-    display: none;
-}
-.gm-control-active{
+.gmnoprint {
     display: none;
 }
 
-.infoBox{
+.gm-control-active {
+    display: none;
+}
+
+.infoBox {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -72,26 +87,27 @@ html{
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 0.95rem;
-    -webkit-box-shadow: 4px 4px 5px -6px rgba(89,89,89,1);
-    -moz-box-shadow: 4px 4px 5px -6px rgba(89,89,89,1);
-    box-shadow: 4px 4px 5px -6px rgba(89,89,89,1);
+    -webkit-box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
+    -moz-box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
+    box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
 }
-#infoBoxSeparator{
+
+#infoBoxSeparator {
     margin: 10px 0;
 }
 
-#infoBoxTitle{
+#infoBoxTitle {
     font-size: 1.3rem;
     font-weight: 300;
 }
 
-#infoBoxkmTime{
+#infoBoxkmTime {
     position: absolute;
     bottom: 0;
     right: 0;
 }
 
-#infoBoxInsideWrapper{
+#infoBoxInsideWrapper {
     position: relative;
     width: 100%;
     height: 100%;
@@ -103,15 +119,15 @@ html{
     color: #0570c3;;
 }
 
-.infoBoxDataTitles{
+.infoBoxDataTitles {
     font-weight: 400;
 }
 
-.infoBoxData{
+.infoBoxData {
     font-weight: 300;
 }
 
-.btn-scrollers{
+.btn-scrollers {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -123,13 +139,14 @@ html{
     justify-content: center;
     align-items: center;
 }
-.btn-scrollers:hover{
+
+.btn-scrollers:hover {
     cursor: pointer;
 }
 
 /*Tabla Tecnicos*/
 
-#table-header-container{
+#table-header-container {
     display: none;
     text-align: center;
     margin-bottom: 2rem;
@@ -137,25 +154,26 @@ html{
     justify-content: center;
 }
 
-#table-header-container .fas{
+#table-header-container .fas {
     margin: 0 0 5px 15px;
     font-size: 1rem;
 }
 
-#tabla-tecnicos-disponibles{
+#tabla-tecnicos-disponibles {
     display: none;
     margin: 0 auto;
     width: 60%;
 }
 
-#tabla-tecnicos-disponibles th{
+#tabla-tecnicos-disponibles th {
     width: 22.5%;
 }
 
 #tabla-tecnicos-disponibles th:nth-last-child(1) {
     width: 10%;
 }
-#tecnico-fullscreen-data{
+
+#tecnico-fullscreen-data {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,17 +181,70 @@ html{
     height: 100vh;
 }
 
-#tecnico-data-container{
+#tecnico-data-container {
     font-weight: 400;
     width: 100%;
     margin-bottom: 3rem;
 }
 
-#infoBoxInsideWrapper .fas{
+#infoBoxInsideWrapper .fas {
     display: flex;
     align-items: center;
     margin-right: 0.5em;
 }
+
+/*Dropdwon filtros*/
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+#cross-remove-filtro{
+    background: none;
+    border: none;
+    margin-left: 0.5rem;
+    color: white;
+    padding: 0;
+}
+
+#btn-filtro-actual{
+    padding: 0.375rem 0.75rem;
+    margin-left: 1rem;
+    background-color: #75CF92;
+    border: 1px solid #75CF92;
+}
+
+.filters-container{
+    position: relative;
+    display: flex;
+}
+
+.leyenda-filtro-default{
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
+}
+
 
 
 /*QUITAR*/

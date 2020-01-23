@@ -9,6 +9,8 @@ use App\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Taller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class IncidenciaController extends Controller
 {
@@ -19,8 +21,8 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::all();//where(tecnico_id, $tecnico_id)->orderBy('updated_at','desc')->get()
-        $user = 2;
+        $incidencias = Incidencia::all();
+        $user = 1;
         return view('incidencias', ['user' => $user, 'incidencias' => $incidencias]);
     }
 
@@ -43,8 +45,62 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        echo "hola";
-        return view('/login');
+        //DATOS QUE RECIBIMOS POR AJAX POST
+        $datosCliente = request()->all()['cliente'];
+        $datosVehiculo = request()->all()['vehiculo'];
+        $datosIncidencia = request()->all()['incidencia'];
+        $datosCoordenadasIncidencia = request()->all()['coordenadasIncidencia'];
+        $datosTecnico = request()->all()['tecnico'];
+
+        //CLIENTE
+        //Comprobamos que no exista ya el cliente en DB
+        $cliente = DB::table('clientes')->where('dni', $datosCliente['dni'])->get();
+
+        if(count($cliente) == 0){
+            $cliente = new Cliente();
+            $cliente->nombre = $datosCliente['nombre'];
+            $cliente->apellidos = $datosCliente['apellidos'];
+            $cliente->telefono = $datosCliente['telefono'];
+            $cliente->dni = $datosCliente['dni'];
+            $cliente->save();
+        }
+        //Guardamos el id del cliente para utilizarlo en las fk de otras tablas
+        $idCliente = Cliente::where('dni', $datosCliente['dni'])->get('id')[0]['id'];
+
+        //VEHICULO
+        //Comprobamos que no exista ya el vehiculo en DB
+        $vehiculo = DB::table('vehiculos')->where('matricula', $datosVehiculo['matricula'])->get();
+
+        if(count($vehiculo) == 0){
+            $vehiculo = new Vehiculo();
+            $vehiculo->matricula = $datosVehiculo['matricula'];
+            $vehiculo->modelo = $datosVehiculo['modelo'];
+            $vehiculo->marca = $datosVehiculo['marca'];
+            $vehiculo->aseguradora = $datosVehiculo['aseguradora'];
+            $vehiculo->cliente_id = $idCliente;
+            $vehiculo->save();
+        }
+
+        //INCIDENCIA
+        $incidencia = new Incidencia();
+        $incidencia->tipo = $datosIncidencia['tipo'];
+        $incidencia->descripcion = $datosIncidencia['descripcion'];
+        $incidencia->latitud = $datosCoordenadasIncidencia['latitud'];
+        $incidencia->longitud = $datosCoordenadasIncidencia['longitud'];
+        $incidencia->provincia = $datosCoordenadasIncidencia['provincia'];
+        $incidencia->descripcion = $datosIncidencia['descripcion'];
+        $incidencia->cliente_id = $idCliente;
+        $incidencia->tecnico_id = $datosTecnico['id'];
+        $incidencia->save();
+        //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
+
+        //Ponemos el tecnico en estado no disponible
+        $tecnico = Tecnico::find($datosTecnico['id']);
+        $tecnico->disponibilidad = 0;
+        $tecnico->save();
+
+
+        return request()->all();
     }
 
 
@@ -118,6 +174,53 @@ class IncidenciaController extends Controller
 
     public function displayMap(){
         return view('operador/incidencia_ubicacion');
+    }
+
+    public function getIncidenciasEstado(Request $request){
+        $incidenciasEstado = "";
+
+        if(request('estado')){
+            session(['estado' => request('estado')]);
+        }
+
+        switch (session('estado')){
+            case 'resuelta':
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Resuelta')->orderBy('updated_at', 'desc')->paginate(5);
+            break;
+            case 'taller':
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Garaje')->orderBy('updated_at', 'desc')->paginate(5);
+            break;
+            case 'en curso':
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'En curso')->orderBy('updated_at', 'desc')->paginate(5);
+            break;
+        }
+
+        return view('usuario.tecnico-index', ['incidencias' => $incidenciasEstado, 'usuario' => Auth::user(), 'filtro' => session('estado')]);
+    }
+
+    public function getIncidenciasTipo(Request $request){
+        $incidenciasTipo = "";
+
+        if(request('tipo')){
+            session(['tipo' => request('tipo')]);
+        }
+
+        switch (session('tipo')){
+            case 'Pinchazo':
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Pinchazo')->orderBy('estado', 'asc')->paginate(5);
+                break;
+            case 'Averia':
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Averia')->orderBy('estado', 'asc')->paginate(5);
+                break;
+            case 'Golpe':
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Golpe')->orderBy('estado', 'asc')->paginate(5);
+                break;
+            case 'Otro':
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Otro')->orderBy('estado', 'asc')->paginate(5);
+                break;
+        }
+
+        return view('usuario.tecnico-index', ['incidencias' => $incidenciasTipo, 'usuario' => Auth::user(), 'filtro' => session('tipo')]);
     }
 
 }

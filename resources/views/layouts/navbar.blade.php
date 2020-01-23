@@ -9,14 +9,15 @@
         <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item m-2">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <li class="nav-item mr-5">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fas fa-sign-in-alt"></i></a>
                 </li>
-                @if (Route::has('register'))
-                    <li class="nav-item m-2">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <!--        @if (Route::has('register'))
+                <li class="nav-item m-2">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
+                -->
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -44,10 +45,13 @@
             <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                <span>Bienvenido, {{ Auth::user()->nombre }} </span>
+                <span class="text-capitalize">
+                    <strong class="font-weight-bolder">{{Auth::user()->rol}}</strong>
+                    <span class="text-secondary">{{ Auth::user()->nombre }}</span>
+                </span>
                 <i class="fas fa-cog"></i>
             </button>
-            <div class="dropdown-menu dropdown-menu-navbar" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Cambiar contraseña</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -59,6 +63,3 @@
             @endif
         </div>
 </nav>
-
-
-
