@@ -1,11 +1,11 @@
 <!-- Aside de navegacion usuario -->
 <div class="col-12 col-md-3 ">
-    <div class="d-flex flex-column p-2 bg-dark">
+    <div class="d-flex flex-column p-2 bg-white">
         <a type="button" class="btn btn-primary mb-2" href="{{route('camaras.show')}}">
             <i class="fas fa-video mr-2"></i>Camaras de tráfico
         </a>
         <div class="list-group">
-            <a href="{{route('main.index')}}" class="list-group-item list-group-item-action text-color-anyadir-suave bg-secondary">
+            <a href="{{route('main.index')}}" class="list-group-item list-group-item-action text-white bg-secondary">
                 <i class="fas fa-user mr-2"></i>Historial incidencias</a>
             <!-- If de crear usuario -->
             @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador')

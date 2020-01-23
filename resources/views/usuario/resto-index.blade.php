@@ -13,11 +13,20 @@
                     </a>
                 </div>
             @endif
-            <div class="container-fluid border">
+            <div class="container-fluid ">
                 <h2 class="d-flex justify-content-center p-2">Historial de incidencias</h2>
                 <div class="row m-1">
+                    <!-- TODO  El filtro y el buscador se complementan, siempre habra un
+                     filtro, pero si no tiene nada el buscador, se mantiene el filtro
+                     pero con un select *-->
                     <div class="col-6">
                         <p>Filtro actual: $filtro</p>
+                        <div class="form-group">
+                            <label>
+                                Buscar por tecnico
+                            </label>
+                            <input name="buscar" class="form-control" type="text">
+                        </div>
                     </div>
                     <div class="col-6">
                         <div class="dropdown d-flex justify-content-end">
@@ -35,8 +44,6 @@
                 </div>
 
             </div>
-            <!-- TODO Meterle paginacion al historial-->
-
             @foreach($incidencias as $incidencia)
                 <a class="mt-3 text-decoration-none text-dark" href="#">
                     <div class="card m-1 shadow">
