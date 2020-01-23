@@ -187,7 +187,7 @@ class IncidenciaController extends Controller
             case 'resuelta':
                 $incidenciasEstado = DB::table('incidencias')->where('estado', 'Resuelta')->orderBy('updated_at', 'desc')->paginate(5);
             break;
-            case 'garaje':
+            case 'taller':
                 $incidenciasEstado = DB::table('incidencias')->where('estado', 'Garaje')->orderBy('updated_at', 'desc')->paginate(5);
             break;
             case 'en curso':
