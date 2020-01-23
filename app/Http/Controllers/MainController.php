@@ -66,7 +66,7 @@ class MainController extends Controller
         switch (Auth::user()->rol){
             case 'tecnico':
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
-                $incidencias = Incidencia::where('tecnico_id', $tecnico[0]['id'])->get(); //Acceder al id correctamente
+                $incidencias = Incidencia::where('tecnico_id', $tecnico[0]['id'])->get();
                 return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
             break;
             default:

@@ -3,16 +3,25 @@
     <div class="row">
         <div class="d-flex justify-content-between my-2">
             <h2>Historial</h2>
-            <div class="dropdown">
-                <button class="dropdown-toggle btn btn-primary btn-lg" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro</button>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Tipo</a>
-                    <a class="dropdown-item" href="#">Estado</a>
-                </div>
+            <div class="dropdown show">
+                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filtrar
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Estado</a></li>
+                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tipo de incidente</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Pinchazo</a></li>
+                            <li><a class="dropdown-item" href="#">Golpe</a></li>
+                            <li><a class="dropdown-item" href="#">Avería</a></li>
+                            <li><a class="dropdown-item" href="#">Otro</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <div class="incidenciasprueba">
+        <div>
             @foreach($incidencias as $incidencia)
                 <div>
                     <p>{{ $incidencia->tecnico_id }}</p>
@@ -28,6 +37,6 @@
             @endforeach
         </div>
     </div>
-
+    <script src="{{ asset('js/dropdown-filtros.js') }}"></script>
     <script src="{{ asset('js/notificacion.js') }}"></script>
 @endsection
