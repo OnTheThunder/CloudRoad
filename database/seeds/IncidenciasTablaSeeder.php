@@ -27,7 +27,7 @@ class IncidenciasTablaSeeder extends Seeder
                 'latitud' => $faker->latitude(),
                 'provincia' => $faker->randomElement($array = array ('Alava','Vizcaya','Guipuzcoa','Navarra')),
                 'hora_fin' => $faker->time($format = 'H:i:s', $max = 'now'),
-                'estado' => $faker->boolean(50),
+                'estado' => $faker->randomElement($array = array ('Resuelta','En curso','Garaje')),
                 'tipo' => $faker->randomElement($array = array('Pinchazo','Otro','Averia','Golpe')),
                 'tecnico_id' => $faker->randomElement($ids),
                 'cliente_id' => $faker->randomElement($ids),
