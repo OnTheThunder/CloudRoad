@@ -17,9 +17,9 @@ window.onload = function () {
                     break;
                     case 'Operadores': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni', 'email'], result.length, result);
                     break;
-                    case 'Coordinadores': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni'], result.length, result);
+                    case 'Coordinadores': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni', 'email'], result.length, result);
                     break;
-                    case 'Jefes': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni'], result.length, result);
+                    case 'Jefes': crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni', 'email'], result.length, result);
                     break;
                 }
             }
@@ -31,10 +31,10 @@ window.onload = function () {
         tablaDatos.empty();
 
         //TR CABECERA
-        tablaDatos.append('<tr></tr>')
+        tablaDatos.append('<thead class="table-color-secundario"></thead>')
         //TD CABECERA
         arrayColumnas.forEach((item, i)=>{
-            tablaDatos.find('tr').append(`<td>${item}</td>`);
+            tablaDatos.find('thead').append(`<td class="text-capitalize">${item}</td>`);
         });
 
         if(selectFiltroDatos.val() !== 'Coordinadores' && selectFiltroDatos.val() !== 'Jefes'){
