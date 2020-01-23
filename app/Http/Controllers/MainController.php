@@ -66,15 +66,12 @@ class MainController extends Controller
         switch (Auth::user()->rol){
             case 'tecnico':
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
-                $incidencias = Incidencia::where('tecnico_id', $tecnico[0]['id'])->get();
+                $incidencias = DB::table('incidencias')->where('tecnico_id', $tecnico[0]['id'])->orderBy('created_at', 'desc')->paginate(5);
                 return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
             break;
             default:
                 // coger incidencias para mostrar en una paginacion
-                //$incidencias = Incidencia::paginate(5);
                 $incidencias = DB::table('incidencias')->orderBy('updated_at', 'desc')->paginate(5);
-
-
                 return view('usuario.resto-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
         }
     }
