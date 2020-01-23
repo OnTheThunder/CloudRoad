@@ -15,6 +15,8 @@
         <div class="incidenciasprueba">
             @foreach($incidencias as $incidencia)
                 <div>
+                    <p>{{ $incidencia->tecnico_id }}</p>
+                    <p>{{Auth::user()->id}}</p>
                     <h3>{{ $incidencia->tipo }}</h3>
                     <p>{{ $incidencia->descripcion }}</p>
                     @if($incidencia->estado)
