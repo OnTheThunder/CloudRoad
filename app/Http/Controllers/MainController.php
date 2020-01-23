@@ -70,8 +70,12 @@ class MainController extends Controller
                 return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
             break;
             default:
-                $incidencias = Incidencia::all();
-                return view('resto-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
+                // coger incidencias para mostrar en una paginacion
+                //$incidencias = Incidencia::paginate(5);
+                $incidencias = DB::table('incidencias')->orderBy('updated_at', 'desc')->paginate(5);
+
+
+                return view('usuario.resto-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
         }
     }
 
