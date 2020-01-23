@@ -7,8 +7,8 @@ html {
     height: 75px;
 }
 
-.dropdown-menu-navbar {
-    margin-left: -20px;
+.card:hover {
+    background: whitesmoke;
 }
 
 /* VISTA de las Cámaras*/
@@ -192,6 +192,26 @@ html {
     align-items: center;
     margin-right: 0.5em;
 }
+
+/*Dropdwon filtros*/
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
 
 
 /*QUITAR*/

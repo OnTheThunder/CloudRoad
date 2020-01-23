@@ -10,6 +10,7 @@ use App\Cliente;
 use App\Taller;
 use App\Operario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Array_;
 
@@ -121,12 +122,12 @@ class CoordinadorController extends Controller
             }
             return $datosVista;
         }
-        return view('datos');
+        return view('datos', ['usuario' => Auth::user()]);
     }
 
     public function estadisticas(Coordinador $coordinador)
     {
-        return view('estadisticas/estadisticas');
+        return view('estadisticas/estadisticas', ['usuario' => Auth::user()]);
     }
 
     public function cargarGrafico(Request $request, Coordinador $coordinador)

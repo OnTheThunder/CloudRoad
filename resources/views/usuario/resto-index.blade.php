@@ -1,61 +1,79 @@
+@extends('layouts.layout')
+
+<!-- IMPORTAR FUNCIONES PROPIAS-->
+@include('php.funcionesPropias')
+
 @section('content')
     <div class="row">
-        <div class="col-3">
-            @if($user == 1)
-                <div class="d-flex flex-column">
-                    <button type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</button>
+    @include('usuario.aside')
 
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action "> <i class="fas fa-user-plus"></i> Nuevo usuario</a>
-                        <a href="{{ route('coordinador.estadisticas') }}" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Estadisticas</a>
-                        <a href="{{ route('coordinador.datos') }}" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Datos</a>
+    <!-- Main container de ver historial y filtrar -->
+        <div class="col d-flex flex-column mr-2 ">
+            @if($usuario->rol == 'operario')
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block">
+                        <i class="fas fa-plus mr-2"></i>Crear Incidencia
+                    </a>
+                </div>
+            @endif
+            <div class="container-fluid ">
+                <h2 class="d-flex justify-content-center p-2">Historial de incidencias</h2>
+                <div class="row m-1">
+                    <!-- TODO  El filtro y el buscador se complementan, siempre habra un
+                     filtro, pero si no tiene nada el buscador, se mantiene el filtro
+                     pero con un select *-->
+                    <div class="col-6">
+                        <p>Filtro actual: $filtro</p>
+                        <div class="form-group">
+                            <label>
+                                Buscar por tecnico
+                            </label>
+                            <input name="buscar" class="form-control" type="text">
+                        </div>
                     </div>
-                </div>
-            @elseif($user == 2)
-                <div class="d-flex flex-column">
-                    <a type="button" class="btn btn-primary my-5" href="{{route('camaras.show')}}">
-                        <i class="fas fa-video"></i>Camaras</a>
-                </div>
-            @endif
-        </div>
-        <div class="col-6 d-flex flex-column">
-            @if($user == 2)
-                <div class="d-flex justify-content-center my-4">
-                    <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-plus"></i> Crear Incidencia</a>
-                </div>
-            @elseif($user == 3)
-                <div class="d-flex justify-content-center my-4">
-                    <a href="" class="btn btn-primary btn-lg btn-block">Nueva Incidencia <i class="fas fa-bell"></i></a>
-                </div>
-            @endif
-
-            <div class="d-flex justify-content-between my-2">
-                <h2>Historial</h2>
-                <div class="dropdown">
-                    <button class="dropdown-toggle btn btn-primary btn-lg" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro</button>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Tipo</a>
-                        <a class="dropdown-item" href="#">Estado</a>
+                    <div class="col-6">
+                        <div class="dropdown d-flex justify-content-end">
+                            <button class="dropdown-toggle btn btn-primary btn-lg" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Tipo</a>
+                                <a class="dropdown-item" href="#">Estado</a>
+                                <a class="dropdown-item" href="#">fecha fin asc</a>
+                                <a class="dropdown-item" href="#">fecha fin desc</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <div>
-                @foreach($incidencias as $incidencia)
-                    <div>
-                        <h3>{{ $incidencia->tipo }}</h3>
-                        <p>{{ $incidencia->descripcion }}</p>
-                        @if($incidencia->estado)
-                            <p>Resuelta</p>
-                        @else
-                            <p>En proceso</p>
-                        @endif
+            @foreach($incidencias as $incidencia)
+                <a class="mt-3 text-decoration-none text-dark" href="#">
+                    <div class="card m-1 shadow">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ $incidencia->tipo }}</h3>
+                            <p class="card-text">{{ $incidencia->descripcion }}</p>
+                            <span>Lugar: </span>{{$incidencia->provincia}}
+                            @if($incidencia->estado)
+                                <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta</p>
+                            @else
+                                <p class="card-footer border text-color-borrar-suave font-weight-bold mt-2">En
+                                    proceso</p>
+                            @endif
+                            <div class="text-secondary text-right text-monospace font-weight-bolder">Alta
+                                <span class="font-italic font-weight-lighter">
+                                @php
+                                    fechaCastellano($incidencia->created_at);
+                                @endphp
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                @endforeach
+                </a>
+            @endforeach
+            <div class="ml-1 mb-5">
+                {{ $incidencias->links() }}
             </div>
         </div>
     </div>
-    @if($user = 3)
-        <script src="{{ asset('js/notificacion.js') }}"></script>
-    @endif
 @endsection

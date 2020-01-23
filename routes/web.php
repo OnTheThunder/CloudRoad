@@ -16,11 +16,11 @@ Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
-Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
+//Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
-Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map');
+Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 
 //Llamadas desde AJAX
@@ -60,8 +60,6 @@ Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->na
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
 Route::get('/admin/datos', 'CoordinadorController@datos')->name('coordinador.datos'); //Tenemos que meterle middleware
 Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('coordinador.estadisticas'); //Tenemos que meterle middleware
@@ -70,4 +68,9 @@ Route::get('/send-mail', 'MailSendController@mailsend');
 
 Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')->name('coordinador.cargarGrafico'); //Tenemos que meterle middleware
 Route::get('/admin/estadisticas/cargar/cargarPorHora', 'CoordinadorController@cargarPorHora')->name('coordinador.cargarPorHora'); //Tenemos que meterle middleware
+
+
+//Filtro incidencias
+Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->name('incidencia.estado');
+Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencia.tipo');
 
