@@ -19,13 +19,14 @@
                 </div>
             </div>
             <div id="grafico">
-
+                <canvas id="miGrafico"></canvas>
             </div>
 
         </div>
     </div>
     <script src="{{ secure_asset('js/filtroGrafico.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-    {{--{{ $chart->script() }}--}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 
 @endsection
