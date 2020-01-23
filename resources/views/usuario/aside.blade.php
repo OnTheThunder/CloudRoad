@@ -1,6 +1,6 @@
 <!-- Aside de navegacion usuario -->
-<div class="col-12 col-md-3 ">
-    <div class="d-flex flex-column p-2 bg-white">
+<div class="col-12 col-md-3 border-right">
+    <div class="d-flex flex-column p-2  sticky-top">
         <a type="button" class="btn btn-primary mb-2" href="{{route('camaras.show')}}">
             <i class="fas fa-video mr-2"></i>Camaras de tráfico
         </a>
@@ -20,6 +20,11 @@
             <a href="{{ route('coordinador.datos') }}"
                class="list-group-item list-group-item-action text-color-datos-suave bg-secondary">
                 <i class="fas fa-users mr-2"></i>Datos</a>
+        </div>
+        <div class="d-flex justify-content-center text-decoration-none">
+            <a href="#">
+                <i class="fas fa-arrow-up shadow bg-white mt-3 p-3 rounded-circle text-color-primario"></i>
+            </a>
         </div>
     </div>
 </div>

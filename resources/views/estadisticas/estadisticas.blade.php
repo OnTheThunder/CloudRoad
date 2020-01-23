@@ -18,10 +18,9 @@
                     </select>
                 </div>
             </div>
-            <div id="grafico">
+            <div id="graficos">
                 <canvas id="miGrafico"></canvas>
             </div>
-
         </div>
     </div>
     <script src="{{ secure_asset('js/filtroGrafico.js') }}"></script>

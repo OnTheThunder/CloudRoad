@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+<!-- IMPORTAR FUNCIONES PROPIAS-->
+@include('php.funcionesPropias')
+
 @section('content')
     <div class="row">
     @include('usuario.aside')
@@ -57,7 +60,13 @@
                                 <p class="card-footer border text-color-borrar-suave font-weight-bold mt-2">En
                                     proceso</p>
                             @endif
-                            <div class="text-secondary text-right">Fecha fin "{{$incidencia->updated_at}}"</div>
+                            <div class="text-secondary text-right text-monospace font-weight-bolder">Alta
+                                <span class="font-italic font-weight-lighter">
+                                @php
+                                    fechaCastellano($incidencia->created_at);
+                                @endphp
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </a>
