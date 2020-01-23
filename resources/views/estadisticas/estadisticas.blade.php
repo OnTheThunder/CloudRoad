@@ -2,17 +2,9 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3">
-            <div class="d-flex flex-column">
-                <button type="button" class="btn btn-primary my-5"><i class="fas fa-video" ></i> Camaras</button>
 
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action "> <i class="fas fa-user-plus"></i> Nuevo usuario</a>
-                    <a href="{{ route('coordinador.estadisticas') }}" class="list-group-item list-group-item-action"><i class="fas fa-chart-bar"></i> Estadisticas</a>
-                    <a href="{{ route('coordinador.datos') }}" class="list-group-item list-group-item-action"><i class="fas fa-users"></i> Datos</a>
-                </div>
-            </div>
-        </div>
+        @include('usuario.aside')
+
         <div class="col-6 d-flex flex-column">
             <div class="row d-flex justify-content-between my-2">
                 <h2>Estadisticas</h2>
