@@ -45,10 +45,13 @@
             <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                <span>Bienvenido, {{ Auth::user()->nombre }} </span>
+                <span class="text-capitalize">
+                    <strong class="font-weight-bolder">{{Auth::user()->rol}}</strong>
+                    <span class="text-secondary">{{ Auth::user()->nombre }}</span>
+                </span>
                 <i class="fas fa-cog"></i>
             </button>
-            <div class="dropdown-menu dropdown-menu-navbar" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Cambiar contraseña</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
