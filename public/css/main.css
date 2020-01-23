@@ -7,16 +7,8 @@ html {
     height: 75px;
 }
 
-.dropdown-menu-navbar {
-    margin-left: -20px;
-}
-
 .card:hover {
     background: whitesmoke;
-}
-
-.fondo {
-    margin-top: -8px;
 }
 
 /* VISTA de las Cámaras*/

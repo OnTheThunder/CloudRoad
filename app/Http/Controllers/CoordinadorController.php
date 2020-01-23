@@ -122,7 +122,7 @@ class CoordinadorController extends Controller
             }
             return $datosVista;
         }
-        return view('datos');
+        return view('datos', ['usuario' => Auth::user()]);
     }
 
     public function estadisticas(Coordinador $coordinador)

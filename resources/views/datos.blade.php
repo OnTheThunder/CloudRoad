@@ -1,12 +1,13 @@
 @extends('layouts/layout')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-11">Datos</div>
-            <a class="col-md-1 btn btn-primary">Volver</a>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+    <div class="row">
+
+        @include('usuario.aside')
+
+        <div class="col d-flex flex-column">
+            <div class="d-flex flex-row">
+                <label for="selectFiltroDatos" class="col h1">Datos</label>
+
                 <select class="form-control" name="selectFiltro" id="selectFiltroDatos">
                     <option selected="selected" disabled="disabled">Filter</option>
                     <option>Clientes</option>
@@ -18,11 +19,11 @@
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-bordered" id="tabla-datos">
-                </table>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped" id="tabla-datos">
+            </table>
         </div>
     </div>
     <script src="{{ asset('js/datos.js') }}"></script>
