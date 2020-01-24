@@ -40,14 +40,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticate(Request $request)
+    /**
+     * Comprueba estos 3 campos para poder iniciar sesion
+     * email
+     * password
+     * activo = 1
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('dashboard');
-        }
+        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'activo' => 1];
     }
 
     /**

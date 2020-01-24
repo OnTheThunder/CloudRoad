@@ -50,7 +50,7 @@
                 </div>
                 @php $i = 0 @endphp
                 @foreach($incidencias as $incidencia)
-                    <a class="mt-3 text-decoration-none text-dark" href="#">
+                    <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                     <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
                     @if(isset($notificacion) AND $notificacion == 1 AND count($incidencias) -5 == $i) <!-- count($incidencias) -5 dado que la paginación lo gestiona así -->
                         {{--<div class="card m-1 shadow card-incidencia" style="background:blue">--}}

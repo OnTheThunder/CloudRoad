@@ -11,6 +11,13 @@ html {
     background: whitesmoke;
 }
 
+.dropdown-menu{
+    z-index: 10001;
+}
+.paginacion {
+    overflow: scroll;
+}
+
 /* VISTA de las Cámaras*/
 #mapa-camaras {
     width: 100%;
