@@ -255,6 +255,21 @@ button:focus {
 /*Card incidencia*/
 .card-incidencia{
     position: relative;
+    border: 1px solid #37cf5f;
+}
+
+.nueva-incidencia-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 1rem 0 0;
+}
+
+.nueva-incidencia-container span{
+    color: #0b7731;
 }
 
 .glow {
@@ -264,13 +279,10 @@ button:focus {
     text-align: center;
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
-    /*animation: glow 1s ease-in-out infinite alternate;*/
     animation: blinker 2s linear infinite;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
     border-radius: 50%;
     background-color: #47c172;
+    margin-right: 0.5rem;
 }
 
 @keyframes blinker {

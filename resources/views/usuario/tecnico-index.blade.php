@@ -64,7 +64,7 @@
                                 <span>Nueva incidencia</span>
                             </div>
                     @else
-                        <div class="card m-1 shadow card-incidencia">
+                        <div class="card m-1 shadow">
                     @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $incidencia->tipo }}</h3>
