@@ -200,6 +200,59 @@ html {
     margin-right: 0.5em;
 }
 
+/*Dropdwon filtros*/
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 6px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+#cross-remove-filtro{
+    background: none;
+    border: none;
+    margin-left: 0.5rem;
+    color: white;
+    padding: 0;
+}
+
+#btn-filtro-actual{
+    padding: 0.375rem 0.75rem;
+    margin-left: 1rem;
+    background-color: #75CF92;
+    border: 1px solid #75CF92;
+}
+
+.filters-container{
+    position: relative;
+    display: flex;
+}
+
+.leyenda-filtro-default{
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
+}
+
+
 
 /*QUITAR*/
 /*
