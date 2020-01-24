@@ -13,7 +13,7 @@ class CreateCoordinadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('coordinadors', function (Blueprint $table) {
+        Schema::create('coordinadores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('apellidos');
@@ -33,6 +33,6 @@ class CreateCoordinadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coordinadors');
+        Schema::dropIfExists('coordinadores');
     }
 }
