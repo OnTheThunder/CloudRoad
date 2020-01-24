@@ -52,7 +52,7 @@
                 <i class="fas fa-cog"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Cambiar contraseña</a>
+                <a class="dropdown-item" href="{{ route('usuario.password.edit',['modo'=>'password']) }}">Cambiar contraseña</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                document.getElementById('logout-form').submit();">Cerrar sesión</a>

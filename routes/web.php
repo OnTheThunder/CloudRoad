@@ -65,6 +65,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 // crear usuarios
 Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
 Route::post('/usuario', 'UsuarioController@store')->name('usuario.store');
+//baja usuario
+Route::get('/usuario/edit', 'UsuarioController@edit')->name('usuario.edit');
+Route::post('/usuario/edit', 'UsuarioController@update')->name('usuario.update');
+// cambiar contraseña
+Route::get('/usuario/password', 'UsuarioController@edit')->name('usuario.password.edit');
+
 // get todos los talleres
 Route::get('/talleres', 'TallerController@index')->name('talleres.index');
 

@@ -170,9 +170,14 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public
-    function edit(Usuario $usuario)
+    function edit(Request $request)
     {
-        //
+        switch ($request->modo) {
+            case "password":
+                return view('usuario/password_edit', ['usuario' => Auth::user()]);
+            case "baja":
+                return view('usuario/usuario_edit', ['usuario' => Auth::user()]);
+        }
     }
 
     /**

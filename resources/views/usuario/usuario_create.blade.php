@@ -24,7 +24,6 @@
     @endif
 
     @include('usuario.aside')
-    <!-- TODO cuando se cree el usuario, se envie un email diciendole que contraseña tiene(la por defecto 12345678) -->
         <div class="col d-flex flex-column mr-2 ">
             <div class="h1 text-center">Nuevo usuario</div>
             <div class="row justify-content-center">

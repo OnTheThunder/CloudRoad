@@ -11,7 +11,7 @@
             @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador')
                 <a href="{{route('usuario.create')}}" class="list-group-item list-group-item-action text-color-anyadir-suave bg-secondary">
                     <i class="fas fa-user-plus mr-2"></i>Nuevo usuario</a>
-                <a href="#" class="list-group-item list-group-item-action text-color-borrar-suave bg-secondary">
+                <a href="{{route('usuario.edit')}}" class="list-group-item list-group-item-action text-color-borrar-suave bg-secondary">
                     <i class="fas fa-user-minus mr-2"></i>Dar de baja usuario</a>
             @endif
             <a href="{{ route('coordinador.estadisticas') }}"
