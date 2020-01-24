@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Coordinador;
+use App\Mail\SendMail;
 use App\Operario;
 use App\Tecnico;
 use App\Usuario;
@@ -143,9 +144,11 @@ class UsuarioController extends Controller
                     break;
             }
             $resultado = "1";
+            // enviar email
+            $mail = new MailSendController;
+            $mail->nuevoUsuario($request->email, $request->nombre);
         }
         return redirect()->route('usuario.create', ['usuario' => Auth::user(), 'resultado' => $resultado]);
-
     }
 
     /**

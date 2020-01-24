@@ -72,6 +72,7 @@ Route::get('/admin/datos', 'CoordinadorController@datos')->name('coordinador.dat
 Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('coordinador.estadisticas'); //Tenemos que meterle middleware
 
 Route::get('/send-mail', 'MailSendController@mailsend');
+Route::get('/email-usuario', 'MailSendController@enviar')->name('nuevo.email');
 
 Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')->name('coordinador.cargarGrafico'); //Tenemos que meterle middleware
 Route::get('/admin/estadisticas/cargar/cargarPorHora', 'CoordinadorController@cargarPorHora')->name('coordinador.cargarPorHora'); //Tenemos que meterle middleware
