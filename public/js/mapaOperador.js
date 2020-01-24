@@ -322,7 +322,7 @@ function sendEmailAJAX(emailTecnico) {
         },
         success: function(result){
             console.log("SUCCESS")
-            window.location.href = result;
+            //window.location.href = result;
         },
         error: function (result) {
             console.log("ERROR");

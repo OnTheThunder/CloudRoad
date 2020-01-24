@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\incidencia;
+use App\Operario;
 use App\Tecnico;
 use App\Vehiculo;
 use DemeterChain\C;
@@ -83,8 +84,9 @@ class IncidenciaController extends Controller
             $vehiculo->save();
         }
 
-        //Get id vehiculo para asignarlo a incidencia
-        $vehiculoId = DB::table('vehiculos')->where('matricula', $datosVehiculo['matricula'])->get('id');
+        //Get id de las fk para asignarlas a la incidencia
+        $vehiculoId = Vehiculo::where('matricula', $datosVehiculo['matricula'])->get('id');
+        $operadorId = Operario::where('usuarios_id', Auth::user()->id)->get('id');
 
         //INCIDENCIA
         $incidencia = new Incidencia();
@@ -96,18 +98,13 @@ class IncidenciaController extends Controller
         $incidencia->descripcion = $datosIncidencia['descripcion'];
         $incidencia->cliente_id = $idCliente;
         $incidencia->tecnico_id = $datosTecnico['id'];
-        //$incidencia->vehiculo_id = $vehiculoId;
-        $incidencia->vehiculo_id = 1;
+        $incidencia->vehiculo_id = $vehiculoId[0]['id'];
+        $incidencia->operador_id = $operadorId[0]['id'];
+
         $incidencia->save();
-        //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
 
         //COMENTARIOS
         //INSERT COMENTARIO INCIDENCIA CREADA
-
-        //Ponemos el tecnico en estado no disponible
-        /*$tecnico = Tecnico::find($datosTecnico['id']);
-        $tecnico->disponibilidad = 0;
-        $tecnico->save();*/
 
 
         return request()->all();
