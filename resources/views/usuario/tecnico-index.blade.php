@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
+            {{$notificacion}}
             <div class="col d-flex flex-column mr-2 mt-5">
                 <div class="container-fluid pl-0">
                     <h2 class="d-flex justify-content-center p-2">Mis Incidencias</h2>

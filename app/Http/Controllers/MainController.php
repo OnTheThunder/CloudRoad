@@ -66,8 +66,16 @@ class MainController extends Controller
         switch (Auth::user()->rol){
             case 'tecnico':
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
+                $notificacion = false;
+                //Si el tecnico esta disponible y tiene una incidencia en curso hay que mostrarle notificacion y botones aceptar rechazar
+                if($tecnico[0]['disponibilidad'] == 1){
+                    $matchThese = ['tecnico_id' => $tecnico[0]['id'], 'estado' => "En curso"];
+                    $incidenciasPendientes = Incidencia::where($matchThese)->get();
+                    $notificacion = count($incidenciasPendientes) > 0;
+                }
+
                 $incidencias = DB::table('incidencias')->where('tecnico_id', $tecnico[0]['id'])->orderBy('created_at', 'desc')->paginate(5);
-                return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
+                return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user(), "notificacion" => $notificacion]);
             break;
             default:
                 // coger incidencias para mostrar en una paginacion
