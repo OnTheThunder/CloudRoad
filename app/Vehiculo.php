@@ -10,4 +10,8 @@ class Vehiculo extends Model
     {
         return $this->hasOne('App\Cliente');
     }
+    public function Incidencia()
+    {
+        return $this->belongsTo('App\Incidencia');
+    }
 }

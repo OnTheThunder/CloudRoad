@@ -81,6 +81,9 @@ class IncidenciaController extends Controller
             $vehiculo->save();
         }
 
+        //Get id vehiculo para asignarlo a incidencia
+        $vehiculoId = DB::table('vehiculos')->where('matricula', $datosVehiculo['matricula'])->get('id');
+
         //INCIDENCIA
         $incidencia = new Incidencia();
         $incidencia->tipo = $datosIncidencia['tipo'];
@@ -91,6 +94,7 @@ class IncidenciaController extends Controller
         $incidencia->descripcion = $datosIncidencia['descripcion'];
         $incidencia->cliente_id = $idCliente;
         $incidencia->tecnico_id = $datosTecnico['id'];
+        $incidencia->vehiculo_id = $vehiculoId;
         $incidencia->save();
         //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
 
