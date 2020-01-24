@@ -32,6 +32,7 @@ class IncidenciasTablaSeeder extends Seeder
                 'tecnico_id' => $faker->randomElement($ids),
                 'cliente_id' => $faker->randomElement($ids),
                 'operador_id' => $faker->randomElement($ids),
+                'vehiculo_id' => $faker->randomElement($ids),
                 'created_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
                 'updated_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
             ]);

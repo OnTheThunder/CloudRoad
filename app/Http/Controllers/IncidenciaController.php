@@ -81,6 +81,9 @@ class IncidenciaController extends Controller
             $vehiculo->save();
         }
 
+        //Get id vehiculo para asignarlo a incidencia
+        $vehiculoId = DB::table('vehiculos')->where('matricula', $datosVehiculo['matricula'])->get('id');
+
         //INCIDENCIA
         $incidencia = new Incidencia();
         $incidencia->tipo = $datosIncidencia['tipo'];
@@ -91,13 +94,17 @@ class IncidenciaController extends Controller
         $incidencia->descripcion = $datosIncidencia['descripcion'];
         $incidencia->cliente_id = $idCliente;
         $incidencia->tecnico_id = $datosTecnico['id'];
+        $incidencia->vehiculo_id = $vehiculoId;
         $incidencia->save();
         //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
 
+        //COMENTARIOS
+        //INSERT COMENTARIO INCIDENCIA CREADA
+
         //Ponemos el tecnico en estado no disponible
-        $tecnico = Tecnico::find($datosTecnico['id']);
+        /*$tecnico = Tecnico::find($datosTecnico['id']);
         $tecnico->disponibilidad = 0;
-        $tecnico->save();
+        $tecnico->save();*/
 
 
         return request()->all();

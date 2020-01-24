@@ -67,7 +67,7 @@
                         </div>
                     </a>
                 @endforeach
-                <div class="ml-1 mb-5">
+                <div class="ml-1 mb-5 mt-3">
                     {{ $incidencias->links() }}
                 </div>
             </div>
