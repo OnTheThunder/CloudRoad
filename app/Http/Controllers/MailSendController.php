@@ -12,6 +12,6 @@ class MailSendController extends Controller
     {
         $mailTecnico =  request()->all()['mail'];
         \Mail::to($mailTecnico)->send(new SendMail());
-        return view('/incidencias'); //Vista a la que te redirecciona tras enviar el correo
+        return '/';
     }
 }
