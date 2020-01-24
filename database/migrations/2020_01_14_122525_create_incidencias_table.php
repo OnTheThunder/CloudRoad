@@ -25,6 +25,7 @@ class CreateIncidenciasTable extends Migration
             $table->unsignedBigInteger('tecnico_id');
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('operador_id')->nullable();
+            $table->unsignedBigInteger('vehiculo_id');
             $table->timestamps();
         });
     }

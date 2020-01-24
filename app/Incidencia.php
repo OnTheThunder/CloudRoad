@@ -25,4 +25,8 @@ class incidencia extends Model
     {
         return $this->hasOne('App\Operario');
     }
+    public function vehiculo()
+    {
+        return $this->hasOne('App\Vehiculo');
+    }
 }
