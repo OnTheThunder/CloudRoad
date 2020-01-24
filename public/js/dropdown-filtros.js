@@ -1,4 +1,3 @@
-window.onload = function () {
     //Dropdown logic
     $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
         if (!$(this).next().hasClass('show')) {
@@ -14,4 +13,3 @@ window.onload = function () {
 
         return false;
     });
-};
