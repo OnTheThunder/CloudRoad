@@ -89,6 +89,4 @@
             </div>
         </div>
     </div>
-    <!--<script src="{{ asset('js/notificacion.js') }}"></script>-->
-    <script src="{{ asset('js/dropdown-filtros.js') }}"></script>
 @endsection

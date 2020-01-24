@@ -40,4 +40,5 @@
 
 <!-- JS personalizados -->
 <script src="{{ secure_asset('js/app.js') }}"></script>
+<script src="{{ asset('js/dropdown-filtros.js') }}"></script>
 </html>
