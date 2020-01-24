@@ -6,6 +6,7 @@ use App\Cliente;
 use App\incidencia;
 use App\Tecnico;
 use App\Vehiculo;
+use DemeterChain\C;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Taller;
@@ -117,9 +118,25 @@ class IncidenciaController extends Controller
      * @param  \App\incidencia  $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function show(incidencia $incidencia)
+    public function show($id)
     {
-        //
+        //iniciada ya la sesion
+        //entra a la pagina del usuario
+        switch (Auth::user()->rol){
+            case 'tecnico':
+                $incidencia = Incidencia::find($id);
+                $cliente = Cliente::find($incidencia->cliente_id);
+                $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
+                $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
+                return view('usuario/tecnico-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico]);
+                break;
+            default:
+                // coger incidencias para mostrar en una paginacion
+                $incidencia = Incidencia::find($id);
+                $cliente = Cliente::find($incidencia->cliente_id);
+                $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
+                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo]);
+        }
     }
 
     /**
@@ -140,9 +157,29 @@ class IncidenciaController extends Controller
      * @param  \App\incidencia  $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, incidencia $incidencia)
+    public function update( Request $request)
     {
-        //
+        switch(request()->all()['update']){
+            case 'tecnico_id':
+                $incidencia = Incidencia::find(request()->all()['id']);
+                $incidencia->tecnico_id = null;
+                $incidencia->save();
+                break;
+            case 'estadoGaraje':
+                $incidencia = Incidencia::find(request()->all()['id']);
+                $incidencia->estado = 'Garaje';
+                $incidencia->save();
+                break;
+            case 'estadoTerminado':
+                $incidencia = Incidencia::find(request()->all()['id']);
+                $incidencia->estado = 'Resuelta';
+                $incidencia->save();
+                break;
+        }
+
+
+
+        redirect()->route('main.index');
     }
 
     /**

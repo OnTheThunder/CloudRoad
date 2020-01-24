@@ -48,7 +48,7 @@
 
             </div>
             @foreach($incidencias as $incidencia)
-                <a class="mt-3 text-decoration-none text-dark" href="#">
+                <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                     <div class="card m-1 shadow">
                         <div class="card-body">
                             <h3 class="card-title">{{ $incidencia->tipo }}</h3>
