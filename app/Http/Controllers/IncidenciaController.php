@@ -98,10 +98,13 @@ class IncidenciaController extends Controller
         $incidencia->save();
         //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
 
+        //COMENTARIOS
+        //INSERT COMENTARIO INCIDENCIA CREADA
+
         //Ponemos el tecnico en estado no disponible
-        $tecnico = Tecnico::find($datosTecnico['id']);
+        /*$tecnico = Tecnico::find($datosTecnico['id']);
         $tecnico->disponibilidad = 0;
-        $tecnico->save();
+        $tecnico->save();*/
 
 
         return request()->all();
