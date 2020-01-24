@@ -94,7 +94,8 @@ class IncidenciaController extends Controller
         $incidencia->descripcion = $datosIncidencia['descripcion'];
         $incidencia->cliente_id = $idCliente;
         $incidencia->tecnico_id = $datosTecnico['id'];
-        $incidencia->vehiculo_id = $vehiculoId;
+        //$incidencia->vehiculo_id = $vehiculoId;
+        $incidencia->vehiculo_id = 1;
         $incidencia->save();
         //$incidencia->operador_id = ; TENEMOS QUE COGER EL ID OPERADOR DE SESION
 
