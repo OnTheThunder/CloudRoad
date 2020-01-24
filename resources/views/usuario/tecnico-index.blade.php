@@ -2,7 +2,6 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {{$notificacion}}
             <div class="col d-flex flex-column mr-2 mt-5">
                 <div class="container-fluid pl-0">
                     <h2 class="d-flex justify-content-center p-2">Mis Incidencias</h2>
@@ -49,9 +48,20 @@
                         </div>
                     </div>
                 </div>
+                @php $i = 0 @endphp
                 @foreach($incidencias as $incidencia)
                     <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
-                        <div class="card m-1 shadow">
+                    <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
+                    @if(isset($notificacion) AND $notificacion == 1 AND count($incidencias) -5 == $i) <!-- count($incidencias) -5 dado que la paginación lo gestiona así -->
+                        {{--<div class="card m-1 shadow card-incidencia" style="background:blue">--}}
+                        <div class="card m-1 shadow card-incidencia">
+                            <div class="nueva-incidencia-container">
+                                <div class="glow"></div>
+                                <span>Nueva incidencia</span>
+                            </div>
+                    @else
+                        <div class="card m-1 shadow card-incidencia">
+                    @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $incidencia->tipo }}</h3>
                                 <p class="card-text">{{ $incidencia->descripcion }}</p>
@@ -66,7 +76,8 @@
                                 <div class="text-secondary text-right">Fecha de creación "{{$incidencia->created_at}}"</div>
                             </div>
                         </div>
-                    </a>
+                    </a><!--No hacer caso a este error, está bien cerrado-->
+                    @php $i++; @endphp
                 @endforeach
                 <div class="ml-1 mb-5 mt-3">
                     {{ $incidencias->links() }}
@@ -75,4 +86,5 @@
         </div>
     </div>
     <!--<script src="{{ asset('js/notificacion.js') }}"></script>-->
+    <script src="{{ asset('js/dropdown-filtros.js') }}"></script>
 @endsection
