@@ -42,8 +42,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register.show');
+//Route::post('register', 'Auth\RegisterController@register');
 
 //passwor reset
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -60,11 +60,19 @@ Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->na
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 
+Route::get('/home', 'HomeController@index')->name('home');
+
+// crear usuarios
 Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
+Route::post('/usuario', 'UsuarioController@store')->name('usuario.store');
+// get todos los talleres
+Route::get('/talleres', 'TallerController@index')->name('talleres.index');
+
 Route::get('/admin/datos', 'CoordinadorController@datos')->name('coordinador.datos'); //Tenemos que meterle middleware
 Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('coordinador.estadisticas'); //Tenemos que meterle middleware
 
 Route::get('/send-mail', 'MailSendController@mailsend');
+Route::get('/email-usuario', 'MailSendController@enviar')->name('nuevo.email');
 
 Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')->name('coordinador.cargarGrafico'); //Tenemos que meterle middleware
 Route::get('/admin/estadisticas/cargar/cargarPorHora', 'CoordinadorController@cargarPorHora')->name('coordinador.cargarPorHora'); //Tenemos que meterle middleware

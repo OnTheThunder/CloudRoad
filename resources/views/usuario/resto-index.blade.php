@@ -71,7 +71,7 @@
                     </div>
                 </a>
             @endforeach
-            <div class="ml-1 mb-5">
+            <div class="mb-5 paginacion">
                 {{ $incidencias->links() }}
             </div>
         </div>
