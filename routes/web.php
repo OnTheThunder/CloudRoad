@@ -16,14 +16,13 @@ Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
-//Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 Route::get('/incidencias/update/{id}', 'IncidenciaController@update')->name('incidencia.update');
-Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
+
 
 
 //Llamadas desde AJAX
@@ -83,8 +82,11 @@ Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')
 
 
 //Filtro incidencias
-Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->name('incidencia.estado');
-Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencia.tipo');
+Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasTecnicoEstado')->name('incidencias.tecnico.estado');
+Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTecnicoTipo')->name('incidencias.tecnico.tipo');
 
 //Tecnico
 Route::get('/tecnico/update/{id}', 'TecnicoController@update')->name('tecnico.update');
+
+//Las rutas con id siempre deben de ir al final para no dar conflicto
+Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
