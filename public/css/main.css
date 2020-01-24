@@ -245,6 +245,33 @@ button:focus {
     right: 0.5rem;
 }
 
+/*Card incidencia*/
+.card-incidencia{
+    position: relative;
+}
+
+.glow {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    /*animation: glow 1s ease-in-out infinite alternate;*/
+    animation: blinker 2s linear infinite;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border-radius: 50%;
+    background-color: #47c172;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
 
 
 /*QUITAR*/
