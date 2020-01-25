@@ -13,10 +13,10 @@
                     <h3>Datos Cliente</h3>
                     <div class="form-group row">
                         <div class="col">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="dni">DNI</label>
+                            <input type="text" class="form-control" id="dni" name="dni" required>
                             <div class="invalid-feedback">
-                                Hay que introducir un nombre.
+                                Hay que introducir un DNI.
                             </div>
                         </div>
                         <div class="col">
@@ -36,10 +36,10 @@
                             </div>
                         </div>
                         <div class="col">
-                            <label for="dni">DNI</label>
-                            <input type="text" class="form-control" id="dni" name="dni" required>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
                             <div class="invalid-feedback">
-                                Hay que introducir un DNI.
+                                Hay que introducir un nombre.
                             </div>
                         </div>
                     </div>
