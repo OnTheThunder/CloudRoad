@@ -200,6 +200,19 @@ html {
     margin-right: 0.5em;
 }
 
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+    display: none;
+    position: absolute;
+    border: none;
+    border-left: 1px solid #1cffa1;
+    margin-left: 2.5rem;
+    padding-left: 0.5rem;
+}
+
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+    color: #3490dc;
+}
+
 /*Dropdwon filtros*/
 .dropdown-submenu {
     position: relative;
