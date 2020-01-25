@@ -105,9 +105,6 @@ class IncidenciaController extends Controller
 
         //COMENTARIOS
         //INSERT COMENTARIO INCIDENCIA CREADA
-
-
-        return request()->all();
     }
 
 

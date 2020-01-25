@@ -14,3 +14,11 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
     return false;
 });
 
+
+$(document).ready(function(){
+    let fadeInWrapper = $('.fadeIn-wrapper');
+    fadeInWrapper.css('display', 'none')
+    fadeInWrapper.fadeIn(500);
+});
+
+

@@ -297,7 +297,9 @@ function renderTecnicos() {
             `<td>${item.telefono}</td>\n` +
             `<td>${item.email}</td>\n` +
             '<td>\n' +
-            `<button value="${item.id},${item.email}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</button>\n` +
+            `<button value="${item.id},${item.email}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar` +
+                '<span class="mensaje-tecnico-notificado">Notificación enviada!</span>' +
+            '</button>\n' +
             '</td>\n' +
             '</tr>')
     });
@@ -306,6 +308,9 @@ function renderTecnicos() {
     let btnNotificarTecnico = $('.btn-notificar-tecnico');
 
     btnNotificarTecnico.on('click', function () {
+        window.location.href = '/';
+        let clickedIndex = btnNotificarTecnico.index(this);
+        $('.mensaje-tecnico-notificado').eq(clickedIndex).fadeIn("slow");
         let oDatosIncidencia = prepareIncidenciaData(this.value);
         storeIncidenciaAJAX(oDatosIncidencia);
         sendEmailAJAX(oDatosIncidencia.tecnico.email);
@@ -322,7 +327,7 @@ function sendEmailAJAX(emailTecnico) {
         },
         success: function(result){
             console.log("SUCCESS")
-            //window.location.href = result;
+            console.log(result)
         },
         error: function (result) {
             console.log("ERROR");
@@ -369,7 +374,6 @@ function prepareIncidenciaData(idEmailTecnico) {
 }
 
 function storeIncidenciaAJAX(oDatosIncidencia) {
-    console.log(oDatosIncidencia)
     $.ajax({
         type: 'POST',
         url: '/incidencias/store',
@@ -377,13 +381,11 @@ function storeIncidenciaAJAX(oDatosIncidencia) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function(result){
-            console.log("SUCCESS")
-            console.log(result);
+        success: function(){
+            console.log("SUCCESS");
         },
         error: function (result) {
             console.log("ERROR");
-            console.log(result);
         }
     });
 }
