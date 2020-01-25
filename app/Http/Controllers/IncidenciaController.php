@@ -219,10 +219,10 @@ class IncidenciaController extends Controller
 
     public function getIncidenciasTecnicoEstado(Request $request){
 
-        $tecnicoId = Tecnico::where('usuarios_id', Auth::user()->id)->get('id');
-        $findResuelta = ['tecnico_id' => $tecnicoId[0]['id'], 'estado' => 'Resuelta'];
-        $findGaraje = ['tecnico_id' => $tecnicoId[0]['id'], 'estado' => 'Garaje'];
-        $findEnCurso = ['tecnico_id' => $tecnicoId[0]['id'], 'estado' => 'En curso'];
+        $tecnicoId = Tecnico::where('usuarios_id', Auth::user()->id)->get('id')[0]['id'];
+        $findResuelta = ['tecnico_id' => $tecnicoId, 'estado' => 'Resuelta'];
+        $findGaraje = ['tecnico_id' => $tecnicoId, 'estado' => 'Garaje'];
+        $findEnCurso = ['tecnico_id' => $tecnicoId, 'estado' => 'En curso'];
 
         $incidenciasEstado = null;
 
@@ -242,17 +242,17 @@ class IncidenciaController extends Controller
             break;
         }
 
-        return view('usuario.tecnico-index', ['incidencias' => $incidenciasEstado, 'usuario' => Auth::user(), 'filtro' => session('estado')]);
+        return view('usuario.tecnico-index', ['incidencias' => $incidenciasEstado, 'usuario' => Auth::user(), 'filtro' => session('estado'), 'tecnicoId' => $tecnicoId]);
     }
 
     public function getIncidenciasTecnicoTipo(Request $request){
 
-        $tecnicoId = Tecnico::where('usuarios_id', Auth::user()->id)->get('id');
+        $tecnicoId = Tecnico::where('usuarios_id', Auth::user()->id)->get('id')[0]['id'];
 
-        $findPinchazo = ['tecnico_id' => $tecnicoId[0]['id'], 'tipo' => 'Pinchazo'];
-        $findAveria = ['tecnico_id' => $tecnicoId[0]['id'], 'tipo'=> 'Averia'];
-        $findGolpe = ['tecnico_id' => $tecnicoId[0]['id'], 'tipo'=> 'Golpe'];
-        $findOtro = ['tecnico_id' => $tecnicoId[0]['id'], 'tipo'=> 'Otro'];
+        $findPinchazo = ['tecnico_id' => $tecnicoId, 'tipo' => 'Pinchazo'];
+        $findAveria = ['tecnico_id' => $tecnicoId, 'tipo'=> 'Averia'];
+        $findGolpe = ['tecnico_id' => $tecnicoId, 'tipo'=> 'Golpe'];
+        $findOtro = ['tecnico_id' => $tecnicoId, 'tipo'=> 'Otro'];
 
         $incidenciasTipo = null;
 
@@ -275,10 +275,10 @@ class IncidenciaController extends Controller
                 break;
         }
 
-        return view('usuario.tecnico-index', ['incidencias' => $incidenciasTipo, 'usuario' => Auth::user(), 'filtro' => session('tipo')]);
+        return view('usuario.tecnico-index', ['incidencias' => $incidenciasTipo, 'usuario' => Auth::user(), 'filtro' => session('tipo'), 'tecnico_id' => $tecnicoId]);
     }
 
-    /*
+
     public function getIncidenciasEstado(Request $request){
         $incidenciasEstado = "";
 
@@ -298,7 +298,7 @@ class IncidenciaController extends Controller
             break;
         }
 
-        return view('usuario.tecnico-index', ['incidencias' => $incidenciasEstado, 'usuario' => Auth::user(), 'filtro' => session('estado')]);
+        return view('usuario.resto-index', ['incidencias' => $incidenciasEstado, 'usuario' => Auth::user(), 'filtro' => session('estado')]);
     }
 
     public function getIncidenciasTipo(Request $request){
@@ -323,7 +323,7 @@ class IncidenciaController extends Controller
                 break;
         }
 
-        return view('usuario.tecnico-index', ['incidencias' => $incidenciasTipo, 'usuario' => Auth::user(), 'filtro' => session('tipo')]);
-    }*/
+        return view('usuario.resto-index', ['incidencias' => $incidenciasTipo, 'usuario' => Auth::user(), 'filtro' => session('tipo')]);
+    }
 
 }

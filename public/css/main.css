@@ -268,7 +268,8 @@ button:focus {
 /*Card incidencia*/
 .card-incidencia{
     position: relative;
-    border: 1px solid #37cf5f;
+    border: 1px solid rgba(55,207,95, 1);
+    animation: blinkerBorder 2s linear infinite;
 }
 
 .nueva-incidencia-container{
@@ -290,8 +291,6 @@ button:focus {
     height: 20px;
     color: #fff;
     text-align: center;
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: blinker 2s linear infinite;
     border-radius: 50%;
     background-color: #47c172;
@@ -299,8 +298,16 @@ button:focus {
 }
 
 @keyframes blinker {
+    /*0%->opacity:1 / 50%->opacity:0 / 100%->opacity:1*/
     50% {
         opacity: 0;
+    }
+}
+
+@keyframes blinkerBorder {
+    /*0%->opacity:1 / 50%->opacity:0 / 100%->opacity:1*/
+    50% {
+        border: 1px solid rgba(55,207,95, 0);
     }
 }
 

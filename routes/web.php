@@ -81,9 +81,13 @@ Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('c
 Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')->name('coordinador.cargarGrafico'); //Tenemos que meterle middleware
 
 
-//Filtro incidencias
-Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasTecnicoEstado')->name('incidencias.tecnico.estado');
-Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTecnicoTipo')->name('incidencias.tecnico.tipo');
+//Filtro incidencias->tecnico
+Route::get('/incidencias/tecnico/{id}/estado', 'IncidenciaController@getIncidenciasTecnicoEstado')->name('incidencias.tecnico.estado');
+Route::get('/incidencias/tecnico/{id}/tipo', 'IncidenciaController@getIncidenciasTecnicoTipo')->name('incidencias.tecnico.tipo');
+
+//Filtro incidencias->resto
+Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->name('incidencias.estado');
+Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencias.tipo');
 
 //Tecnico
 Route::get('/tecnico/update/{id}', 'TecnicoController@update')->name('tecnico.update');
