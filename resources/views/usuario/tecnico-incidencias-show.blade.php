@@ -1,6 +1,9 @@
 @extends('layouts.layout')
-
+@php
+    use Illuminate\Support\Facades\Log;
+@endphp
 @section('content')
+
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6 d-flex flex-column">
@@ -40,14 +43,12 @@
                 </div>
             </div>
             <div>
-                @if($incidencia->estado != 'En curso')
-                @if($tecnico->disponibilidad)
+                @if($incidencia->estado == 'En curso' AND $tecnico->disponibilidad)
                     <a href="{{ route('tecnico.update', ['id' => $incidencia->tecnico_id])  }}" class="btn btn-success btn-lg btn-block">Aceptar</a>
                     <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'update' => 'tecnico_id']) }}" class="btn btn-danger btn-lg btn-block">Rechazar</a>
                 @else
                     <a href="{{ route('tecnico.update', ['id' => $incidencia->id, 'update' => 'estadoTerminado'])  }}" class="btn btn-success btn-lg btn-block">Finalizado</a>
                     <a href="{{ route('main.index', ['id' => $incidencia->id, 'update' => 'estadoGaraje']) }}" class="btn btn-danger btn-lg btn-block">Finalizado en garaje</a>
-                @endif
                 @endif
             </div>
         </div>

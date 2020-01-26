@@ -11,6 +11,13 @@ html {
     background: whitesmoke;
 }
 
+.dropdown-menu{
+    z-index: 10001;
+}
+.paginacion {
+    overflow: scroll;
+}
+
 /* VISTA de las Cámaras*/
 #mapa-camaras {
     width: 100%;
@@ -193,6 +200,19 @@ html {
     margin-right: 0.5em;
 }
 
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+    display: none;
+    position: absolute;
+    border: none;
+    border-left: 1px solid #1cffa1;
+    margin-left: 2.5rem;
+    padding-left: 0.5rem;
+}
+
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+    color: #3490dc;
+}
+
 /*Dropdwon filtros*/
 .dropdown-submenu {
     position: relative;
@@ -243,6 +263,45 @@ button:focus {
     position: absolute;
     bottom: 0;
     right: 0.5rem;
+}
+
+/*Card incidencia*/
+.card-incidencia{
+    position: relative;
+    border: 1px solid #37cf5f;
+}
+
+.nueva-incidencia-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 1rem 0 0;
+}
+
+.nueva-incidencia-container span{
+    color: #0b7731;
+}
+
+.glow {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: blinker 2s linear infinite;
+    border-radius: 50%;
+    background-color: #47c172;
+    margin-right: 0.5rem;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }
 
 

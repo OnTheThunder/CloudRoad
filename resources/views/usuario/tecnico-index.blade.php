@@ -1,4 +1,7 @@
 @extends('layouts/layout')
+@php
+    use Illuminate\Support\Facades\Log;
+@endphp
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,7 +15,7 @@
                                     Filtrar
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form action="{{route('incidencia.estado')}}" method="get">
+                                    <form action="{{route('incidencias.tecnico.estado')}}" method="get">
                                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Estado</a>
                                             <ul class="dropdown-menu">
                                                 <li><button class="dropdown-item btn-filtro-resuelta" name="estado" value="resuelta">Resuelta</button></li>
@@ -21,7 +24,7 @@
                                             </ul>
                                         </li>
                                     </form>
-                                    <form action="{{route('incidencia.tipo')}}" method="get">
+                                    <form action="{{route('incidencias.tecnico.tipo')}}" method="get">
                                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tipo de incidencia</a>
                                             <ul class="dropdown-menu">
                                                 <li><button class="dropdown-item" name="tipo" value="Pinchazo">Pinchazo</button></li>
@@ -48,9 +51,21 @@
                         </div>
                     </div>
                 </div>
+                @php $i = 0 @endphp
+
                 @foreach($incidencias as $incidencia)
+                    @php $incidenciasEnPagUno = count($incidencias) >= 5 ? 5 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag -->
                     <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
+                    <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
+                    @if(isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
+                        <div class="card m-1 shadow card-incidencia">
+                            <div class="nueva-incidencia-container">
+                                <div class="glow"></div>
+                                <span>Nueva incidencia</span>
+                            </div>
+                    @else
                         <div class="card m-1 shadow">
+                    @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $incidencia->tipo }}</h3>
                                 <p class="card-text">{{ $incidencia->descripcion }}</p>
@@ -65,7 +80,8 @@
                                 <div class="text-secondary text-right">Fecha de creación "{{$incidencia->created_at}}"</div>
                             </div>
                         </div>
-                    </a>
+                    </a><!--No hacer caso a este error, está bien cerrado-->
+                    @php $i++; @endphp
                 @endforeach
                 <div class="ml-1 mb-5 mt-3">
                     {{ $incidencias->links() }}
@@ -73,5 +89,4 @@
             </div>
         </div>
     </div>
-    <!--<script src="{{ asset('js/notificacion.js') }}"></script>-->
 @endsection

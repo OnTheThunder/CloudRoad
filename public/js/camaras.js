@@ -120,6 +120,7 @@ window.onload = function () {
 
         /**
          * Funcion para cambiar la imagen de la camara actualmente seleccionada
+         * cuando se hace click en un marker o row de la tabla
          * @param urlImagen
          */
         function anyadirImagenDeCamara(urlImagen) {
