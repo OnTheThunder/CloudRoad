@@ -16,6 +16,7 @@
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
     <!-- CSS personalizados -->
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
+
 </head>
 <body>
 
