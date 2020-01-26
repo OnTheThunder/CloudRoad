@@ -250,7 +250,7 @@ class CoordinadorController extends Controller
         for($x = 0; $x < 3; $x++){
             $array = array();
             array_push($estados, $array);
-            for($i = 0; $i < 2; $i++){
+            for($i = 0; $i < 3; $i++){
                 array_push($estados[$x], $array);
             }
         }
@@ -267,6 +267,9 @@ class CoordinadorController extends Controller
                     break;
                 case 1:
                     array_push($estados[0][1], $estado);
+                    break;
+                case 2:
+                    array_push($estados[0][2], $estado);
                     break;
             }
 
