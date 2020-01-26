@@ -5,8 +5,8 @@
 @section('content')
 
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6 d-flex flex-column">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 d-flex flex-column">
             <div class="d-flex justify-content-center my-2">
                 <h2>Incidencia # {{ $incidencia->id }}</h2>
             </div>

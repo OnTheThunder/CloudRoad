@@ -18,7 +18,7 @@
                     </select>
                 </div>
             </div>
-            <div id="graficos">
+            <div id="graficos" class="chart-container" style="position: relative; height:40vh; width:80vw">
                 <canvas id="miGrafico"></canvas>
             </div>
         </div>
