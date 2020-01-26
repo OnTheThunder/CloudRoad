@@ -83,13 +83,11 @@ html {
     display: none;
 }
 
-.infoBox {
+.infoBoxTecnico, .infoBoxTecnico {
     position: absolute;
     bottom: 20px;
     left: 20px;
     z-index: 1;
-    width: 450px;
-    height: 250px;
     background: #fdfdfd;
     border-radius: 5px;
     padding: 10px 15px;
@@ -97,6 +95,11 @@ html {
     -webkit-box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
     -moz-box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
     box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
+}
+
+.infoBox {
+    width: 450px;
+    height: 250px;
 }
 
 #infoBoxSeparator {
@@ -311,6 +314,15 @@ button:focus {
     }
 }
 
+/* MAPA FINAL DEL TECNICO Y EL RESTO - SOLO VISUALIZACIÓN */
+#final-map{
+    height: 500px;
+}
+
+.infoBoxTecnico{
+    width: 350px;
+    height: 120px;
+}
 
 
 /*QUITAR*/

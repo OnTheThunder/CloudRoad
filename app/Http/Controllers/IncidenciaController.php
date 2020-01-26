@@ -334,4 +334,14 @@ class IncidenciaController extends Controller
         return view('usuario.resto-index', ['incidencias' => $incidenciasTipo, 'usuario' => Auth::user(), 'filtro' => session('tipo')]);
     }
 
+    public function getCoordenadas(Request $request){
+        $incidencia = Incidencia::find(request('idIncidencia'));
+        $tallerId = Tecnico::where('id' ,$incidencia->tecnico_id)->get('taller_id')[0]['taller_id'];
+        $taller = Taller::find($tallerId);
+
+        return ['latitudIncidencia' => $incidencia->latitud,
+                'longitudIncidencia' => $incidencia->longitud,
+                'latitudTaller' => $taller->latitud,
+                'longitudTaller' => $taller->longitud];
+    }
 }

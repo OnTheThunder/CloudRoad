@@ -12,6 +12,7 @@ let tecnicos;
 let oTallerMasCercano;
 
 window.onload = function () {
+    initMap();
     $('html, body').scrollTop(0);
     $('body').css('overflow', 'hidden'); //Mapa en fullscreen
     $(function () {$('[data-toggle="tooltip"]').tooltip()});//Activate tooltips
