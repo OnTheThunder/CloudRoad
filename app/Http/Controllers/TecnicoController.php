@@ -68,15 +68,15 @@ class TecnicoController extends Controller
      * @param  \App\Tecnico  $tecnico
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update(Request $request)
     {
-        $tecnico = Tecnico::find($id);
+        $tecnico = Tecnico::find(request('idTecnico'));
 
-        $tecnico->disponibilidad = 0;
+        $tecnico->notificacion_respondida = 1;
 
         $tecnico->save();
 
-        redirect()->route('incidencia.show');
+        return redirect()->route('incidencia.show', ['id' => request('idIncidencia')]);
     }
 
     /**

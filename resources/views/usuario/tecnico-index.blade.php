@@ -2,6 +2,8 @@
 @php
     use Illuminate\Support\Facades\Log;
 @endphp
+<!-- IMPORTAR FUNCIONES PROPIAS-->
+@include('php.funcionesPropias')
 @section('content')
     <div class="container">
         <div class="row">
@@ -15,7 +17,7 @@
                                     Filtrar
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form action="{{route('incidencias.tecnico.estado')}}" method="get">
+                                    <form action="{{route('incidencias.tecnico.estado', ['id' => $tecnicoId])}}" method="get">
                                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Estado</a>
                                             <ul class="dropdown-menu">
                                                 <li><button class="dropdown-item btn-filtro-resuelta" name="estado" value="resuelta">Resuelta</button></li>
@@ -24,7 +26,7 @@
                                             </ul>
                                         </li>
                                     </form>
-                                    <form action="{{route('incidencias.tecnico.tipo')}}" method="get">
+                                    <form action="{{route('incidencias.tecnico.tipo', ['id' => $tecnicoId])}}" method="get">
                                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tipo de incidencia</a>
                                             <ul class="dropdown-menu">
                                                 <li><button class="dropdown-item" name="tipo" value="Pinchazo">Pinchazo</button></li>
@@ -54,10 +56,10 @@
                 @php $i = 0 @endphp
 
                 @foreach($incidencias as $incidencia)
-                    @php $incidenciasEnPagUno = count($incidencias) >= 5 ? 5 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag -->
+                    @php $incidenciasEnPagUno = count($incidencias) >= 5 ? 5 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag y poder mostrar la notificacion en la tarjeta correcta -->
                     <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                     <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
-                    @if(isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
+                    @if($incidencia->estado == 'En curso' AND isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
                         <div class="card m-1 shadow card-incidencia">
                             <div class="nueva-incidencia-container">
                                 <div class="glow"></div>
@@ -77,7 +79,13 @@
                                 @else
                                     <p class="card-footer border text-color-borrar-suave font-weight-bold mt-2">En curso</p>
                                 @endif
-                                <div class="text-secondary text-right">Fecha de creación "{{$incidencia->created_at}}"</div>
+                                <div class="text-secondary text-right text-monospace font-weight-bolder">Creada
+                                    <span class="font-italic font-weight-lighter">
+                                    @php
+                                        fechaCastellano($incidencia->created_at);
+                                    @endphp
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </a><!--No hacer caso a este error, está bien cerrado-->

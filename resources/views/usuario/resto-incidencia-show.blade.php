@@ -35,11 +35,11 @@
                         </div>
                     </div>
                 </div>
-                <div id="map-container">
-                    <div id="map"></div>
+                <div class="final-map-container">
+                    <div id="final-map"></div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/mapaOperador.js') }}"></script>
+    <script src="{{ asset('js/mapaTecnico.js') }}"></script>
 @endsection
