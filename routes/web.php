@@ -90,7 +90,11 @@ Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->
 Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencias.tipo');
 
 //Tecnico
-Route::get('/tecnico/update/{id}', 'TecnicoController@update')->name('tecnico.update');
+Route::get('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
 
 //Las rutas con id siempre deben de ir al final para no dar conflicto
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
+
+Route::get('/cliente/find-by-dni/{dni}', 'ClienteController@findByDni')->name('find.by.dni');
+
+Route::get('/vehiculo/find-by-matricula/{matricula}', 'VehiculoController@findByMatricula')->name('find.by.matricula');

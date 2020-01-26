@@ -38,17 +38,17 @@
                         </div>
                     </div>
                 </div>
-                <div id="map-container">
-                    <div id="map"></div>
-                </div>
+{{--                <div id="map-container">--}}
+{{--                    <div id="map"></div>--}}
+{{--                </div>--}}
             </div>
             <div>
-                @if($incidencia->estado == 'En curso' AND $tecnico->disponibilidad)
-                    <a href="{{ route('tecnico.update', ['id' => $incidencia->tecnico_id])  }}" class="btn btn-success btn-lg btn-block">Aceptar</a>
-                    <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'update' => 'tecnico_id']) }}" class="btn btn-danger btn-lg btn-block">Rechazar</a>
-                @else
-                    <a href="{{ route('tecnico.update', ['id' => $incidencia->id, 'update' => 'estadoTerminado'])  }}" class="btn btn-success btn-lg btn-block">Finalizado</a>
-                    <a href="{{ route('main.index', ['id' => $incidencia->id, 'update' => 'estadoGaraje']) }}" class="btn btn-danger btn-lg btn-block">Finalizado en garaje</a>
+                @if($incidencia->estado == 'En curso' AND $tecnico->disponibilidad == 0 AND $tecnico->notificacion_respondida == 0)
+                    <a href="{{ route('tecnico.update', ['idTecnico' => $incidencia->tecnico_id, 'idIncidencia' => $incidencia->id])  }}" class="btn btn-success btn-lg btn-block">Aceptar</a>
+                    <a href="{{ route('incidencia.update', ['id' => $incidencia->id]) }}" class="btn btn-danger btn-lg btn-block">Rechazar</a>
+                @elseif($incidencia->estado == 'En curso' AND $tecnico->notificacion_respondida)
+                    <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Resuelta'])  }}" class="btn btn-success btn-lg btn-block">Finalizado</a>
+                    <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Garaje']) }}" class="btn btn-danger btn-lg btn-block">Finalizado en garaje</a>
                 @endif
             </div>
         </div>

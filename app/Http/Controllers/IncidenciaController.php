@@ -100,8 +100,12 @@ class IncidenciaController extends Controller
         $incidencia->tecnico_id = $datosTecnico['id'];
         $incidencia->vehiculo_id = $vehiculoId[0]['id'];
         $incidencia->operador_id = $operadorId[0]['id'];
-
         $incidencia->save();
+
+        //Ponemos el tecnico en estado no disponible
+        $tecnico = Tecnico::find($datosTecnico['id']);
+        $tecnico->disponibilidad = 0;
+        $tecnico->save();
 
         //COMENTARIOS
         //INSERT COMENTARIO INCIDENCIA CREADA
@@ -155,27 +159,31 @@ class IncidenciaController extends Controller
      */
     public function update( Request $request)
     {
-        switch(request()->all()['update']){
-            case 'tecnico_id':
-                $incidencia = Incidencia::find(request()->all()['id']);
-                $incidencia->tecnico_id = null;
-                $incidencia->save();
-                break;
-            case 'estadoGaraje':
-                $incidencia = Incidencia::find(request()->all()['id']);
-                $incidencia->estado = 'Garaje';
-                $incidencia->save();
-                break;
-            case 'estadoTerminado':
-                $incidencia = Incidencia::find(request()->all()['id']);
-                $incidencia->estado = 'Resuelta';
-                $incidencia->save();
-                break;
+        $incidencia = Incidencia::find(request('id'));
+        $tecnico = Tecnico::find($incidencia->tecnico_id);
+
+        //Incidencia ha cambiado de estado a resuelta o resuelta en garaje
+        if(request('estado')){
+            date_default_timezone_set('Europe/Madrid');
+            $date = date('Y-m-d H:i:s');
+
+            $incidencia->estado = request('estado'); //Guarda resuelta o resuelta en garaje
+            $incidencia->hora_fin = $date;
+            $incidencia->save();
+
+            $tecnico->disponibilidad = 1;
+            $tecnico->notificacion_respondida = 0;
+            $tecnico->save();
         }
+        //Incidencia ha sido rechazada y continua en curso
+        else{
+            $incidencia->tecnico_id = null;
+            $incidencia->save();
 
-
-
-        redirect()->route('main.index');
+            $tecnico->disponibilidad = 1;
+            $tecnico->save();
+        }
+        return redirect()->route('main.index');
     }
 
     /**

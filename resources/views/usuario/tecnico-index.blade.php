@@ -59,7 +59,7 @@
                     @php $incidenciasEnPagUno = count($incidencias) >= 5 ? 5 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag y poder mostrar la notificacion en la tarjeta correcta -->
                     <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                     <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
-                    @if(isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
+                    @if($incidencia->estado == 'En curso' AND isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
                         <div class="card m-1 shadow card-incidencia">
                             <div class="nueva-incidencia-container">
                                 <div class="glow"></div>
