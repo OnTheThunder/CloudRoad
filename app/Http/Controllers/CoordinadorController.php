@@ -250,7 +250,7 @@ class CoordinadorController extends Controller
         for($x = 0; $x < 3; $x++){
             $array = array();
             array_push($estados, $array);
-            for($i = 0; $i < 2; $i++){
+            for($i = 0; $i < 3; $i++){
                 array_push($estados[$x], $array);
             }
         }
@@ -262,11 +262,14 @@ class CoordinadorController extends Controller
         foreach ($incidencias_estado as $incidencia_estado ) {
             $estado = $incidencia_estado->estado;
             switch($estado){
-                case 0:
+                case 'Resuelta':
                     array_push($estados[0][0], $estado);
                     break;
-                case 1:
+                case 'Garaje':
                     array_push($estados[0][1], $estado);
+                    break;
+                case 'En curso':
+                    array_push($estados[0][2], $estado);
                     break;
             }
 
@@ -274,11 +277,14 @@ class CoordinadorController extends Controller
         foreach ($incidencias_estado_ultimo_mes as $incidencia_estado ) {
             $estado = $incidencia_estado->estado;
             switch($estado){
-                case 0:
+                case 'Resuelta':
                     array_push($estados[1][0], $estado);
                     break;
-                case 1:
+                case 'Garaje':
                     array_push($estados[1][1], $estado);
+                    break;
+                case 'En curso':
+                    array_push($estados[1][2], $estado);
                     break;
             }
 
@@ -286,11 +292,14 @@ class CoordinadorController extends Controller
         foreach ($incidencias_estado_ultima_semana as $incidencia_estado ) {
             $estado = $incidencia_estado->estado;
             switch($estado){
-                case 0:
+                case 'Resuelta':
                     array_push($estados[2][0], $estado);
                     break;
-                case 1:
+                case 'Garaje':
                     array_push($estados[2][1], $estado);
+                    break;
+                case 'En curso':
+                    array_push($estados[2][2], $estado);
                     break;
             }
 

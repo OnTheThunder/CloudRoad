@@ -20,11 +20,12 @@ class CreateIncidenciasTable extends Migration
             $table->double('latitud');
             $table->string('provincia');
             $table->time('hora_fin')->nullable();
-            $table->string('estado')->default('abierta');
+            $table->string('estado')->default('En curso');
             $table->string('tipo')->comment('El tipo de incidencia que es, pinchazo, averia, etc');
-            $table->unsignedBigInteger('tecnico_id');
+            $table->unsignedBigInteger('tecnico_id')->nullable(); //Correct
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('operador_id')->nullable();
+            $table->unsignedBigInteger('vehiculo_id');
             $table->timestamps();
         });
     }

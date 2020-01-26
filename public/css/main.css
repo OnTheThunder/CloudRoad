@@ -11,6 +11,13 @@ html {
     background: whitesmoke;
 }
 
+.dropdown-menu{
+    z-index: 10001;
+}
+.paginacion {
+    overflow: scroll;
+}
+
 /* VISTA de las Cámaras*/
 #mapa-camaras {
     width: 100%;
@@ -76,13 +83,11 @@ html {
     display: none;
 }
 
-.infoBox {
+.infoBoxTecnico, .infoBoxTecnico {
     position: absolute;
     bottom: 20px;
     left: 20px;
     z-index: 1;
-    width: 450px;
-    height: 250px;
     background: #fdfdfd;
     border-radius: 5px;
     padding: 10px 15px;
@@ -90,6 +95,11 @@ html {
     -webkit-box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
     -moz-box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
     box-shadow: 4px 4px 5px -6px rgba(89, 89, 89, 1);
+}
+
+.infoBox {
+    width: 450px;
+    height: 250px;
 }
 
 #infoBoxSeparator {
@@ -193,6 +203,19 @@ html {
     margin-right: 0.5em;
 }
 
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+    display: none;
+    position: absolute;
+    border: none;
+    border-left: 1px solid #1cffa1;
+    margin-left: 2.5rem;
+    padding-left: 0.5rem;
+}
+
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+    color: #3490dc;
+}
+
 /*Dropdwon filtros*/
 .dropdown-submenu {
     position: relative;
@@ -245,6 +268,61 @@ button:focus {
     right: 0.5rem;
 }
 
+/*Card incidencia*/
+.card-incidencia{
+    position: relative;
+    border: 1px solid rgba(55,207,95, 1);
+    animation: blinkerBorder 2s linear infinite;
+}
+
+.nueva-incidencia-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 1rem 0 0;
+}
+
+.nueva-incidencia-container span{
+    color: #0b7731;
+}
+
+.glow {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    text-align: center;
+    animation: blinker 2s linear infinite;
+    border-radius: 50%;
+    background-color: #47c172;
+    margin-right: 0.5rem;
+}
+
+@keyframes blinker {
+    /*0%->opacity:1 / 50%->opacity:0 / 100%->opacity:1*/
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes blinkerBorder {
+    /*0%->opacity:1 / 50%->opacity:0 / 100%->opacity:1*/
+    50% {
+        border: 1px solid rgba(55,207,95, 0);
+    }
+}
+
+/* MAPA FINAL DEL TECNICO Y EL RESTO - SOLO VISUALIZACIÓN */
+#final-map{
+    height: 500px;
+}
+
+.infoBoxTecnico{
+    width: 350px;
+    height: 120px;
+}
 
 
 /*QUITAR*/

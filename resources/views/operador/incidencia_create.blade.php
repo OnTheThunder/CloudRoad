@@ -13,12 +13,21 @@
                     <h3>Datos Cliente</h3>
                     <div class="form-group row">
                         <div class="col">
+                            <label for="dni">DNI</label>
+                            <input type="text" class="form-control" id="dni" name="dni" required>
+                            <div class="invalid-feedback">
+                                Hay que introducir un DNI.
+                            </div>
+                        </div>
+                        <div class="col">
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
                             <div class="invalid-feedback">
                                 Hay que introducir un nombre.
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col">
                             <label for="apellidos">Apellidos</label>
                             <input type="text" class="form-control" id="apellidos" name="apellidos" required>
@@ -26,8 +35,6 @@
                                 Hay que introducir los apellidos.
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
                         <div class="col">
                             <label for="telefono">Teléfono</label>
                             <input type="text" class="form-control" id="telefono" name="telefono" required>
@@ -35,31 +42,8 @@
                                 Hay que introducir un teléfono.
                             </div>
                         </div>
-                        <div class="col">
-                            <label for="dni">DNI</label>
-                            <input type="text" class="form-control" id="dni" name="dni" required>
-                            <div class="invalid-feedback">
-                                Hay que introducir un DNI.
-                            </div>
-                        </div>
                     </div>
                     <h3>Datos Vehículo</h3>
-                    <div class="form-group row">
-                        <div class="col">
-                            <label for="marca">Marca</label>
-                            <input type="text" class="form-control" id="marca" name="marca" required>
-                            <div class="invalid-feedback">
-                                Hay que introducir una marca.
-                            </div>
-                        </div>
-                        <div class="col">
-                            <label for="modelo">Modelo</label>
-                            <input type="text" class="form-control" id="modelo" name="modelo" required>
-                            <div class="invalid-feedback">
-                                Hay que introducir un modelo.
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group row">
                         <div class="col">
                             <label for="matricula">Matrícula</label>
@@ -73,6 +57,22 @@
                             <input type="text" class="form-control" id="aseguradora" name="aseguradora" required>
                             <div class="invalid-feedback">
                                 Hay que introducir una aseguradora.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="marca">Marca</label>
+                            <input type="text" class="form-control" id="marca" name="marca" required>
+                            <div class="invalid-feedback">
+                                Hay que introducir una marca.
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="modelo">Modelo</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo" required>
+                            <div class="invalid-feedback">
+                                Hay que introducir un modelo.
                             </div>
                         </div>
                     </div>

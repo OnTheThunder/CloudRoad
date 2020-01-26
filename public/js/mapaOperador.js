@@ -12,6 +12,7 @@ let tecnicos;
 let oTallerMasCercano;
 
 window.onload = function () {
+    initMap();
     $('html, body').scrollTop(0);
     $('body').css('overflow', 'hidden'); //Mapa en fullscreen
     $(function () {$('[data-toggle="tooltip"]').tooltip()});//Activate tooltips
@@ -297,7 +298,9 @@ function renderTecnicos() {
             `<td>${item.telefono}</td>\n` +
             `<td>${item.email}</td>\n` +
             '<td>\n' +
-            `<button value="${item.id},${item.email}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar</button>\n` +
+            `<button value="${item.id},${item.email}" type="button" class="btn-notificar-tecnico btn btn-outline-primary">Notificar` +
+                '<span class="mensaje-tecnico-notificado">Notificación enviada!</span>' +
+            '</button>\n' +
             '</td>\n' +
             '</tr>')
     });
@@ -306,9 +309,16 @@ function renderTecnicos() {
     let btnNotificarTecnico = $('.btn-notificar-tecnico');
 
     btnNotificarTecnico.on('click', function () {
+        //window.location.href = '/';
+        let clickedIndex = btnNotificarTecnico.index(this);
+        $('.mensaje-tecnico-notificado').eq(clickedIndex).fadeIn("1000");
         let oDatosIncidencia = prepareIncidenciaData(this.value);
         storeIncidenciaAJAX(oDatosIncidencia);
-        sendEmailAJAX(oDatosIncidencia.tecnico.email);
+
+        //FadeOut page
+        setTimeout(function () {
+            $('.fadeOut-wrapper').fadeOut('1000');
+        }, 2000)
     })
 }
 
@@ -322,7 +332,7 @@ function sendEmailAJAX(emailTecnico) {
         },
         success: function(result){
             console.log("SUCCESS")
-            console.log(result);
+            console.log(result)
         },
         error: function (result) {
             console.log("ERROR");
@@ -369,7 +379,6 @@ function prepareIncidenciaData(idEmailTecnico) {
 }
 
 function storeIncidenciaAJAX(oDatosIncidencia) {
-    console.log(oDatosIncidencia)
     $.ajax({
         type: 'POST',
         url: '/incidencias/store',
@@ -377,13 +386,13 @@ function storeIncidenciaAJAX(oDatosIncidencia) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function(result){
-            console.log("SUCCESS")
-            console.log(result);
+        success: function(){
+            console.log("SUCCESS");
+            sendEmailAJAX(oDatosIncidencia.tecnico.email);
+            window.location.href = '/'; //Si no envía el correo colocar el href dentro del success de sendemail
         },
         error: function (result) {
             console.log("ERROR");
-            console.log(result);
         }
     });
 }
@@ -397,6 +406,7 @@ function getJSONfromCookie() {
     }
     return JSON.parse(handledCookie);
 }
+
 
 
 

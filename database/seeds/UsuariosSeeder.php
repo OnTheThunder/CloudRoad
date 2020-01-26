@@ -1,5 +1,7 @@
 <?php
 
+use App\incidencia;
+use App\Tecnico;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +34,7 @@ class UsuariosSeeder extends Seeder
                 ->get();
 
             foreach ($usuario as $user => $value) {
-                DB::table('coordinadors')->insert([
+                DB::table('coordinadores')->insert([
                     'nombre' => $value->nombre,//$faker->firstName,
                     'apellidos' => $faker->lastName,
                     'telefono' => $faker->mobileNumber,
@@ -62,7 +64,7 @@ class UsuariosSeeder extends Seeder
                 ->get();
 
             foreach ($usuario as $user => $value) {
-                DB::table('coordinadors')->insert([
+                DB::table('coordinadores')->insert([
                     'nombre' => $value->nombre,//$faker->firstName,
                     'apellidos' => $faker->lastName,
                     'telefono' => $faker->mobileNumber,
@@ -94,17 +96,27 @@ class UsuariosSeeder extends Seeder
             foreach ($usuario as $user => $value) {
                 DB::table('tecnicos')->insert([
                     'turno' => $faker->randomElement(['manana', 'tarde', 'noche']),
-                    'disponibilidad' => $faker->boolean,
+                    'disponibilidad' => true,
                     'nombre' => $value->nombre,
                     'apellidos' => $faker->lastName,
                     'telefono' => $faker->mobileNumber,
                     'dni' => $faker->regexify('[7][1-9]{7}'),
                     'email' => $value->email,
                     'usuarios_id' => $value->id,
-                    'taller_id' => $faker->numberBetween($min = 1, $max = 8),
+                    'taller_id' => $faker->randomElement([1, 11, 21, 31, 41, 51, 61, 71]),
                     'created_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
                     'updated_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
                 ]);
+                //Cambiar disponibilidad a false si tiene incidencia en curso (Fingir que han aceptado la incidencia)
+                $tecnicoId = DB::getPdo()->lastInsertId();
+                $matchThese = ['tecnico_id' => $tecnicoId, 'estado' => 'En curso'];
+                $incidenciasEnCurso = Incidencia::where($matchThese)->get();
+                if(count($incidenciasEnCurso) > 0){
+                    $tecnico = Tecnico::find($tecnicoId);
+                    $tecnico->disponibilidad = false;
+                    $tecnico->save();
+                }
+
             }
         }
 

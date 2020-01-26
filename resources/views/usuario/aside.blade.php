@@ -9,7 +9,7 @@
                 <i class="fas fa-user mr-2"></i>Historial incidencias</a>
             <!-- If de crear usuario -->
             @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador')
-                <a href="#" class="list-group-item list-group-item-action text-color-anyadir-suave bg-secondary">
+                <a href="{{route('usuario.create')}}" class="list-group-item list-group-item-action text-color-anyadir-suave bg-secondary">
                     <i class="fas fa-user-plus mr-2"></i>Nuevo usuario</a>
                 <a href="#" class="list-group-item list-group-item-action text-color-borrar-suave bg-secondary">
                     <i class="fas fa-user-minus mr-2"></i>Dar de baja usuario</a>
@@ -21,7 +21,7 @@
                class="list-group-item list-group-item-action text-color-datos-suave bg-secondary">
                 <i class="fas fa-users mr-2"></i>Datos</a>
         </div>
-        <div class="d-flex justify-content-center text-decoration-none">
+        <div class="d-none d-sm-flex justify-content-center text-decoration-none">
             <a href="#">
                 <i class="fas fa-arrow-up shadow bg-white mt-3 p-3 rounded-circle text-color-primario"></i>
             </a>

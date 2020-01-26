@@ -16,6 +16,7 @@
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
     <!-- CSS personalizados -->
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
+
 </head>
 <body>
 
@@ -32,7 +33,7 @@
 
 </body>
 <!--GOOGLE MAPS-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtvT3u8mJZLBOy9ZZG7kQ-t9hE0X8ycs4&callback=initMap&&libraries=places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtvT3u8mJZLBOy9ZZG7kQ-t9hE0X8ycs4&&libraries=places" async defer></script>
 <!-- jQuery CDN -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <!-- BOOTSTRAP JS -->

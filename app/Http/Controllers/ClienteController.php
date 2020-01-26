@@ -82,4 +82,8 @@ class ClienteController extends Controller
     {
         //
     }
+
+    public function findByDni($dni){
+       return Cliente::where('dni', $dni)->get();
+    }
 }
