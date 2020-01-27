@@ -3,14 +3,21 @@
     <!-- Scripts especificos de la pagina de camaras -->
     <script src="{{asset('js/camaras.js')}}"></script>
 
-    <div class="main ">
+    <div class="main">
         <div class="row sticky-top shadow bg-white">
-            <h1 class="col-12 text-center">Cámaras</h1>
-            <div id="imagen" class="col-6 bg-white d-flex justify-content-center">
-                <!-- Aqui se mete la imagen de la camara por JS dependiendo de la seleccionada -->
-            </div>
-            <div id="mapa" class="col-6 bg-white">
-                <div id="mapa-camaras" class="border img-thumbnail">
+            @include('usuario.aside')
+            <div class="col-md-9 d-flex flex-column">
+                <div class="d-flex justify-content-center my-2">
+                    <h1>Camaras</h1>
+                </div>
+                <div class="d-flex flex-row">
+                    <div id="imagen" class="col-md-6 col-12 bg-white d-flex justify-content-center">
+                        <!-- Aqui se mete la imagen de la camara por JS dependiendo de la seleccionada -->
+                    </div>
+                    <div id="mapa" class="col-md-6 bg-white d-none d-md-block">
+                        <div id="mapa-camaras" class="border img-thumbnail">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
