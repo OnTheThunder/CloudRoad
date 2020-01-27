@@ -83,7 +83,7 @@ html {
     display: none;
 }
 
-.infoBoxTecnico, .infoBoxTecnico {
+.infoBox, .infoBoxTecnico {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -266,6 +266,12 @@ button:focus {
     position: absolute;
     bottom: 0;
     right: 0.5rem;
+    user-select: none;
+}
+
+.leyenda-filtro-default button{
+    border: none;
+    background-color: inherit;
 }
 
 /*Card incidencia*/
@@ -324,6 +330,11 @@ button:focus {
     height: 120px;
 }
 
+/*Sin incidencias*/
+.sin-incidencias{
+    text-align: center;
+    margin-top: 10rem;
+}
 
 /*QUITAR*/
 /*
