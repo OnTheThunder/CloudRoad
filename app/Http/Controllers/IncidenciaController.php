@@ -221,6 +221,9 @@ class IncidenciaController extends Controller
 
 
     public function getTalleres(){
+        //Por cada taller llamar a getTecnicosByTaller
+        //Si devuelve técnicos guardar el taller en array
+        //Devolver taller
         return json_encode(Taller::all());
     }
 
