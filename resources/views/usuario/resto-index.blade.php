@@ -95,7 +95,7 @@
                         </div>
                     </a>
                 @endforeach
-                <div class="mb-5 paginacion">
+                <div class="mb-5 mt-3 paginacion">
                     {{ $incidencias->links() }}
                 </div>
             </div>
