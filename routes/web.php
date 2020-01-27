@@ -68,7 +68,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
 Route::post('/usuario', 'UsuarioController@store')->name('usuario.store');
 //baja usuario
-Route::get('/usuario/edit', 'UsuarioController@edit')->name('usuario.edit');
+Route::get('/usuario/edit', 'UsuarioController@edit')->name('usuario.baja.edit');
 Route::post('/usuario/edit', 'UsuarioController@update')->name('usuario.update');
 // cambiar contraseña
 Route::get('/usuario/password', 'UsuarioController@edit')->name('usuario.password.edit');

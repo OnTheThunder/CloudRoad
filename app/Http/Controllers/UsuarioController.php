@@ -176,8 +176,16 @@ class UsuarioController extends Controller
         switch ($request->modo) {
             case "password":
                 return view('usuario/password_edit', ['usuario' => Auth::user()]);
-            case "baja":
-                return view('usuario/usuario_edit', ['usuario' => Auth::user()]);
+            default:
+
+                //$where = "";
+               /*$usuarios = DB::table("usuarios")->select('id','nombre','email','rol','activo','created_at','updated_at')
+                   ->orderBy('created_at', 'desc')
+                   ->paginate(5);
+*/
+                $usuarios = Usuario::sortable()->paginate(20);
+
+                return view('usuario/usuario_edit', ['usuario' => Auth::user(), 'usuarios' => $usuarios]);
         }
     }
 
