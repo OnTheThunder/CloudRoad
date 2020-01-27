@@ -32,7 +32,7 @@
 
                     <div id="buscador" class="row">
                         <p class="h1 col-12">Buscador</p>
-
+<!-- CAMBIAR A QUE SEA col-6 para ocupar menos-->
                         <div class="form-group col-12">
                             <label>Nombre</label>
                             <input class="form-control">
@@ -44,6 +44,10 @@
                         <div class="form-group col-12">
                             <label>Rol</label>
                             <input class="form-control">
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Activado</label>
+                            <input type="checkbox" class="form-control">
                         </div>
                         <div class="d-flex justify-content-center col-12">
                             <button class="btn btn-primary">Buscar TODO</button>
