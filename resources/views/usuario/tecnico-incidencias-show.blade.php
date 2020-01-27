@@ -42,15 +42,17 @@
                         <div id="final-map"></div>
                     </div>
                 </div>
-                <div>
+                <form action="{{ route('tecnico.update', ['idTecnico' => $incidencia->tecnico_id, 'idIncidencia' => $incidencia->id]) }}" method="post">
+                    @method('POST')
+                    @csrf
                     @if($incidencia->estado == 'En curso' AND $tecnico->disponibilidad == 0 AND $tecnico->notificacion_respondida == 0)
-                        <a href="{{ route('tecnico.update', ['idTecnico' => $incidencia->tecnico_id, 'idIncidencia' => $incidencia->id])  }}" class="btn btn-success btn-lg btn-block">Aceptar</a>
+                        <button class="btn btn-success btn-lg btn-block">Aceptar</button>
                         <a href="{{ route('incidencia.update', ['id' => $incidencia->id]) }}" class="btn btn-danger btn-lg btn-block">Rechazar</a>
                     @elseif($incidencia->estado == 'En curso' AND $tecnico->notificacion_respondida)
                         <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Resuelta'])  }}" class="btn btn-success btn-lg btn-block">Finalizado</a>
                         <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Garaje']) }}" class="btn btn-danger btn-lg btn-block">Finalizado en garaje</a>
                     @endif
-                </div>
+                </form>
             </div>
         </div>
     </div>
