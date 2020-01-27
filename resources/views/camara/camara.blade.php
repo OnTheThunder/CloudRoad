@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <!-- Scripts especificos de la pagina de camaras -->
-    <script src="{{asset('js/camaras.js')}}"></script>
+
 
     <div class="main">
         <div class="row sticky-top shadow bg-white">
@@ -35,5 +34,6 @@
         </div>
     </div>
 
-
+    <!-- Scripts especificos de la pagina de camaras -->
+    <script src="{{asset('js/camaras.js')}}"></script>
 @endsection

@@ -2,6 +2,9 @@
 @php
     use Illuminate\Support\Facades\Log;
 @endphp
+
+@include('php.funcionesPropias')
+
 @section('content')
 <div class="incidencia-show-wrapper">
     <div class="container">
@@ -53,6 +56,23 @@
                         <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Garaje']) }}" class="btn btn-danger btn-lg btn-block">Finalizado en garaje</a>
                     @endif
                 </form>
+                <div class="mt-5">
+                    <h3 >Comentarios</h3>
+                    @foreach($comentarios as $comentario)
+                        <div class="card m-1 shadow my-3">
+                            <div class="card-body">
+                                <p class="card-text">{{ $comentario->texto }}</p>
+                                <div class="text-secondary text-right text-monospace font-weight-bolder">Creado
+                                    <span class="font-italic font-weight-lighter">
+                                    @php
+                                        fechaCastellano($comentario->created_at);
+                                    @endphp
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
