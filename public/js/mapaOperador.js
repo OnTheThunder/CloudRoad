@@ -12,7 +12,7 @@ let tecnicos;
 let oTallerMasCercano;
 
 window.onload = function () {
-    initMap();
+    getTalleresAJAX();
     $('html, body').scrollTop(0);
     $('body').css('overflow', 'hidden'); //Mapa en fullscreen
     $(function () {$('[data-toggle="tooltip"]').tooltip()});//Activate tooltips
@@ -20,8 +20,6 @@ window.onload = function () {
 
 //Inicializar mapa
 function initMap() {
-    getTalleresAJAX();
-
     let searchBox = new google.maps.places.SearchBox(document.getElementById("mapsearch"));
     let defaultLatLng = {lat: 42.842326386012516, lng: -2.691612846296414}; //Punto en el que está centrado el mapa por defecto
     let directionsService = new google.maps.DirectionsService();
@@ -250,6 +248,7 @@ function getTalleresAJAX() {
         dataType: 'json',
         success: function(result){
             talleres = result;
+            initMap();
         }
     });
 }

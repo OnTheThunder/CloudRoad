@@ -202,10 +202,15 @@ class IncidenciaController extends Controller
 
 
     public function getTalleres(){
-        //Por cada taller llamar a getTecnicosByTaller
-        //Si devuelve técnicos guardar el taller en array
-        //Devolver taller
-        return json_encode(Taller::all());
+        $talleresAll = Taller::all();
+        $talleresConTecnicos = [];
+        foreach($talleresAll as $taller){
+            $tecnicos = IncidenciaController::getTecnicosByTaller($taller->id);
+            if(count(json_decode($tecnicos)) > 0){
+                array_push($talleresConTecnicos, $taller);
+            }
+        }
+        return json_encode($talleresConTecnicos);
     }
 
     public function getTecnicosByTaller($idTaller){
