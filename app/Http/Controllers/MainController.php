@@ -52,7 +52,7 @@ class MainController extends Controller
      */
     public function showCamaras()
     {
-        return view('camara.camara');
+        return view('camara.camara', ['usuario' => Auth::user()]);
     }
 
     /**
