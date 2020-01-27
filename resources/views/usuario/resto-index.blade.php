@@ -61,10 +61,19 @@
                                     </a>
                                 </form>
                             @endif
-                            <div class="leyenda-filtro-default">
-                                <span>Más Recientes...</span>
-                                <i class="fas fa-sort-amount-up-alt"></i>
-                            </div>
+                            <form class="leyenda-filtro-default" action="{{route('main.index')}}" method="get">
+                                <button>
+                                    @if(session('orden') == 'reciente' || !session('orden'))
+                                        <span>Más Recientes...</span>
+                                        <i class="fas fa-sort-amount-up-alt"></i>
+                                        <input type="hidden" name="orden" value="antigua">
+                                    @elseif(session('orden') == 'antigua')
+                                        <span>Más Antiguas...</span>
+                                        <i class="fas fa-sort-amount-down-alt"></i>
+                                        <input type="hidden" name="orden" value="reciente">
+                                    @endif
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
