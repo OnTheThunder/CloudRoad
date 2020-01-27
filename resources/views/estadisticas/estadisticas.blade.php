@@ -5,7 +5,7 @@
 
         @include('usuario.aside')
 
-        <div class="col-6 d-flex flex-column">
+        <div class="col-md-6 d-flex flex-column">
             <div class="row d-flex justify-content-between my-2">
                 <h2>Estadisticas</h2>
                 <div class="form-group">
@@ -18,8 +18,10 @@
                     </select>
                 </div>
             </div>
-            <div id="graficos" class="chart-container" style="position: relative; height:40vh; width:80vw">
-                <canvas id="miGrafico"></canvas>
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="miGrafico"></canvas>
+                </div>
             </div>
         </div>
     </div>

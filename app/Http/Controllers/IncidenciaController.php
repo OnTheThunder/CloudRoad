@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\Comentario;
 use App\incidencia;
 use App\Operario;
 use App\Tecnico;
@@ -128,14 +129,16 @@ class IncidenciaController extends Controller
                 $cliente = Cliente::find($incidencia->cliente_id);
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
-                return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0]]);
+                $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
+                return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0], 'comentarios' => $comentarios]);
                 break;
             default:
                 // coger incidencias para mostrar en una paginacion
                 $incidencia = Incidencia::find($id);
                 $cliente = Cliente::find($incidencia->cliente_id);
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
-                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo]);
+                $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
+                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios]);
         }
     }
 

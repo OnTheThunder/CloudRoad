@@ -108,7 +108,8 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true
+                responsive : true,
+                maintainAspectRatio: true
             }
         });
     }
@@ -175,17 +176,17 @@ window.onload = function(){
                 labels: ['Terminado','Garaje','En curso'],
                 datasets: [{
                     label: 'Estado de las incidencias totales',
-                    data: [result[0][0].length, result[0][1].length],
-                    backgroundColor: ['rgb(143,35,255)','rgb(36,255,63)'],
+                    data: [result[0][0].length, result[0][1].length, result[0][2].length],
+                    backgroundColor: ['rgb(143,35,255)','rgb(36,255,63)','rgb(159,206,255)'],
                     hidden:true
                 },{
                     label: 'Estado de las incidencias el ultimo mes',
-                    data: [result[1][0].length, result[1][1].length],
-                    backgroundColor: ['rgb(26,58,255)','rgb(255,7,34)'],
+                    data: [result[1][0].length, result[1][1].length, result[1][2].length],
+                    backgroundColor: ['rgb(26,58,255)','rgb(255,7,34)','rgb(46,255,144)'],
                 },{
                     label: 'Estado de las incidencias la ultima semana',
-                    data: [result[2][0].length, result[2][1].length],
-                    backgroundColor: ['rgb(255,254,25)','rgb(255,104,255)'],
+                    data: [result[2][0].length, result[2][1].length, result[2][2].length],
+                    backgroundColor: ['rgb(255,254,25)','rgb(255,104,255)','rgb(156,255,217)'],
                     hidden:true
                 }]
             },
@@ -220,7 +221,8 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true
+                responsive : true,
+                maintainAspectRatio: true
             }
         });
     }
