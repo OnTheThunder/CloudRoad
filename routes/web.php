@@ -19,9 +19,12 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
+Route::get('/incidencias/rechazadas', 'IncidenciaController@rechazadas')->name('incidencia.rechazadas');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 Route::get('/incidencias/update/{id}', 'IncidenciaController@update')->name('incidencia.update');
+
+
 
 
 
