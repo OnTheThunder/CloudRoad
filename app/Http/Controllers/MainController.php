@@ -65,17 +65,15 @@ class MainController extends Controller
         //entra a la pagina del usuario
         switch (Auth::user()->rol){
             case 'tecnico':
-                $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
+                $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get()[0];
                 $notificacion = false;
-                //Si el tecnico esta disponible y tiene una incidencia en curso hay que mostrarle notificacion y botones aceptar rechazar
-                if($tecnico[0]['disponibilidad'] == 1){
-                    $matchThese = ['tecnico_id' => $tecnico[0]['id'], 'estado' => "En curso"];
-                    $incidenciasPendientes = Incidencia::where($matchThese)->get();
-                    $notificacion = count($incidenciasPendientes) > 0;
+                //Si el tecnico no esta disponible (se le ha asignado una incidencia) y no notificacion_respondida es false, le mostramos notificacion y botones aceptar rechazar
+                if($tecnico['disponibilidad'] == 0 AND $tecnico['notificacion_respondida'] == 0){
+                    $notificacion = true;
                 }
 
-                $incidencias = DB::table('incidencias')->where('tecnico_id', $tecnico[0]['id'])->orderBy('created_at', 'desc')->paginate(5);
-                return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user(), "notificacion" => $notificacion]);
+                $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(5);
+                return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user(), "notificacion" => $notificacion, 'tecnicoId' => $tecnico['id']]);
             break;
             default:
                 // coger incidencias para mostrar en una paginacion

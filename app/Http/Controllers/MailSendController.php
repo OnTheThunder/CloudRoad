@@ -17,14 +17,14 @@ class MailSendController extends Controller
     {
         $mailTecnico =  request('mail');
 
-        //Recogemos el id de la incidencia creada para mandarla al correo
+        //Recogemos la ultima incidencia creada para mandar sus datos al correo
         $incidencia = Incidencia::orderBy('created_at', 'desc')->first();
         $nombreTecncico = Tecnico::where('id', $incidencia['tecnico_id'])->get('nombre')[0]['nombre'];
         $vehiculo = Vehiculo::where('id', $incidencia['vehiculo_id'])->get()[0];
 
 
         $data = array( 'email' => $mailTecnico, 'from' => 'onthethunder.co@gmail.com',
-                        'idIncidencia' => $incidencia,
+                        'idIncidencia' => $incidencia['id'],
                         'nombreTecncico' => $nombreTecncico,
                         'vehiculoMarca' => $vehiculo['marca'],
                         'vehiculoModelo' => $vehiculo['modelo'],

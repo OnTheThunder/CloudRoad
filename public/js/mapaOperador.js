@@ -12,6 +12,7 @@ let tecnicos;
 let oTallerMasCercano;
 
 window.onload = function () {
+    initMap();
     $('html, body').scrollTop(0);
     $('body').css('overflow', 'hidden'); //Mapa en fullscreen
     $(function () {$('[data-toggle="tooltip"]').tooltip()});//Activate tooltips
@@ -308,12 +309,16 @@ function renderTecnicos() {
     let btnNotificarTecnico = $('.btn-notificar-tecnico');
 
     btnNotificarTecnico.on('click', function () {
-        window.location.href = '/';
+        //window.location.href = '/';
         let clickedIndex = btnNotificarTecnico.index(this);
-        $('.mensaje-tecnico-notificado').eq(clickedIndex).fadeIn("slow");
+        $('.mensaje-tecnico-notificado').eq(clickedIndex).fadeIn("1000");
         let oDatosIncidencia = prepareIncidenciaData(this.value);
         storeIncidenciaAJAX(oDatosIncidencia);
-        sendEmailAJAX(oDatosIncidencia.tecnico.email);
+
+        //FadeOut page
+        setTimeout(function () {
+            $('.fadeOut-wrapper').fadeOut('1000');
+        }, 2000)
     })
 }
 
@@ -383,6 +388,8 @@ function storeIncidenciaAJAX(oDatosIncidencia) {
         },
         success: function(){
             console.log("SUCCESS");
+            sendEmailAJAX(oDatosIncidencia.tecnico.email);
+            window.location.href = '/'; //Si no envía el correo colocar el href dentro del success de sendemail
         },
         error: function (result) {
             console.log("ERROR");
@@ -399,6 +406,7 @@ function getJSONfromCookie() {
     }
     return JSON.parse(handledCookie);
 }
+
 
 
 
