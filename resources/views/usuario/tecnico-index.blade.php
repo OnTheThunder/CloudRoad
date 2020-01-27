@@ -46,15 +46,29 @@
                                     </a>
                                 </form>
                             @endif
-                            <div class="leyenda-filtro-default">
-                                <span>Más Recientes...</span>
-                                <i class="fas fa-sort-amount-up-alt"></i>
-                            </div>
+                            <form class="leyenda-filtro-default" action="{{route('main.index')}}" method="get">
+                                <button>
+                                    @if(session('orden') == 'reciente' || !session('orden'))
+                                        <span>Más Recientes...</span>
+                                        <i class="fas fa-sort-amount-up-alt"></i>
+                                        <input type="hidden" name="orden" value="antigua">
+                                    @elseif(session('orden') == 'antigua')
+                                        <span>Más Antiguas...</span>
+                                        <i class="fas fa-sort-amount-down-alt"></i>
+                                        <input type="hidden" name="orden" value="reciente">
+                                    @endif
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                @if(count($incidencias) == 0)
+                    <div class="container d-flex flex-column sin-incidencias">
+                        <h1 class="jumbotron-heading">Aún no tienes incidencias</h1>
+                        <p class="lead text-muted">En cuanto recibas una incidencia aparecerá aquí</p>
+                    </div>
+                @endif
                 @php $i = 0 @endphp
-
                 @foreach($incidencias as $incidencia)
                     @php $incidenciasEnPagUno = count($incidencias) >= 5 ? 5 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag y poder mostrar la notificacion en la tarjeta correcta -->
                     <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
