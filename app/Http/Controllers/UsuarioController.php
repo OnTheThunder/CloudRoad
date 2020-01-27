@@ -6,6 +6,7 @@ use App\Coordinador;
 use App\Mail\SendMail;
 use App\Operario;
 use App\Tecnico;
+use App\User;
 use App\Usuario;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -170,9 +171,14 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public
-    function edit(Usuario $usuario)
+    function edit(Request $request)
     {
-        //
+        switch ($request->modo) {
+            case "password":
+                return view('usuario/password_edit', ['usuario' => Auth::user()]);
+            case "baja":
+                return view('usuario/usuario_edit', ['usuario' => Auth::user()]);
+        }
     }
 
     /**
@@ -180,12 +186,35 @@ class UsuarioController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Usuario $usuario
-     * @return \Illuminate\Http\Response
+     * @return
      */
     public
-    function update(Request $request, Usuario $usuario)
+    function update(Request $request)
     {
-        //
+        $resultado = 0;
+        // Cambiar contraseña
+        $contra1 = $request->contra1;
+        $contra2 = $request->contra2;
+
+        // comprobar contraseñas
+        if ($contra1 == $contra2) {
+            //comprobar con la base de datos
+            $usuario = DB::table('usuarios')->select('*')
+                ->where('id', Auth::user()->id)
+                ->get();
+            // contraseña encriptada
+            $hashDePasswordActual = $usuario[0]->password;
+
+            // comprobar si coinciden
+            if (password_verify($contra1, $hashDePasswordActual)) {
+                $nuevaContra = $request->nuevaContra;
+                DB::table('usuarios')
+                    ->where('id', $usuario[0]->id)
+                    ->update(['password' => Hash::make($nuevaContra)]);
+                $resultado = 1; //correcto
+            }
+        }
+        return redirect()->route('usuario.password.edit', ['modo' => 'password', 'usuario' => Auth::user(), 'resultado' => $resultado]);
     }
 
     /**
