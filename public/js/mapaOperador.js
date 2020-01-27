@@ -12,6 +12,8 @@ let tecnicos;
 let oTallerMasCercano;
 
 window.onload = function () {
+    let loadingLogo = $('.loading-logo').hide();
+    setLoadingLogoOnAjaxCall(loadingLogo);
     getTalleresAJAX();
     $('html, body').scrollTop(0);
     $('body').css('overflow', 'hidden'); //Mapa en fullscreen
@@ -249,6 +251,8 @@ function getTalleresAJAX() {
         success: function(result){
             talleres = result;
             initMap();
+            $('#map-search-container').css('display', 'block');
+            $('#map-legend-container').css('display', 'block');
         }
     });
 }
@@ -405,6 +409,17 @@ function getJSONfromCookie() {
     }
     return JSON.parse(handledCookie);
 }
+
+function setLoadingLogoOnAjaxCall(loadingLogo) {
+    $(document).ajaxStart(function () {
+        loadingLogo.show();
+    }).ajaxStop(function () {
+        loadingLogo.hide();
+    });
+}
+
+
+
 
 
 

@@ -1,7 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
+{{--    Logo para ajax en pos-absolute--}}
     <div class="fadeOut-wrapper">
+        <div class="loading-logo">
+            <img src="{{asset('images/loading')}}" alt="">
+        </div>
         <div class="row">
             <div class="col-md-12 pl-0 pr-0">
                 <div id="map-container">
