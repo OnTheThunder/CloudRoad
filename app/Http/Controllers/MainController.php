@@ -9,6 +9,7 @@ use App\Tecnico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
@@ -67,17 +68,31 @@ class MainController extends Controller
             case 'tecnico':
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get()[0];
                 $notificacion = false;
+
                 //Si el tecnico no esta disponible (se le ha asignado una incidencia) y no notificacion_respondida es false, le mostramos notificacion y botones aceptar rechazar
                 if($tecnico['disponibilidad'] == 0 AND $tecnico['notificacion_respondida'] == 0){
                     $notificacion = true;
                 }
 
-                $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(5);
+                //Order by dependiendo de lo seleccionado por el tecnico
+                if(request('orden')){ //check orden solicitado
+                    $incidencias = MainController::getIncidenciasTecnicoOrderBy(request('orden'), $tecnico);
+                }
+                else{ //default mas recientes
+                    $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(5);
+                }
+
                 return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user(), "notificacion" => $notificacion, 'tecnicoId' => $tecnico['id']]);
             break;
             default:
-                // coger incidencias para mostrar en una paginacion
-                $incidencias = DB::table('incidencias')->orderBy('updated_at', 'desc')->paginate(5);
+                //Order by dependiendo de lo seleccionado por el usuario
+                if(request('orden')){ //check orden solicitado
+                    $incidencias = MainController::getIncidenciasAllOrderBy(request('orden'));
+                }
+                else{ //default mas recientes
+                    $incidencias = DB::table('incidencias')->orderBy('created_at', 'desc')->paginate(5);
+                }
+
                 return view('usuario.resto-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
         }
     }
@@ -146,5 +161,33 @@ class MainController extends Controller
     public function destroy(Operario $operario)
     {
         //
+    }
+
+    public function getIncidenciasTecnicoOrderBy($orden, $tecnico){
+        session(['orden' => $orden]);
+        $incidencias = null;
+
+        if(session('orden') === 'reciente'){
+            $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(5);
+        }
+        elseif (session('orden') === 'antigua'){
+            $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'asc')->paginate(5);
+        }
+
+        return $incidencias;
+    }
+
+    public function getIncidenciasAllOrderBy($orden){
+        session(['orden' => $orden]);
+        $incidencias = null;
+
+        if(session('orden') === 'reciente'){
+            $incidencias = DB::table('incidencias')->orderBy('created_at', 'desc')->paginate(5);
+        }
+        elseif (session('orden') === 'antigua'){
+            $incidencias = DB::table('incidencias')->orderBy('created_at', 'asc')->paginate(5);
+        }
+
+        return $incidencias;
     }
 }
