@@ -16,12 +16,14 @@ Route::get('/', 'MainController@index')->name('main.index')->middleware('auth');
 
 Route::post('/incidencias', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidencia.create')->middleware('auth');
-//Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
+Route::get('/incidencias/update/{id}', 'IncidenciaController@update')->name('incidencia.update');
+
+
 
 //Llamadas desde AJAX
 Route::get('/incidencias/create/map/getTalleres', 'IncidenciaController@getTalleres')->name('incidencia.getTalleres');
@@ -75,16 +77,32 @@ Route::get('/usuario/password', 'UsuarioController@edit')->name('usuario.passwor
 Route::get('/talleres', 'TallerController@index')->name('talleres.index');
 
 Route::get('/admin/datos', 'CoordinadorController@datos')->name('coordinador.datos'); //Tenemos que meterle middleware
-Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('coordinador.estadisticas'); //Tenemos que meterle middleware
+
 
 Route::get('/send-mail', 'MailSendController@mailsend');
 Route::get('/email-usuario', 'MailSendController@enviar')->name('nuevo.email');
 
+//Estadisticas
+Route::get('/admin/estadisticas', 'CoordinadorController@estadisticas')->name('coordinador.estadisticas'); //Tenemos que meterle middleware
 Route::post('/admin/estadisticas/cargar', 'CoordinadorController@cargarGrafico')->name('coordinador.cargarGrafico'); //Tenemos que meterle middleware
-Route::get('/admin/estadisticas/cargar/cargarPorHora', 'CoordinadorController@cargarPorHora')->name('coordinador.cargarPorHora'); //Tenemos que meterle middleware
 
 
-//Filtro incidencias
-Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->name('incidencia.estado');
-Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencia.tipo');
+//Filtro incidencias->tecnico
+Route::get('/incidencias/tecnico/{id}/estado', 'IncidenciaController@getIncidenciasTecnicoEstado')->name('incidencias.tecnico.estado');
+Route::get('/incidencias/tecnico/{id}/tipo', 'IncidenciaController@getIncidenciasTecnicoTipo')->name('incidencias.tecnico.tipo');
 
+//Filtro incidencias->resto
+Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->name('incidencias.estado');
+Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencias.tipo');
+
+//Tecnico
+Route::get('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
+
+//Las rutas con id siempre deben de ir al final para no dar conflicto
+Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
+
+Route::get('/cliente/find-by-dni/{dni}', 'ClienteController@findByDni')->name('find.by.dni');
+
+Route::get('/vehiculo/find-by-matricula/{matricula}', 'VehiculoController@findByMatricula')->name('find.by.matricula');
+
+Route::get('/incidencias/{idIncidencia}/getCoordenadas', 'IncidenciaController@getCoordenadas')->name('incidencias.getCoordenadas');

@@ -107,7 +107,9 @@ window.onload = function(){
                     }]
             },
             // Configuration options go here
-            options: {}
+            options: {
+                responsive : true
+            }
         });
     }
 
@@ -129,6 +131,7 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
+                responsive : true,
                 scales: {
                     xAxes: [{
                         display: true,
@@ -156,7 +159,9 @@ window.onload = function(){
                 }]
             },
             // Configuration options go here
-            options: {}
+            options: {
+                responsive : true
+            }
         });
     }
 
@@ -167,7 +172,7 @@ window.onload = function(){
             type: 'bar',
             // The data for our dataset
             data: {
-                labels: ['Terminado','Garaje'],
+                labels: ['Terminado','Garaje','En curso'],
                 datasets: [{
                     label: 'Estado de las incidencias totales',
                     data: [result[0][0].length, result[0][1].length],
@@ -186,6 +191,7 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
+                responsive : true,
                 scales: {
                     yAxes: [{
                         display: true,
@@ -213,7 +219,9 @@ window.onload = function(){
                 }]
             },
             // Configuration options go here
-            options: {}
+            options: {
+                responsive : true
+            }
         });
     }
 

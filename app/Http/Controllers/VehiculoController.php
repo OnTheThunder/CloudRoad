@@ -91,4 +91,8 @@ class VehiculoController extends Controller
     {
         //
     }
+
+    public function findByMatricula($matricula){
+        return Vehiculo::where('matricula', $matricula)->get();
+    }
 }

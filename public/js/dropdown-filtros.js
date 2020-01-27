@@ -7,9 +7,18 @@
         $subMenu.toggleClass('show');
 
 
-        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-            $('.dropdown-submenu .show').removeClass("show");
-        });
-
-        return false;
+    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+        $('.dropdown-submenu .show').removeClass("show");
     });
+
+    return false;
+});
+
+
+$(document).ready(function(){
+    let fadeInWrapper = $('.fadeIn-wrapper');
+    fadeInWrapper.css('display', 'none')
+    fadeInWrapper.fadeIn(500);
+});
+
+
