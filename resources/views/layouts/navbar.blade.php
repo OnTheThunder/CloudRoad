@@ -9,10 +9,9 @@
         <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item mr-5">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('auth.login') }} <i
-                            class="fas fa-sign-in-alt"></i></a>
-                </li>
+                {{--                <li class="nav-item mr-5">--}}
+                {{--                    <a class="nav-link" href="{{ route('login') }}">{{ __('auth.login') }} </a>--}}
+                {{--                </li>--}}
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
