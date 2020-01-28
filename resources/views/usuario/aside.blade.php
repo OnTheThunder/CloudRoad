@@ -5,6 +5,11 @@
             <i class="fas fa-video mr-2"></i>Camaras de tráfico
         </a>
         <div class="list-group">
+            @if($usuario->rol == 'operario')
+                <a href="{{ route('incidencia.rechazadas') }}"
+                   class="list-group-item list-group-item-action text-color-borrar-suave bg-secondary">
+                    <i class="fas fa-ban mr-2"></i>Incidencias rechazadas</a>
+            @endif
             <a href="{{route('main.index')}}" class="list-group-item list-group-item-action text-white bg-secondary">
                 <i class="fas fa-user mr-2"></i>Historial incidencias</a>
             <!-- If de crear usuario -->

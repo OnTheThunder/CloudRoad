@@ -110,6 +110,10 @@ class IncidenciaController extends Controller
 
         //COMENTARIOS
         //INSERT COMENTARIO INCIDENCIA CREADA
+        $comentario = new Comentario();
+        $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . '(' . $tecnico->id . ')';
+        $comentario->incidencia_id = $incidencia->id;
+        $comentario->save();
     }
 
 
@@ -177,6 +181,16 @@ class IncidenciaController extends Controller
             $tecnico->disponibilidad = 1;
             $tecnico->notificacion_respondida = 0;
             $tecnico->save();
+
+            $comentario = new Comentario();
+            if($incidencia->estado == 'Resuelta'){
+                $comentario->texto = 'La incidencia esta resuelta';
+            }else{
+                $comentario->texto = 'La incidencia esta resuelta en garaje';
+            }
+
+            $comentario->incidencia_id = $incidencia->id;
+            $comentario->save();
         }
         //Incidencia ha sido rechazada y continua en curso
         else{
@@ -185,6 +199,11 @@ class IncidenciaController extends Controller
 
             $tecnico->disponibilidad = 1;
             $tecnico->save();
+
+            $comentario = new Comentario();
+            $comentario->texto = 'La incidencia ha sido rechazado por el tecnico ' . $tecnico->nombre . $tecnico->apellidos . '(' . $tecnico->id . ')';
+            $comentario->incidencia_id = $incidencia->id;
+            $comentario->save();
         }
         return redirect()->route('main.index');
     }
@@ -202,6 +221,9 @@ class IncidenciaController extends Controller
 
 
     public function getTalleres(){
+        //Por cada taller llamar a getTecnicosByTaller
+        //Si devuelve técnicos guardar el taller en array
+        //Devolver taller
         return json_encode(Taller::all());
     }
 
@@ -346,5 +368,11 @@ class IncidenciaController extends Controller
                 'longitudIncidencia' => $incidencia->longitud,
                 'latitudTaller' => $taller->latitud,
                 'longitudTaller' => $taller->longitud];
+    }
+
+    public function rechazadas(Request $request){
+        $incidenciasRechazadas = Incidencia::where('tecnico_id', null)->paginate(5);
+
+        return view('usuario/incidencias-rechazadas', ['incidenciasRechazadas' => $incidenciasRechazadas, 'usuario' => Auth::user()]);
     }
 }

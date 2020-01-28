@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 
+
     <div class="main">
         <div class="row sticky-top shadow bg-white">
             @include('usuario.aside')

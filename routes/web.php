@@ -19,9 +19,12 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
+Route::get('/incidencias/rechazadas', 'IncidenciaController@rechazadas')->name('incidencia.rechazadas');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 Route::get('/incidencias/update/{id}', 'IncidenciaController@update')->name('incidencia.update');
+
+
 
 
 
@@ -97,7 +100,7 @@ Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->
 Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencias.tipo');
 
 //Tecnico
-Route::get('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
+Route::post('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
 
 //Las rutas con id siempre deben de ir al final para no dar conflicto
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
