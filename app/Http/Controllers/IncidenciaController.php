@@ -142,7 +142,7 @@ class IncidenciaController extends Controller
                 $cliente = Cliente::find($incidencia->cliente_id);
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
                 $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
-                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios]);
+                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios, 'hideMap' => request('hideMap')]);
         }
     }
 
@@ -251,7 +251,7 @@ class IncidenciaController extends Controller
     }
 
     public function displayMap(){
-        return view('operador/incidencia_ubicacion');
+        return view('operador/incidencia_ubicacion', ['incidenciaLatitud' => request('incidenciaLatitud'), 'incidenciaLongitud' => request('incidenciaLongitud'), 'idIncidencia' => request('idIncidencia')]);
     }
 
 
@@ -376,8 +376,16 @@ class IncidenciaController extends Controller
     }
 
     public function rechazadas(Request $request){
-        $incidenciasRechazadas = Incidencia::where('tecnico_id', null)->paginate(5);
+        $incidenciasRechazadas = Incidencia::where('tecnico_id', null)->orderBy('updated_at', 'desc')->paginate(5);
 
         return view('usuario/incidencias-rechazadas', ['incidenciasRechazadas' => $incidenciasRechazadas, 'usuario' => Auth::user()]);
+    }
+
+    public function reasignarTecnico(Request $request){
+        $incidencia = Incidencia::find(request('incidenciaRechazadaId'));
+        $incidencia->tecnico_id = request()->all()['datosTecnico']['id'];
+        $incidencia->save();
+
+        return redirect(route('incidencia.rechazadas'));
     }
 }

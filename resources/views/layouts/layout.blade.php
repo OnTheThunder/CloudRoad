@@ -9,18 +9,21 @@
     <!--GOOGLE FONTS-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Faster+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
     <!-- BOOTSTRAP CSS-->
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    {{--<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ secure_asset('css/appDarkMode.css') }}" rel="stylesheet">
     <!-- Font awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
     <!-- CSS personalizados -->
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 
-</head>
+
+
 <body>
-
-
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->

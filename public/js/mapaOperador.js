@@ -10,6 +10,9 @@ let objetoResponse;
 let talleres;
 let tecnicos;
 let oTallerMasCercano;
+let incidenciaRechazadaLatitud;
+let incidenciaRechazadaLongitud;
+let incidenciaRechazadaId;
 
 window.onload = function () {
     let loadingLogo = $('.loading-logo').hide();
@@ -37,48 +40,58 @@ function initMap() {
         }
     });
 
+    //Check si venimos a marcar una nueva incidencia o a reasingar una incidencia previamente rechazada
+    incidenciaRechazadaLatitud = $('#hiddenIncidenciaLatitud').val();
+    incidenciaRechazadaLongitud = $('#hiddenIncidenciaLongitud').val();
+    incidenciaRechazadaId = $('#hiddenIncidenciaId').val();
 
-    //RUTAS POR CLICK
-    google.maps.event.addDomListener(map, 'click', function( event ){
-
-        document.getElementById("mapsearch").value = "";
-
-        let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
-
-        //Eliminar el render de la anterior ruta
-        deleteRouteRender();
-
-        //createMarker(lugarIncidencia);
-
-        //Resetear los calculos de las rutas
-        resetRouteValues();
-
-        //Iterar a traves de los talleres para obtener el más cercano a la incidencia
+    if(incidenciaRechazadaLatitud && incidenciaRechazadaLongitud && incidenciaRechazadaId){
+        let lugarIncidencia = new google.maps.LatLng(incidenciaRechazadaLatitud, incidenciaRechazadaLongitud);
         iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
+    }
+    else{
+        //RUTAS POR CLICK
+        google.maps.event.addDomListener(map, 'click', function( event ){
 
-        //deletePreviousMarker();
-        //getLatLngOnClick(lugarIncidencia);
-    });
+            document.getElementById("mapsearch").value = "";
 
-    //RUTAS POR BUSQUEDAS
-    google.maps.event.addDomListener(searchBox, 'places_changed', function () {
+            let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
 
-        //Eliminar el render de la anterior ruta
-        deleteRouteRender();
+            //Eliminar el render de la anterior ruta
+            deleteRouteRender();
 
-        let places = searchBox.getPlaces();
-        let lugarIncidencia = {lat: places[0].geometry.location.lat(), lng: places[0].geometry.location.lng()};
+            //createMarker(lugarIncidencia);
 
-        //createMarker(lugarIncidencia);
+            //Resetear los calculos de las rutas
+            resetRouteValues();
 
-        //Resetear los calculos de las rutas
-        resetRouteValues();
+            //Iterar a traves de los talleres para obtener el más cercano a la incidencia
+            iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
 
-        //Iterar a traves de los talleres para obtener el más cercano a la incidencia
-        iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
+            //deletePreviousMarker();
+            //getLatLngOnClick(lugarIncidencia);
+        });
 
-        //deletePreviousMarker();
-    })
+        //RUTAS POR BUSQUEDAS
+        google.maps.event.addDomListener(searchBox, 'places_changed', function () {
+
+            //Eliminar el render de la anterior ruta
+            deleteRouteRender();
+
+            let places = searchBox.getPlaces();
+            let lugarIncidencia = {lat: places[0].geometry.location.lat(), lng: places[0].geometry.location.lng()};
+
+            //createMarker(lugarIncidencia);
+
+            //Resetear los calculos de las rutas
+            resetRouteValues();
+
+            //Iterar a traves de los talleres para obtener el más cercano a la incidencia
+            iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
+
+            //deletePreviousMarker();
+        })
+    }
 }
 
 
@@ -312,17 +325,51 @@ function renderTecnicos() {
     let btnNotificarTecnico = $('.btn-notificar-tecnico');
 
     btnNotificarTecnico.on('click', function () {
-        //window.location.href = '/';
         let clickedIndex = btnNotificarTecnico.index(this);
         $('.mensaje-tecnico-notificado').eq(clickedIndex).fadeIn("1000");
-        let oDatosIncidencia = prepareIncidenciaData(this.value);
-        storeIncidenciaAJAX(oDatosIncidencia);
 
+        if(incidenciaRechazadaLatitud && incidenciaRechazadaLongitud && incidenciaRechazadaId){
+            let datosTecnico = getNewTecnico(this.value);
+            updateIncidenciaAJAX(datosTecnico);
+        }
+        else{
+            let oDatosIncidencia = prepareIncidenciaData(this.value);
+            storeIncidenciaAJAX(oDatosIncidencia);
+        }
         //FadeOut page
         setTimeout(function () {
             $('.fadeOut-wrapper').fadeOut('1000');
         }, 2000)
     })
+}
+
+function getNewTecnico(idEmailTecnico) {
+    let datosTecnico = {};
+    //Tecnico
+    let idTecnico = idEmailTecnico.substr(0, idEmailTecnico.indexOf(','));
+    let emailTecnico = idEmailTecnico.substr(idEmailTecnico.indexOf(',') + 1, idEmailTecnico.length-1);
+    datosTecnico.id = idTecnico;
+    datosTecnico.email = emailTecnico;
+    return datosTecnico;
+}
+
+function updateIncidenciaAJAX(datosTecnico) {
+    $.ajax({
+        type: 'POST',
+        url: '/incidencias/reasignarTecnico',
+        data: {'datosTecnico' : datosTecnico, 'incidenciaRechazadaId': incidenciaRechazadaId},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(){
+            console.log("SUCCESS");
+            sendEmailAJAX(datosTecnico.email);
+            window.location.href = '/'; //Si no envía el correo colocar el href dentro del success de sendemail
+        },
+        error: function (result) {
+            console.log("ERROR");
+        }
+    });
 }
 
 function sendEmailAJAX(emailTecnico) {

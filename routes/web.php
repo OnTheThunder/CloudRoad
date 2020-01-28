@@ -109,3 +109,5 @@ Route::get('/cliente/find-by-dni/{dni}', 'ClienteController@findByDni')->name('f
 Route::get('/vehiculo/find-by-matricula/{matricula}', 'VehiculoController@findByMatricula')->name('find.by.matricula');
 
 Route::get('/incidencias/{idIncidencia}/getCoordenadas', 'IncidenciaController@getCoordenadas')->name('incidencias.getCoordenadas');
+
+Route::post('/incidencias/reasignarTecnico', 'IncidenciaController@reasignarTecnico');

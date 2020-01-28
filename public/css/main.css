@@ -1,5 +1,12 @@
 html {
     scroll-behavior: smooth;
+    font-family: eagles !important;
+}
+
+@font-face {
+    font-family: 'eagles';
+    url("fonts/eaglemania/eagles.ttf") format("ttf");
+
 }
 
 #img-footer {
@@ -362,6 +369,8 @@ button:focus {
         transform: rotate(360deg);
     }
 }
+
+
 
 
 /*QUITAR*/
