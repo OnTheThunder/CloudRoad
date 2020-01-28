@@ -37143,8 +37143,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/OnTheThunder/CloudRoad/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/OnTheThunder/CloudRoad/resources/sass/appDarkMode.scss */"./resources/sass/appDarkMode.scss");
+__webpack_require__(/*! /home/vagrant/code/CloudRoad/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/CloudRoad/resources/sass/appDarkMode.scss */"./resources/sass/appDarkMode.scss");
 
 
 /***/ })
