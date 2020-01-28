@@ -18,7 +18,7 @@
                 @endif
 
                 <div class="container-fluid pl-0">
-                    <h2 class="d-flex justify-content-center p-2">Historial de Incidencias</h2>
+                    <h2 class="d-flex justify-content-center p-2">Incidencias rechazadas</h2>
                     <div class="row">
                         <div class="col-md-12 mb-n1 ml-1 filters-container">
                             <div class="dropdown show">
@@ -80,7 +80,7 @@
 
 
                 @foreach($incidenciasRechazadas as $incidenciaRechazada)
-                    <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidenciaRechazada->id]) }}">
+                    <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidenciaRechazada->id, 'hideMap' => true]) }}">
                         <div class="card m-1 shadow">
                             <div class="card-body">
                                 <h3 class="card-title">{{ $incidenciaRechazada->tipo }}</h3>
