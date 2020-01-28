@@ -8,7 +8,7 @@
     <title>{{ config('app.name') }}</title>
     <!-- BOOTSTRAP CSS-->
     {{--<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">--}}
-    <link href="{{ secure_asset('css/appDarkMode.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     <!-- Font awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
