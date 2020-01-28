@@ -36,7 +36,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Entrar" class="btn float-right login_btn">
+                            <button type="submit" class="btn float-right login_btn">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Entrar
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -45,7 +48,7 @@
                     <div class="d-flex justify-content-center">
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('¿Se te olvidó la contraseña wey?') }}
+                              (WIP)  {{ __('¿Se te olvidó la contraseña?') }}
                             </a>
                         @endif
                     </div>

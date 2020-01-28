@@ -173,11 +173,21 @@ class UsuarioController extends Controller
     public
     function edit(Request $request)
     {
-        switch ($request->modo) {
-            case "password":
-                return view('usuario/password_edit', ['usuario' => Auth::user()]);
-            case "baja":
-                return view('usuario/usuario_edit', ['usuario' => Auth::user()]);
+        if ($request->modo == "password") {
+            return view('usuario/password_edit', ['usuario' => Auth::user()]);
+        } else {
+            // comprobacion de activo para buscar o todos, o activos o no activos
+            $activo = ($request->activo == 2) ? null: $request->activo;
+            //sntencia con wheres
+            $usuarios = Usuario::
+            where('nombre', 'like', '%' . $request->nombre . '%')
+                ->where('rol', 'like', '%' . $request->rol . '%')
+                ->where('email', 'like', '%' . $request->email . '%')
+                ->where('activo', 'like', '%' . $activo . '%')
+                ->sortable()
+                ->paginate(20);
+
+            return view('usuario/usuario_edit', ['usuario' => Auth::user(), 'usuarios' => $usuarios]);
         }
     }
 
@@ -191,30 +201,46 @@ class UsuarioController extends Controller
     public
     function update(Request $request)
     {
-        $resultado = 0;
-        // Cambiar contraseña
-        $contra1 = $request->contra1;
-        $contra2 = $request->contra2;
+        // el modo cambiar contraseña
+        if ($request->modo == 'password') {
+            $resultado = 0;
+            // Cambiar contraseña
+            $contra1 = $request->contra1;
+            $contra2 = $request->contra2;
 
-        // comprobar contraseñas
-        if ($contra1 == $contra2) {
-            //comprobar con la base de datos
-            $usuario = DB::table('usuarios')->select('*')
-                ->where('id', Auth::user()->id)
-                ->get();
-            // contraseña encriptada
-            $hashDePasswordActual = $usuario[0]->password;
+            // comprobar contraseñas
+            if ($contra1 == $contra2) {
+                //comprobar con la base de datos
+                $usuario = DB::table('usuarios')->select('*')
+                    ->where('id', Auth::user()->id)
+                    ->get();
+                // contraseña encriptada
+                $hashDePasswordActual = $usuario[0]->password;
 
-            // comprobar si coinciden
-            if (password_verify($contra1, $hashDePasswordActual)) {
-                $nuevaContra = $request->nuevaContra;
-                DB::table('usuarios')
-                    ->where('id', $usuario[0]->id)
-                    ->update(['password' => Hash::make($nuevaContra)]);
-                $resultado = 1; //correcto
+                // comprobar si coinciden
+                if (password_verify($contra1, $hashDePasswordActual)) {
+                    $nuevaContra = $request->nuevaContra;
+                    DB::table('usuarios')
+                        ->where('id', $usuario[0]->id)
+                        ->update(['password' => Hash::make($nuevaContra)]);
+                    $resultado = 1; //correcto
+                }
             }
+            return redirect()->route('usuario.password.edit', ['modo' => 'password', 'usuario' => Auth::user(), 'resultado' => $resultado]);
+        } else {
+            // dar de baja o alta
+            if ($request->modo == 'activar') {
+                DB::table('usuarios')
+                    ->where('id', $request->id)
+                    ->update(['activo' => 1]);
+
+            } else {
+                DB::table('usuarios')
+                    ->where('id', $request->id)
+                    ->update(['activo' => 0]);
+            }
+            return "coorrecto";
         }
-        return redirect()->route('usuario.password.edit', ['modo' => 'password', 'usuario' => Auth::user(), 'resultado' => $resultado]);
     }
 
     /**

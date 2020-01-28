@@ -31,7 +31,7 @@ window.onload = function () {
         tablaDatos.empty();
 
         //TR CABECERA
-        tablaDatos.append('<thead class="table-color-secundario"></thead>')
+        tablaDatos.append('<thead class="bg-color-datos-suave"></thead>')
         //TD CABECERA
         arrayColumnas.forEach((item, i)=>{
             tablaDatos.find('thead').append(`<td class="text-capitalize">${item}</td>`);

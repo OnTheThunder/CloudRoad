@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-
     <!-- Scripts especificos de la pagina de camaras -->
-    <script src="{{asset('js/camaras.js')}}"></script>
+    <script src="{{secure_asset('js/camaras.js')}}"></script>
+
 @endsection
