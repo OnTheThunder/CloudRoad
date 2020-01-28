@@ -1,5 +1,5 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #283149;
 
 // Typography
 $font-family-sans-serif: Lato, Roboto, Montserrat, sans-serif;
@@ -18,14 +18,25 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
+
 //Nuevos añadidos
 $colorLogo: #fcda06;
-$colorPrincipal: #75cf93;
+$colorPrincipal: #00818a;
 $colorRojoSuave: #ff7672;
 $colorNaranjaSuave: #ffa95b;
 $colorAmarilloSuave: #fffe85;
 $colorVerdeSuave: #87ff82;
-//$colorPrincipal: #ee7236;
+
+//Escpecificos dark mode
+$body-color: #dbedf3;
+$navbar-light-color: #dbedf3;
+$card-bg: #404b69;
+//$card-hover: #545f80;
+$dark: #dbedf3;
+//$secondary: #a8b1b9;
+$border-color: #283149;
+$primary: #165588;
+//#2e84ca;
 
 
 // modificado
@@ -35,5 +46,5 @@ $theme-colors: (
     "color-borrar-suave":$colorRojoSuave,
     "color-estadisticas-suave":$colorNaranjaSuave,
     "color-datos-suave":$colorAmarilloSuave,
-    "color-anyadir-suave":$colorVerdeSuave
+    "color-anyadir-suave":$colorVerdeSuave,
 );

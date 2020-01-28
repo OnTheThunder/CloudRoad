@@ -1,5 +1,12 @@
 html {
     scroll-behavior: smooth;
+    font-family: eagles !important;
+}
+
+@font-face {
+    font-family: 'eagles';
+    url("fonts/eaglemania/eagles.ttf") format("ttf");
+
 }
 
 #img-footer {
@@ -51,6 +58,7 @@ html {
     left: 10px;
     z-index: 3;
     width: 30%;
+    display: none;
 }
 
 
@@ -60,6 +68,7 @@ html {
     left: 10px;
     width: 100%;
     z-index: 2;
+    display: none;
 }
 
 #map-legend {
@@ -153,6 +162,8 @@ html {
 .btn-scrollers:hover {
     cursor: pointer;
 }
+
+
 
 /*Tabla Tecnicos*/
 
@@ -335,6 +346,32 @@ button:focus {
     text-align: center;
     margin-top: 10rem;
 }
+
+
+.loading-logo{
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -75px 0 0 -75px;
+    /*z-index: 10;*/
+}
+.loading-logo img{
+    width: 100%;
+    height: auto;
+    animation: loading 2s infinite;
+}
+
+@keyframes loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 
 /*QUITAR*/
 /*
