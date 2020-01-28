@@ -42,9 +42,13 @@
                         </div>
                     </div>
                 </div>
+                @if(!$hideMap)
                 <div class="final-map-container">
                     <div id="final-map"></div>
                 </div>
+                @else
+                    <a href="{{route('incidencia.map', ['incidenciaLatitud' => $incidencia->latitud, 'incidenciaLongitud' => $incidencia->longitud, 'idIncidencia' => $incidencia->id])}}" class="btn btn-warning btn-lg btn-block">Reasignar Incidencia</a>
+                @endif
                 <div class="mt-5">
                     <h3 >Comentarios</h3>
                     @foreach($comentarios as $comentario)
@@ -66,5 +70,7 @@
             </div>
         </div>
     </div>
+    @if(!$hideMap)
     <script src="{{ asset('js/mapaTecnico.js') }}"></script>
+    @endif
 @endsection

@@ -7,7 +7,6 @@
         <div class="col d-flex flex-column">
             <div class="d-flex flex-row">
                 <label for="selectFiltroDatos" class="col h1">Datos</label>
-
                 <select class="form-control" name="selectFiltro" id="selectFiltroDatos">
                     <option selected="selected" disabled="disabled">Filter</option>
                     <option>Clientes</option>
@@ -18,12 +17,12 @@
                     <option>Jefes</option>
                 </select>
             </div>
-        </div>
-    </div>
-    <div class="row overflow-auto">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped" id="tabla-datos">
-            </table>
+            <div class="row overflow-auto">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-striped" id="tabla-datos">
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ asset('js/datos.js') }}"></script>
