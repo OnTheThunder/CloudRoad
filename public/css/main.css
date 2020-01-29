@@ -402,6 +402,10 @@ button:focus {
     }
 }
 
+/*POST SASS */
+.bg-aside{
+    background: #6c757d !important;
+}
 
 /*QUITAR*/
 /*

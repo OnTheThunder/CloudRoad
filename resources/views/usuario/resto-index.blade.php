@@ -11,7 +11,7 @@
             <div class="col d-flex flex-column mr-2 ">
                 @if($usuario->rol == 'operario')
                     <div class="d-flex justify-content-center">
-                        <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block">
+                        <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block my-4 col-md-2">
                             <i class="fas fa-plus mr-2"></i>Crear Incidencia
                         </a>
                     </div>
