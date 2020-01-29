@@ -24,7 +24,7 @@
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
-<div class="container-fluid bg-primary">
+<div class="container-fluid">
     @yield('content')
 </div>
 
