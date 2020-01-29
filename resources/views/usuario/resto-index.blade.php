@@ -108,14 +108,14 @@
                 @foreach($incidencias as $incidencia)
                     <a class=" text-decoration-none text-dark"
                        href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
-                        <div class="card shadow rounded-0">
+                        <div class="mb-1 card shadow">
                             <div class="card-body">
                                 <span class="card-title h3 clearfix">{{ $incidencia->tipo }}: </span>
                                 <span class="float-right text-secondary lugar">Lugar: <span
                                         class="text-primary font-weight-bolder">{{$incidencia->provincia}}</span></span>
-                                <p class="m-2">{{ $incidencia->descripcion }}</p>
+                                <p class="m-2 card-footer border">{{ $incidencia->descripcion }}</p>
                                 @if($incidencia->estado == 'Resuelta')
-                                    <p class=" row flex-row flex-wrap card-footer text-color-primario font-weight-bold border-0 ml-1 mr-1">
+                                    <p class="row flex-row flex-wrap  font-weight-bold ml-1 mr-1 card-pie">
                                     <span class="text-color-primario col-md-4">
                                         Resuelta
                                       </span>
@@ -130,7 +130,7 @@
                                         </small>
                                     </p>
                                 @elseif($incidencia->estado == 'Garaje')
-                                    <p class="row flex-row flex-wrap card-footer border-0 font-weight-bold ml-1 mr-1">
+                                    <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie">
                                         <span class="text-color-primario col-md-4">
                                             Resuelta en taller
                                             </span>
@@ -145,13 +145,15 @@
                                         </small>
                                     </p>
                                 @else
-                                    <p class="row flex-row flex-wrap card-footer text-color-borrar-suave font-weight-bold border-0 ml-1 mr-1">
+                                    <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie">
+                                         <span class="text-color-borrar-suave col-md-4">
                                         En curso
+                                            </span>
                                         <small
                                             class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha col-md-8">
-                                            <span class="text-color-primario col-md-4">
+
                                             Creada:
-                                            </span>
+
                                             <span class="font-italic">
                                                 @php
                                                     fechaCastellano($incidencia->created_at);

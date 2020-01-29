@@ -53,7 +53,8 @@ url("fonts/eaglemania/eagles.ttf") format("ttf");
     margin-top: -28px;
 }
 
-.card {
+.card-pie {
+    margin-bottom: -15px;
 }
 
 /* VISTA de las Cámaras*/
