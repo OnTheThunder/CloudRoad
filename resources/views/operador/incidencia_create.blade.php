@@ -6,7 +6,7 @@
         <div class="col-6">
             <div class="d-flex justify-content-between my-4">
                 <h2>Nueva Incidencia</h2>
-                <a href="{{ route('incidencia.index') }}" class="btn btn-primary">Volver</a>
+                <a href="{{ route('incidencia.index') }}" class="btn btn-primary btn-lg">Volver</a>
             </div>
             <div>
                 <form action="{{ route('incidencia.map') }}" method="get" class="needs-validation" novalidate>

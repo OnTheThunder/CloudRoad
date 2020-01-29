@@ -1,4 +1,17 @@
 window.onload = function () {
+
+    //Datos por defecto
+    $.ajax({
+        type: 'get',
+        url: '/admin/datos',
+        dataType: 'json',
+        data: {tipoDato: 'Operadores'},
+        success: function(result){
+            crearTablaDatos(['nombre', 'apellidos', 'telefono', 'dni', 'email'], result.length, result);
+        }
+    });
+
+
     let selectFiltroDatos = $('#selectFiltroDatos');
     selectFiltroDatos.on('change', function () {
         $.ajax({
@@ -31,7 +44,7 @@ window.onload = function () {
         tablaDatos.empty();
 
         //TR CABECERA
-        tablaDatos.append('<thead class="bg-color-datos-suave"></thead>')
+        tablaDatos.append('<thead class="bg-color-cards"></thead>')
         //TD CABECERA
         arrayColumnas.forEach((item, i)=>{
             tablaDatos.find('thead').append(`<td class="text-capitalize">${item}</td>`);
@@ -55,10 +68,11 @@ window.onload = function () {
     }
 
     function printRow(tablaDatos, arrayColumnas, i, result) {
-        tablaDatos.append('<tr></tr>');
+        tablaDatos.append('<tr>');
         //TD FILAS
         for (let j = 0; j < arrayColumnas.length; j++) {
             tablaDatos.append(`<td>${result[i][arrayColumnas[j]]}</td>`)
         }
+        tablaDatos.append('</tr>');
     }
 };

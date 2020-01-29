@@ -108,8 +108,25 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true,
-                maintainAspectRatio: true
+                legend: {
+                    labels: {
+                        fontColor: "white"
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
             }
         });
     }
@@ -132,14 +149,27 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true,
+                legend: {
+                    labels: {
+                        fontColor: "white"
+                    }
+                },
+                responsive: true,
                 scales: {
                     xAxes: [{
                         display: true,
                         ticks: {
-                            beginAtZero: true   // minimum value will be 0.
+                            beginAtZero: true,   // minimum value will be 0.
+                            fontColor: "white"
                         }
-                    }]
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
                 }
             }
         });
@@ -161,7 +191,25 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true
+                legend: {
+                    labels: {
+                        fontColor: "white"
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
             }
         });
     }
@@ -192,14 +240,27 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true,
+                legend: {
+                    labels: {
+                        fontColor: "white"
+                    }
+                },
+                responsive: true,
                 scales: {
-                    yAxes: [{
+                    xAxes: [{
                         display: true,
                         ticks: {
-                            beginAtZero: true   // minimum value will be 0.
+                            beginAtZero: true,   // minimum value will be 0.
+                            fontColor: "white"
                         }
-                    }]
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
                 }
             }
         });
@@ -221,8 +282,25 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true,
-                maintainAspectRatio: true
+                legend: {
+                    labels: {
+                        fontColor: "white"
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "white"
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
             }
         });
     }
