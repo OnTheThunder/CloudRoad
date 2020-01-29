@@ -5,7 +5,7 @@ let dark = document.getElementById('dark-css');
 
 if (checkCookie()) {
     console.log('existe')
-    ver();
+    ver(true);
 } else {
     console.log('no eitste')
     setCookie('modo', 'diurno', 10000) // diurno o nocturno
@@ -13,12 +13,11 @@ if (checkCookie()) {
 
 
 document.getElementById('modo-nocturno-diurno').addEventListener('click', function () {
-    ver();
-    //location.reload();
-
+    ver(false);
+    location.reload();
 });
 
-function ver() {
+function ver(opcional) {
     console.log('ver')
     // cambiar el valor de la cookie a nocturno/diurno
     let c = getCookie('modo');
@@ -27,12 +26,15 @@ function ver() {
             // cambiar link del css
             light.disabled = true;
             dark.disabled = false;
-            setCookie('modo','nocturno',10000);
+            if (!opcional) {
+                setCookie('modo', 'nocturno', 10000);
+            }
         } else {
             light.disabled = false;
             dark.disabled = true;
-            setCookie('modo','diurno',10000);
-
+            if (!opcional) {
+                setCookie('modo', 'diurno', 10000);
+            }
         }
     }
 }
