@@ -2,13 +2,33 @@ html {
     scroll-behavior: smooth;
     font-family: eagles !important;
 }
+
+.truco {
+    z-index: 10000;
+    position: absolute;
+    width: 450px;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    border: solid rgba(0, 0, 0, 0.96);
+    background: black;
+    display: none;
+}
+
+
+.truco img {
+    width: 100%;
+    height: 100%;
+}
+
+
 .navbar-brand {
     font-family: 'Faster One', cursive;
 }
 
 @font-face {
     font-family: 'eagles';
-    url("fonts/eaglemania/eagles.ttf") format("ttf");
+url("fonts/eaglemania/eagles.ttf") format("ttf");
 
 }
 
@@ -21,11 +41,19 @@ html {
     background: whitesmoke;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     z-index: 10001;
 }
+
 .paginacion {
     overflow: scroll;
+}
+
+.lugar {
+    margin-top: -28px;
+}
+.fecha {
+    margin-top: -20px;
 }
 
 /* VISTA de las Cámaras*/
@@ -167,7 +195,6 @@ html {
 }
 
 
-
 /*Tabla Tecnicos*/
 
 #table-header-container {
@@ -217,7 +244,7 @@ html {
     margin-right: 0.5em;
 }
 
-#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado {
     display: none;
     position: absolute;
     border: none;
@@ -226,7 +253,7 @@ html {
     padding-left: 0.5rem;
 }
 
-#tabla-tecnicos-disponibles .mensaje-tecnico-notificado{
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado {
     color: #3490dc;
 }
 
@@ -256,7 +283,7 @@ button:focus {
     outline: none;
 }
 
-#cross-remove-filtro{
+#cross-remove-filtro {
     background: none;
     border: none;
     margin-left: 0.5rem;
@@ -264,38 +291,38 @@ button:focus {
     padding: 0;
 }
 
-#btn-filtro-actual{
+#btn-filtro-actual {
     padding: 0.375rem 0.75rem;
     margin-left: 1rem;
     background-color: #75CF92;
     border: 1px solid #75CF92;
 }
 
-.filters-container{
+.filters-container {
     position: relative;
     display: flex;
 }
 
-.leyenda-filtro-default{
+.leyenda-filtro-default {
     position: absolute;
     bottom: 0;
     right: 0.5rem;
     user-select: none;
 }
 
-.leyenda-filtro-default button{
+.leyenda-filtro-default button {
     border: none;
     background-color: inherit;
 }
 
 /*Card incidencia*/
-.card-incidencia{
+.card-incidencia {
     position: relative;
-    border: 1px solid rgba(55,207,95, 1);
+    border: 1px solid rgba(55, 207, 95, 1);
     animation: blinkerBorder 2s linear infinite;
 }
 
-.nueva-incidencia-container{
+.nueva-incidencia-container {
     position: absolute;
     top: 0;
     right: 0;
@@ -305,7 +332,7 @@ button:focus {
     margin: 1rem 1rem 0 0;
 }
 
-.nueva-incidencia-container span{
+.nueva-incidencia-container span {
     color: #0b7731;
 }
 
@@ -330,28 +357,28 @@ button:focus {
 @keyframes blinkerBorder {
     /*0%->opacity:1 / 50%->opacity:0 / 100%->opacity:1*/
     50% {
-        border: 1px solid rgba(55,207,95, 0);
+        border: 1px solid rgba(55, 207, 95, 0);
     }
 }
 
 /* MAPA FINAL DEL TECNICO Y EL RESTO - SOLO VISUALIZACIÓN */
-#final-map{
+#final-map {
     height: 500px;
 }
 
-.infoBoxTecnico{
+.infoBoxTecnico {
     width: 350px;
     height: 120px;
 }
 
 /*Sin incidencias*/
-.sin-incidencias{
+.sin-incidencias {
     text-align: center;
     margin-top: 10rem;
 }
 
 
-.loading-logo{
+.loading-logo {
     width: 150px;
     height: 150px;
     padding: 20px;
@@ -361,7 +388,8 @@ button:focus {
     margin: -75px 0 0 -75px;
     /*z-index: 10;*/
 }
-.loading-logo img{
+
+.loading-logo img {
     width: 100%;
     height: auto;
     animation: loading 2s infinite;
@@ -372,8 +400,6 @@ button:focus {
         transform: rotate(360deg);
     }
 }
-
-
 
 
 /*QUITAR*/
