@@ -1,6 +1,5 @@
 html {
     scroll-behavior: smooth;
-    font-family: eagles !important;
 }
 
 .truco {
@@ -27,11 +26,6 @@ html {
     font-size: 1.025rem;
 }
 
-@font-face {
-    font-family: 'eagles';
-url("fonts/eaglemania/eagles.ttf") format("ttf");
-
-}
 
 #img-footer {
     width: 75px;
@@ -47,7 +41,7 @@ url("fonts/eaglemania/eagles.ttf") format("ttf");
 }
 
 .paginacion {
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 .lugar {

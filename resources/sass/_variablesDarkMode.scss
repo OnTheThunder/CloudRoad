@@ -2,10 +2,17 @@
 $body-bg: #283149;
 $text-color: #dbedf3;
 
+//Headers
+$headings-font-weight: 300;
+
 // Typography
-$font-family-sans-serif: Lato, Roboto, Montserrat, sans-serif;
+$font-family-sans-serif: Roboto, Lato, Montserrat, sans-serif;
 $font-size-base: 0.9rem;
+$font-weight-base: 300;
 $line-height-base: 1.6;
+
+//Cards height
+$card-height: 160px;
 
 // Colors
 $blue: #3490dc;
@@ -22,7 +29,7 @@ $cyan: #6cb2eb;
 
 //Nuevos añadidos
 $colorLogo: #fcda06;
-$colorPrincipal: #60c7cf;
+$colorPrincipal: #61cbd3;
 $colorRojoSuave: #ff7672;
 $colorNaranjaSuave: #ffa95b;
 $colorTurquesaSuave: #24fda4;
@@ -136,9 +143,11 @@ $danger: #f75955;
     color: #ff6763;
     border-color: #ff6763;
 }
-.btn-outline-danger:hover {
 
+#lugar-label{
+    color: $text-color !important;
 }
+
 
 
 
