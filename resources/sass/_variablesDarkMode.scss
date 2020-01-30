@@ -148,6 +148,10 @@ $danger: #f75955;
     color: $text-color !important;
 }
 
+.resaltar {/* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader;
+    color: $colorPrincipal;
+}
 
 
 

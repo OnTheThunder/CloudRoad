@@ -34,6 +34,14 @@ $colorAmarilloSuave: #fffe85;
 $colorVerdeSuave: #87ff82;
 $colorHeader: #75cf93;
 
+.resaltar { /* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader;
+    color: white;
+}
+
+.bg-color-cards {
+    background: whitesmoke; /* Color la vieja confiable*/
+}
 
 // modificado
 $theme-colors: (
