@@ -7,6 +7,7 @@ if (checkCookie()) {
     ver(true);
 } else {
     setCookie('modo', 'nocturno', 7) // diurno o nocturno
+    ver(true);
 }
 
 try {

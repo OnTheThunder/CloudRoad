@@ -1,4 +1,3 @@
-<!-- Footer -->
 <footer class="container-fluid text-small mt-5 pt-4 bg-secondary d-none d-sm-block">
     <!-- Footer Links -->
     <div class="row">

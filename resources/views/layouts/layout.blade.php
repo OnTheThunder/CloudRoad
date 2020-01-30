@@ -16,18 +16,18 @@
     <!-- CSS personalizados -->
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 
-<body class="min-vh-100">
+<body>
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
 <div class="container-fluid">
     @yield('content')
 </div>
-
-<!-- Footer -->
-@include('layouts.footer')
-
 </body>
+<!-- Footer -->
+@if($usuario ?? '' != null)
+    @include('layouts.footer')
+@endif
 <!--GOOGLE MAPS-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtvT3u8mJZLBOy9ZZG7kQ-t9hE0X8ycs4&&libraries=places"
         async defer></script>
