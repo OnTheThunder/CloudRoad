@@ -51,8 +51,18 @@ $danger: #f75955;
 }
 
 .card:hover{
+    background:$colorCards !important;
+}
+
+.card-incidencia:hover{
     background: #545f80 !important;
     color: $text-color;
+}
+.list-group a.bg-color-cards:hover{
+   background: #545f80 !important;
+}
+.list-group a.bg-color-cards.text-color-borrar-suave:hover{
+    color: $colorRojoSuave !important;
 }
 
 .btn-primary{

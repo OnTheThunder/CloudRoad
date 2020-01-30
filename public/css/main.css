@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* El Logo o nombre app*/
@@ -24,7 +25,7 @@ html {
 }
 
 .paginacion { /* Por si acaso en la version movil se pasa de anchura*/
-    overflow: scroll;
+    overflow: auto;
 }
 
 /* Incidencias */
@@ -381,7 +382,8 @@ button:focus {
     }
 }
 
-/*POST SASS */
-.bg-aside {
-    background: #6c757d !important;
+footer.container-fluid{
+    margin-left: -15px;
+    width: 100vw;
 }
+
