@@ -6,24 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
-    <!--GOOGLE FONTS-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Faster+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
     <!-- BOOTSTRAP CSS-->
-    {{--<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">--}}
-    <link href="{{ secure_asset('css/appDarkMode.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" id="light-css" disabled>
+    <link href="{{ secure_asset('css/appDarkMode.css') }}" rel="stylesheet" id="dark-css" disabled>
     <!-- Font awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
     <!-- CSS personalizados -->
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 
-
-
 <body>
+
+<div class="truco fixed-top">
+    <img src="{{secure_asset('images/truco.png')}}" alt="truco activado">
+</div>
+
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
@@ -45,4 +42,5 @@
 <!-- JS personalizados -->
 <script src="{{ secure_asset('js/app.js') }}"></script>
 <script src="{{ secure_asset('js/dropdown-filtros.js') }}"></script>
+<script src="{{ secure_asset('js/easterEgg.js') }}"></script>
 </html>

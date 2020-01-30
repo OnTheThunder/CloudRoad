@@ -29,7 +29,7 @@
             <div class="row ">
                 <form class="col-12" method="post" action="{{route('usuario.update')}}">
                     @csrf
-
+                    <input name="modo" value="password" hidden>
                     <div class="col-12 ">
                         <div class="form-group">
                             <label for="contra1">Contraseña actual</label>
@@ -46,7 +46,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <button class="btn btn-primary justify-content-center disabled" id="changepassword">Enviar</button>
+                        <button class="btn btn-primary justify-content-center disabled" id="changepassword">Enviar
+                        </button>
                     </div>
                 </form>
             </div>

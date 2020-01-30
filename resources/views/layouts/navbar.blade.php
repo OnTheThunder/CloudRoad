@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-color-primario shadow-sm mb-2">
+<nav class="navbar navbar-light bg-color-header shadow-sm mb-2">
 
     <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{{route('main.index')}}">{{ config('app.name') }}</a>
@@ -9,15 +9,9 @@
         <ul class="navbar-nav flex-row">
             <!-- Authentication Links -->
             @guest
-                <li class="nav-item mr-5">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fas fa-sign-in-alt"></i></a>
-                </li>
-            <!--        @if (Route::has('register'))
-                <li class="nav-item m-2">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                @endif
-                -->
+                {{--                <li class="nav-item mr-5">--}}
+                {{--                    <a class="nav-link" href="{{ route('login') }}">{{ __('auth.login') }} </a>--}}
+                {{--                </li>--}}
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -42,7 +36,7 @@
         <!-- ver el dropdown de cambiar contraseña y cerrar sesion -->
     @else
         <div class="dropdown">
-            <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
+            <button class="border-0 bg-color-header dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="text-capitalize">
@@ -52,14 +46,19 @@
                 <i class="fas fa-cog"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="{{ route('usuario.password.edit',['modo'=>'password']) }}">Cambiar contraseña</a>
+                <a class="dropdown-item" id="modo-nocturno-diurno">{{__('general.modo')}}</a>
+
+                <a class="dropdown-item"
+                   href="{{ route('usuario.password.edit',['modo'=>'password']) }}">{{__('general.change.password')}}</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">Cerrar sesión</a>
+               document.getElementById('logout-form').submit();">{{ __('auth.logout') }}</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             </div>
             @endif
+            <small>{{Config::get('app.locale')}}</small>
         </div>
 </nav>
+<script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>

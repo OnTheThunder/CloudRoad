@@ -37125,6 +37125,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/appDarkMode.scss":
 /*!*****************************************!*\
   !*** ./resources/sass/appDarkMode.scss ***!
@@ -37137,14 +37148,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!*********************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/appDarkMode.scss ***!
-  \*********************************************************************/
+/*!***********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/appDarkMode.scss ./resources/sass/app.scss ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/OnTheThunder/CloudRoad/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/OnTheThunder/CloudRoad/resources/sass/appDarkMode.scss */"./resources/sass/appDarkMode.scss");
+__webpack_require__(/*! /home/vagrant/code/CloudRoad/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/vagrant/code/CloudRoad/resources/sass/appDarkMode.scss */"./resources/sass/appDarkMode.scss");
+module.exports = __webpack_require__(/*! /home/vagrant/code/CloudRoad/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
