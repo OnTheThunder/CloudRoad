@@ -108,7 +108,7 @@
                 @foreach($incidencias as $incidencia)
                     <a class=" text-decoration-none text-dark"
                        href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
-                        <div class="mb-1 card shadow">
+                        <div class="mb-1 card shadow card-incidencia">
                             <div class="card-body">
                                 <span class="card-title h3 clearfix">{{ $incidencia->tipo }}: </span>
                                 <span id="lugar-label" class="float-right text-secondary lugar">Lugar: <span

@@ -292,7 +292,7 @@ button:focus {
 }
 
 /*Card incidencia*/
-.card-incidencia {
+.card-incidencia-nueva {
     position: relative;
     border: 1px solid rgba(55, 207, 95, 1);
     animation: blinkerBorder 2s linear infinite;
@@ -335,6 +335,10 @@ button:focus {
     50% {
         border: 1px solid rgba(55, 207, 95, 0);
     }
+}
+
+.card-incidencia{
+    height: 160px;
 }
 
 /* MAPA FINAL DEL TECNICO Y EL RESTO - SOLO VISUALIZACIÓN */
