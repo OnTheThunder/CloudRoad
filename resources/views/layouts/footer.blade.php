@@ -1,15 +1,14 @@
 <!-- Footer -->
-<footer class="text-small mt-5 pt-4 bg-color-secundario">
+<footer class="container-fluid text-small mt-5 pt-4 bg-secondary d-none d-sm-block">
     <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
+    <div class="row">
         <!-- Copyright -->
-        <div class="footer-copyright text-center ">
-            <img id="img-footer" src="{{ secure_asset('images/onTheThunder.png') }}" alt="img-equipo"
-                 class="img-fluid figure-img">
-            <span>© 2020 OnTheThunder: </span>
-            <a class="text-dark" href="https://github.com/OnTheThunder/CloudRoad">
-                <i class="fab fa-github-square"></i>
-            </a>
-        </div>
+        <p class="offset-md-2 offset-1 col-3 col-md-2 text-nowrap">Road Tech Assistance SL</p>
+        <img id="img-footer" src="{{ secure_asset('images/onTheThunderMin.png') }}" alt="img-equipo"
+             class="offset-2 col-2img-fluid figure-img rounded-circle">
+        <span>© 2020 OnTheThunder: </span>
+        <a class="text-dark" href="https://github.com/OnTheThunder/CloudRoad">
+            <i class="fab fa-github-square"></i>
+        </a>
     </div>
 </footer>

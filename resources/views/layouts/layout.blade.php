@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
@@ -15,12 +16,7 @@
     <!-- CSS personalizados -->
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 
-<body>
-
-<div class="truco fixed-top">
-    <img src="{{secure_asset('images/truco.png')}}" alt="truco activado">
-</div>
-
+<body class="min-vh-100">
 <!-- Header/navbar -->
 @include('layouts.navbar')
 <!-- Contenedor principal -->
@@ -29,18 +25,19 @@
 </div>
 
 <!-- Footer -->
-{{--@include('layouts.footer')--}}
+@include('layouts.footer')
 
 </body>
 <!--GOOGLE MAPS-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtvT3u8mJZLBOy9ZZG7kQ-t9hE0X8ycs4&&libraries=places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtvT3u8mJZLBOy9ZZG7kQ-t9hE0X8ycs4&&libraries=places"
+        async defer></script>
 <!-- jQuery CDN -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <!-- BOOTSTRAP JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
 <!-- JS personalizados -->
 <script src="{{ secure_asset('js/app.js') }}"></script>
 <script src="{{ secure_asset('js/dropdown-filtros.js') }}"></script>
-<script src="{{ secure_asset('js/easterEgg.js') }}"></script>
 </html>

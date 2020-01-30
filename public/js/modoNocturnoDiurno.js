@@ -4,21 +4,22 @@ let light = document.getElementById('light-css');
 let dark = document.getElementById('dark-css');
 
 if (checkCookie()) {
-    console.log('existe')
     ver(true);
 } else {
-    console.log('no eitste')
-    setCookie('modo', 'diurno', 10000) // diurno o nocturno
+    setCookie('modo', 'nocturno', 7) // diurno o nocturno
+}
+
+try {
+    document.getElementById('modo-nocturno-diurno').addEventListener('click', function () {
+        ver(false);
+        location.reload();
+    });
+} catch (e) {
+    console.log('en login no hace falta');
 }
 
 
-document.getElementById('modo-nocturno-diurno').addEventListener('click', function () {
-    ver(false);
-    location.reload();
-});
-
 function ver(opcional) {
-    console.log('ver')
     // cambiar el valor de la cookie a nocturno/diurno
     let c = getCookie('modo');
     if (c != null && c != "") {
@@ -27,13 +28,13 @@ function ver(opcional) {
             light.disabled = true;
             dark.disabled = false;
             if (!opcional) {
-                setCookie('modo', 'nocturno', 10000);
+                setCookie('modo', 'nocturno', 7);
             }
         } else {
             light.disabled = false;
             dark.disabled = true;
             if (!opcional) {
-                setCookie('modo', 'diurno', 10000);
+                setCookie('modo', 'diurno', 7);
             }
         }
     }
@@ -64,9 +65,5 @@ function getCookie(cname) {
 
 function checkCookie() {
     var username = getCookie("modo");
-    if (username != "") {
-        return true
-    } else {
-        return false;
-    }
+    return username !== "";
 }
