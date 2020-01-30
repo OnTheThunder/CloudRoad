@@ -25,7 +25,7 @@ $colorRojoSuave: #ff7672;
 $colorNaranjaSuave: #ffa95b;
 $colorAmarilloSuave: #fffe85;
 $colorVerdeSuave: #87ff82;
-//$colorPrincipal: #ee7236;
+$colorHeader: #75cf93;
 
 
 // modificado
@@ -35,7 +35,8 @@ $theme-colors: (
     "color-borrar-suave":$colorRojoSuave,
     "color-estadisticas-suave":$colorNaranjaSuave,
     "color-datos-suave":$colorAmarilloSuave,
-    "color-anyadir-suave":$colorVerdeSuave
+    "color-anyadir-suave":$colorVerdeSuave,
+    "color-header": $colorHeader,
 );
 
 // tipo de letra añadida

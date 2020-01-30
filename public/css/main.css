@@ -4,6 +4,7 @@ html {
 }
 .navbar-brand {
     font-family: 'Faster One', cursive;
+    font-size: 1.025rem;
 }
 
 @font-face {
