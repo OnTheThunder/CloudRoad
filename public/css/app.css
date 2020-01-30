@@ -5947,7 +5947,6 @@ input[type=button].btn-block {
   -webkit-box-direction: normal;
           flex-direction: column;
   min-width: 0;
-  height: 160px;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;

@@ -74,7 +74,7 @@
                     <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                     <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
                     @if($incidencia->estado == 'En curso' AND isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
-                        <div class="card m-1 shadow card-incidencia">
+                        <div class="card m-1 shadow card-incidencia-nueva">
                             <div class="nueva-incidencia-container">
                                 <div class="glow"></div>
                                 <span>Nueva incidencia</span>
