@@ -2,10 +2,17 @@
 $body-bg: #283149;
 $text-color: #dbedf3;
 
+//Headers
+$headings-font-weight: 300;
+
 // Typography
-$font-family-sans-serif: Lato, Roboto, Montserrat, sans-serif;
+$font-family-sans-serif: Roboto, Lato, Montserrat, sans-serif;
 $font-size-base: 0.9rem;
+$font-weight-base: 300;
 $line-height-base: 1.6;
+
+//Cards height
+$card-height: 160px;
 
 // Colors
 $blue: #3490dc;
@@ -22,12 +29,13 @@ $cyan: #6cb2eb;
 
 //Nuevos añadidos
 $colorLogo: #fcda06;
-$colorPrincipal: #00818a;
+$colorPrincipal: #61cbd3;
 $colorRojoSuave: #ff7672;
 $colorNaranjaSuave: #ffa95b;
 $colorTurquesaSuave: #24fda4;
 $colorVerdeSuave: #87ff82;
 $colorCards: #404b69;
+$colorHeader: #00818a;
 
 //Escpecificos dark mode
 $body-color: $text-color;
@@ -78,13 +86,13 @@ $danger: #f75955;
 .pagination > .active > a
 {
     color: #404b69;
-    background-color: #404b69 !Important;
-    border: solid 1px #404b69 !Important;
+    background-color: #404b69 !important;
+    border: solid 1px #404b69 !important;
 }
 
 .pagination > .active > a:hover
 {
-    background-color: $text-color !Important;
+    background-color: $text-color !important;
     border: solid 1px $text-color;
 }
 .page-item.active, .page-link {
@@ -135,9 +143,11 @@ $danger: #f75955;
     color: #ff6763;
     border-color: #ff6763;
 }
-.btn-outline-danger:hover {
 
+#lugar-label{
+    color: $text-color !important;
 }
+
 
 
 
@@ -150,6 +160,7 @@ $theme-colors: (
     "color-datos-suave":$colorTurquesaSuave,
     "color-anyadir-suave":$colorVerdeSuave,
     "color-cards": $colorCards,
+    "color-header": $colorHeader,
 );
 
 // tipo de letra añadida
@@ -157,3 +168,4 @@ $theme-colors: (
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap");
