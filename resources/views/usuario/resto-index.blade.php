@@ -17,7 +17,7 @@
                     </div>
                 @endif
 
-                <div class="container-fluid pl-0">
+                <div class="container-fluid pl-0 mb-3">
                     <h2 class="d-flex justify-content-center p-2">Historial de Incidencias</h2>
                     <div class="row">
                         <div class="col-md-12 mb-n1 ml-1 filters-container">
@@ -28,26 +28,52 @@
                                     </label>
                                     <input name="buscar" class="form-control" type="text">
                                 </div>-->
-                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Filtrar
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <form action="{{route('incidencias.estado')}}" method="get">
                                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Estado</a>
                                             <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item btn-filtro-resuelta" name="estado" value="resuelta">Resuelta</button></li>
-                                                <li><button class="dropdown-item btn-filtro-garaje" name="estado" value="taller">Resuelta en Taller</button></li>
-                                                <li><button class="dropdown-item btn-filtro-encurso" name="estado" value="en curso">En Curso</button></li>
+                                                <li>
+                                                    <button class="dropdown-item btn-filtro-resuelta" name="estado"
+                                                            value="resuelta">Resuelta
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item btn-filtro-garaje" name="estado"
+                                                            value="taller">Resuelta en Taller
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item btn-filtro-encurso" name="estado"
+                                                            value="en curso">En Curso
+                                                    </button>
+                                                </li>
                                             </ul>
                                         </li>
                                     </form>
                                     <form action="{{route('incidencias.tipo')}}" method="get">
-                                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tipo de incidencia</a>
+                                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Tipo
+                                                de incidencia</a>
                                             <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item" name="tipo" value="Pinchazo">Pinchazo</button></li>
-                                                <li><button class="dropdown-item" name="tipo" value="Golpe">Golpe</button></li>
-                                                <li><button class="dropdown-item" name="tipo" value="Averia">Avería</button></li>
-                                                <li><button class="dropdown-item" name="tipo" value="Otro">Otro</button></li>
+                                                <li>
+                                                    <button class="dropdown-item" name="tipo" value="Pinchazo">
+                                                        Pinchazo
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item" name="tipo" value="Golpe">Golpe
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item" name="tipo" value="Averia">Avería
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item" name="tipo" value="Otro">Otro</button>
+                                                </li>
                                             </ul>
                                         </li>
                                     </form>
@@ -80,26 +106,62 @@
 
 
                 @foreach($incidencias as $incidencia)
-                    <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
-                        <div class="card m-1 shadow">
+                    <a class=" text-decoration-none text-dark"
+                       href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
+                        <div class="mb-1 card shadow">
                             <div class="card-body">
-                                <h3 class="card-title">{{ $incidencia->tipo }}</h3>
-                                <p class="card-text">{{ $incidencia->descripcion }}</p>
-                                <span>Lugar: </span>{{$incidencia->provincia}}
+                                <span class="card-title h3 clearfix">{{ $incidencia->tipo }}: </span>
+                                <span id="lugar-label" class="float-right text-secondary lugar">Lugar: <span
+                                        class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
+                                <p class="my-2 card-footer border">{{ $incidencia->descripcion }}</p>
                                 @if($incidencia->estado == 'Resuelta')
-                                    <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta</p>
+                                    <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie">
+                                    <span class="text-color-primario col-md-4 pl-0">
+                                        Resuelta
+                                      </span>
+                                        <small
+                                            class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha col-md-8 pr-0">
+                                            Creada:
+                                            <span class="font-italic">
+                                                @php
+                                                    fechaCastellano($incidencia->created_at);
+                                                @endphp
+                                                </span>
+                                        </small>
+                                    </p>
                                 @elseif($incidencia->estado == 'Garaje')
-                                    <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta en taller</p>
+                                    <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie">
+                                        <span class="text-color-primario col-md-4 pl-0">
+                                            Resuelta en taller
+                                            </span>
+                                        <small
+                                            class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha col-md-8 pr-0">
+                                            Creada:
+                                            <span class="font-italic">
+                                                @php
+                                                    fechaCastellano($incidencia->created_at);
+                                                @endphp
+                                                </span>
+                                        </small>
+                                    </p>
                                 @else
-                                    <p class="card-footer border text-color-borrar-suave font-weight-bold mt-2">En curso</p>
+                                    <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie">
+                                         <span class="text-color-borrar-suave col-md-4 pl-0">
+                                        En curso
+                                            </span>
+                                        <small
+                                            class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha col-md-8 pr-0">
+
+                                            Creada:
+
+                                            <span class="font-italic">
+                                                @php
+                                                    fechaCastellano($incidencia->created_at);
+                                                @endphp
+                                                </span>
+                                        </small>
+                                    </p>
                                 @endif
-                                <div class="text-secondary text-right text-monospace font-weight-bolder">Creada
-                                    <span class="font-italic font-weight-lighter">
-                                    @php
-                                        fechaCastellano($incidencia->created_at);
-                                    @endphp
-                                    </span>
-                                </div>
                             </div>
                         </div>
                     </a>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-color-primario shadow-sm mb-2">
+<nav class="navbar navbar-light bg-color-header shadow-sm mb-2">
 
     <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{{route('main.index')}}">{{ config('app.name') }}</a>
@@ -36,7 +36,7 @@
         <!-- ver el dropdown de cambiar contraseña y cerrar sesion -->
     @else
         <div class="dropdown">
-            <button class="border-0 bg-color-primario dropdown-toggle rounded" type="button" id="dropdownMenuButton"
+            <button class="border-0 bg-color-header dropdown-toggle rounded" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 <span class="text-capitalize">
@@ -46,6 +46,8 @@
                 <i class="fas fa-cog"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" id="modo-nocturno-diurno">{{__('general.modo')}}</a>
+
                 <a class="dropdown-item"
                    href="{{ route('usuario.password.edit',['modo'=>'password']) }}">{{__('general.change.password')}}</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -59,3 +61,4 @@
             <small>{{Config::get('app.locale')}}</small>
         </div>
 </nav>
+<script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>

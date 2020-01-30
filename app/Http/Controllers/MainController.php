@@ -79,7 +79,7 @@ class MainController extends Controller
                     $incidencias = MainController::getIncidenciasTecnicoOrderBy(request('orden'), $tecnico);
                 }
                 else{ //default mas recientes
-                    $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(5);
+                    $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(15);
                 }
 
                 return view('usuario/tecnico-index', ['incidencias' => $incidencias, 'usuario' => Auth::user(), "notificacion" => $notificacion, 'tecnicoId' => $tecnico['id']]);
@@ -90,7 +90,7 @@ class MainController extends Controller
                     $incidencias = MainController::getIncidenciasAllOrderBy(request('orden'));
                 }
                 else{ //default mas recientes
-                    $incidencias = DB::table('incidencias')->orderBy('created_at', 'desc')->paginate(5);
+                    $incidencias = DB::table('incidencias')->orderBy('created_at', 'desc')->paginate(15);
                 }
 
                 return view('usuario.resto-index', ['incidencias' => $incidencias, 'usuario' => Auth::user()]);
