@@ -31,8 +31,8 @@ html {
 /* Incidencias */
 .lugar {
     position: absolute;
-    top: 1.3rem;
-    right: 1.3rem;
+    top: 0.6rem;
+    right: 0.9rem;
 }
 
 .card-pie {
@@ -340,9 +340,7 @@ button:focus {
     }
 }
 
-.card-incidencia{
-    height: 160px;
-}
+
 
 /* MAPA FINAL DEL TECNICO Y EL RESTO - SOLO VISUALIZACIÓN */
 #final-map {
@@ -429,18 +427,23 @@ footer.container-fluid{
 
 @media only screen and (max-width: 768px) {
     .card-incidencia{
-        height: 175px;
-    }
-    .estado-label{
-        font-size: 0.75rem;
-    }
-    .date-label{
-        font-size: 0.7rem;
+        height: 180px;
     }
     .chart-container {
         position: relative;
         height: 60vh;
         width: 50vw;
     }
+}
+
+
+
+
+.card-incidencia .card-body{
+    padding: 0;
+}
+
+.card-incidencia{
+    height: 170px;
 }
 

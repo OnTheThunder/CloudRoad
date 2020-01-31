@@ -24,7 +24,7 @@
         @endif
 
         @include('usuario.aside')
-        <div class="col d-flex flex-column mr-2 ">
+        <div class="col col-lg-8 d-flex flex-column mr-2 ">
             <div class="h1 my-4 text-center">Baja usuario</div>
             <div class="container">
                 <form class="col-12" method="get" action="{{route('usuario.baja.edit')}}">
