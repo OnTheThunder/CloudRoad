@@ -23,7 +23,10 @@
             </div>
         @endif
 
-        @include('usuario.aside')
+        @if($usuario->rol != 'tecnico')
+            @include('usuario.aside')
+        @endif
+
         <div class="col d-flex flex-column mr-2 ">
             <div class="h1 text-center">Cambiar contraseña</div>
             <div class="row ">
