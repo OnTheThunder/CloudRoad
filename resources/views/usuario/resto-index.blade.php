@@ -86,8 +86,10 @@
                             <div class="container mb-4 card shadow card-incidencia d-flex align-items-center justify-content-center">
                                 <div class="w-100">
                                     <span class="card-title h4 clearfix">#{{$incidencia->id}} {{ $incidencia->tipo }}: </span>
-                                    <span id="lugar-label" class="text-secondary lugar">Lugar: <span
-                                            class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
+                                    <div class="lugar-label-container d-flex justify-content-center align-items-center">
+                                        <span id="lugar-label" class="text-secondary lugar">Lugar:
+                                        <span class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
+                                    </div>
                                     <p class="my-2 card-footer border">{{ $incidencia->descripcion }}</p>
                                     @if($incidencia->estado == 'Resuelta')
                                         <p class="row flex-row flex-wrap font-weight-bold m-0 justify-content-between">

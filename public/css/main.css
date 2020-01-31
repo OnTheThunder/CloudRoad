@@ -31,13 +31,18 @@ html {
 /* Incidencias */
 .lugar-label-container {
     position: absolute;
-    top: 0.8rem;
+    top: 0.7rem;
     right: 1rem;
 }
 
-.card-pie {
-    margin-bottom: -15px;
+.estado-label{
+    font-size: .85rem;
 }
+
+.card-title {
+    font-size: 1.2rem;
+}
+
 
 /* VISTA de las Cámaras*/
 #mapa-camaras {
