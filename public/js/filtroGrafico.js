@@ -1,4 +1,11 @@
 let chart;
+let c = getCookie('modo');
+var color;
+if(c === 'nocturno'){
+    color = '#666';
+}else
+    color ="white"
+
 window.onload = function(){
     $( document ).ready(function() {
         if(chart !== undefined)
@@ -36,6 +43,7 @@ window.onload = function(){
                 console.log(result);
 
                 filtro = $('#filtro').val()
+
                 switch (filtro){
                     case 'Incidencias por hora':
                         porHora(result);
@@ -110,18 +118,18 @@ window.onload = function(){
             options: {
                 legend: {
                     labels: {
-                        fontColor: "white"
+                        fontColor: color
                     }
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     responsive: true,
@@ -151,7 +159,7 @@ window.onload = function(){
             options: {
                 legend: {
                     labels: {
-                        fontColor: "white"
+                        fontColor: color
                     }
                 },
                 responsive: true,
@@ -160,12 +168,12 @@ window.onload = function(){
                         display: true,
                         ticks: {
                             beginAtZero: true,   // minimum value will be 0.
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     yAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     responsive: true,
@@ -193,18 +201,18 @@ window.onload = function(){
             options: {
                 legend: {
                     labels: {
-                        fontColor: "white"
+                        fontColor: color
                     }
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     responsive: true,
@@ -242,7 +250,7 @@ window.onload = function(){
             options: {
                 legend: {
                     labels: {
-                        fontColor: "white"
+                        fontColor: color
                     }
                 },
                 responsive: true,
@@ -251,12 +259,12 @@ window.onload = function(){
                         display: true,
                         ticks: {
                             beginAtZero: true,   // minimum value will be 0.
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     yAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     responsive: true,
@@ -284,18 +292,18 @@ window.onload = function(){
             options: {
                 legend: {
                     labels: {
-                        fontColor: "white"
+                        fontColor: color
                     }
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: "white"
+                            fontColor: color
                         }
                     }],
                     responsive: true,
