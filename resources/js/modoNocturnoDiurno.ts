@@ -20,7 +20,7 @@ try {
         location.reload();
     });
 } catch (e) {
-    console.log('en login no hace falta');
+    //console.log('en login no hace falta');
 }
 
 
@@ -33,16 +33,12 @@ function ver(opcional: boolean) {
             light.disabled = true;
             dark.disabled = false;
             if (!opcional) {
-                console.log('nocturno')
-
                 setCookie('modo', 'nocturno', 7);
             }
         } else {
             light.disabled = false;
             dark.disabled = true;
             if (!opcional) {
-                console.log('diurno')
-
                 setCookie('modo', 'diurno', 7);
             }
         }
