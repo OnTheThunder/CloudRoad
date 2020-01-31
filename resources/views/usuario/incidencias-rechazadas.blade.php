@@ -17,17 +17,11 @@
                     </div>
                 @endif
 
-                <div class="container-fluid pl-0">
-                    <h2 class="d-flex justify-content-center p-2">Incidencias rechazadas</h2>
+                <div class="container mb-3">
+                    <h2 class="d-flex justify-content-center p-2">Historial de Incidencias</h2>
                     <div class="row">
-                        <div class="col-md-12 mb-n1 ml-1 filters-container">
+                        <div class="col-md-12 mb-n1 filters-container">
                             <div class="dropdown show">
-                                <!--<div class="form-group">
-                                    <label>
-                                        Buscar por tecnico
-                                    </label>
-                                    <input name="buscar" class="form-control" type="text">
-                                </div>-->
                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Filtrar
                                 </a>
@@ -61,7 +55,7 @@
                                     </a>
                                 </form>
                             @endif
-                            <form class="leyenda-filtro-default" action="{{route('main.index')}}" method="get">
+                            <form class="leyenda-filtro-default mr-1" action="{{route('main.index')}}" method="get">
                                 <button>
                                     @if(session('orden') == 'reciente' || !session('orden'))
                                         <span>Más Recientes...</span>
@@ -78,36 +72,77 @@
                     </div>
                 </div>
 
+                <div class="container incidencias-container">
+                    {{-- Crear 1 row cada 2 cards--}}
+                    @php $i = 0 @endphp
+                    @foreach($incidenciasRechazadas as $incidenciaRechazada)
+                        @if($i == 0 || $i%2 == 0)
+                            <div class="row">
+                        @endif
+                        <div class="col-md-6">
+                            <a class="text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidenciaRechazada->id, 'hideMap' => true]) }}">
+                                <div class="mb-4 card shadow card-incidencia">
+                                    <div class="card-body">
+                                        <span class="card-title h4 clearfix">#{{$incidenciaRechazada->id}} {{ $incidenciaRechazada->tipo }}: </span>
+                                        <span id="lugar-label" class="float-right text-secondary lugar">Lugar: <span
+                                                class="text-color-primario font-weight-bolder">{{$incidenciaRechazada->provincia}}</span></span>
+                                        <p class="my-2 card-footer border">{{ $incidenciaRechazada->descripcion }}</p>
+                                        @if($incidenciaRechazada->estado == 'Resuelta')
+                                            <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
+                                        <span class="text-color-primario col-md-3 px-0">
+                                            Resuelta
+                                          </span>
+                                                <small
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
+                                                    Creada:
+                                                    <span class="font-italic">
+                                                    @php
+                                                        fechaCastellano($incidenciaRechazada->created_at);
+                                                    @endphp
+                                                    </span>
+                                                </small>
+                                            </p>
+                                        @elseif($incidenciaRechazada->estado == 'Garaje')
+                                            <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie justify-content-between">
+                                            <span class="text-color-primario col-md-3 px-0">
+                                                Resuelta en taller
+                                                </span>
+                                                <small
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
+                                                    Creada:
+                                                    <span class="font-italic">
+                                                    @php
+                                                        fechaCastellano($incidenciaRechazada->created_at);
+                                                    @endphp
+                                                    </span>
+                                                </small>
+                                            </p>
+                                        @else
+                                            <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
+                                             <span class="text-color-borrar-suave col-md-3 px-0">
+                                            En curso
+                                                </span>
+                                                <small
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
 
-                @foreach($incidenciasRechazadas as $incidenciaRechazada)
-                    <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidenciaRechazada->id, 'hideMap' => true]) }}">
-                        <div class="card m-1 shadow">
-                            <div class="card-body">
-                                <h3 class="card-title">{{ $incidenciaRechazada->tipo }}</h3>
-                                <p class="card-text">{{ $incidenciaRechazada->descripcion }}</p>
-                                <span>Lugar: </span>{{$incidenciaRechazada->provincia}}
-                                @if($incidenciaRechazada->estado == 'Resuelta')
-                                    <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta</p>
-                                @elseif($incidenciaRechazada->estado == 'Garaje')
-                                    <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta en taller</p>
-                                @else
-                                    <p class="card-footer border text-color-borrar-suave font-weight-bold mt-2">En curso</p>
-                                @endif
-                                <div class="text-secondary text-right text-monospace font-weight-bolder">Creada
-                                    <span class="font-italic font-weight-lighter">
-                                    @php
-                                        fechaCastellano($incidenciaRechazada->created_at);
-                                    @endphp
-                                    </span>
+                                                    Creada:
+
+                                                    <span class="font-italic">
+                                                    @php
+                                                        fechaCastellano($incidenciaRechazada->created_at);
+                                                    @endphp
+                                                    </span>
+                                                </small>
+                                            </p>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
+                        @endforeach
+                        <div class="mb-5 mt-3 paginacion">
+                            {{ $incidenciasRechazadas->links() }}
                         </div>
-                    </a>
-                @endforeach
-                <div class="mb-5 mt-3 paginacion">
-                    {{ $incidenciasRechazadas->links() }}
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 @endsection

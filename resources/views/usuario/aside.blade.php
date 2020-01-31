@@ -28,7 +28,7 @@
         </div>
         <div class="d-none d-sm-flex justify-content-center text-decoration-none">
             <a href="#" class="scroll-top d-none" title="Ir arriba">
-                <i class="fas fa-arrow-up shadow bg-color-cards mt-3 p-3 rounded-circle text-color-primario"></i>
+                <i class="fas fa-arrow-up shadow bg-color-dark mt-3 p-3 rounded-circle text-color-primario"></i>
             </a>
         </div>
     </div>
