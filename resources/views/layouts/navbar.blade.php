@@ -46,7 +46,7 @@
                 <i class="fas fa-cog"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" id="modo-nocturno-diurno">{{__('general.modo')}}</a>
+                <a class="dropdown-item" href="" id="modo-nocturno-diurno">{{__('general.modo')}}</a>
 
                 <a class="dropdown-item"
                    href="{{ route('usuario.password.edit',['modo'=>'password']) }}">{{__('general.change.password')}}</a>
@@ -61,4 +61,5 @@
             <small>{{Config::get('app.locale')}}</small>
         </div>
 </nav>
+<!-- el script que le pone el listener del modo nocturno y diurno-->
 <script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>

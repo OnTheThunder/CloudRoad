@@ -4,23 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
     <!-- BOOTSTRAP CSS-->
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" id="light-css" disabled>
     <link href="{{ secure_asset('css/appDarkMode.css') }}" rel="stylesheet" id="dark-css" disabled>
-    <!-- Font awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-          integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
-    <!-- CSS personalizados -->
-    <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
-
 <body>
-<!-- Header/navbar -->
-@include('layouts.navbar')
+<script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>
 <!-- Contenedor principal -->
-<div class="container-fluid">
-    @yield('content')
-</div>
+@yield('content')
 </body>
 <!-- jQuery CDN -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
@@ -30,4 +23,5 @@
         crossorigin="anonymous"></script>
 <!-- JS personalizados -->
 <script src="{{ secure_asset('js/app.js') }}"></script>
+<script src="{{ secure_asset('js/login.js') }}"></script>
 </html>

@@ -1,35 +1,19 @@
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-.truco {
-    z-index: 10000;
-    position: absolute;
-    width: 450px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    border: solid rgba(0, 0, 0, 0.96);
-    background: black;
-    display: none;
-}
-
-
-.truco img {
-    width: 100%;
-    height: 100%;
-}
-
-
+/* El Logo o nombre app*/
 .navbar-brand {
     font-family: 'Faster One', cursive;
     font-size: 1.025rem;
 }
 
-
 #img-footer {
-    width: 75px;
-    height: 75px;
+    width: 30px;
+    height: 30px;
+    margin-top: -5px;
+    margin-right: 5px;
 }
 
 .card:hover {
@@ -40,10 +24,11 @@ html {
     z-index: 10001;
 }
 
-.paginacion {
-    /*overflow: scroll;*/
+.paginacion { /* Por si acaso en la version movil se pasa de anchura*/
+    overflow: auto;
 }
 
+/* Incidencias */
 .lugar {
     margin-top: -28px;
 }
@@ -55,13 +40,9 @@ html {
 /* VISTA de las Cámaras*/
 #mapa-camaras {
     width: 100%;
-    min-width: 400px;
     height: 400px;
 }
 
-.resaltar {
-    background: lightblue;
-}
 
 /* MAPA DEL OPERADOR */
 #map-container, #tecnico-fullscreen-data {
@@ -312,7 +293,7 @@ button:focus {
 }
 
 /*Card incidencia*/
-.card-incidencia {
+.card-incidencia-nueva {
     position: relative;
     border: 1px solid rgba(55, 207, 95, 1);
     animation: blinkerBorder 2s linear infinite;
@@ -357,6 +338,10 @@ button:focus {
     }
 }
 
+.card-incidencia{
+    height: 160px;
+}
+
 /* MAPA FINAL DEL TECNICO Y EL RESTO - SOLO VISUALIZACIÓN */
 #final-map {
     height: 500px;
@@ -397,17 +382,8 @@ button:focus {
     }
 }
 
-/*POST SASS */
-.bg-aside{
-    background: #6c757d !important;
+footer.container-fluid{
+    margin-left: -15px;
+    width: 100vw;
 }
 
-/*QUITAR*/
-/*
-.navbar-brand, .nav-link{
-    color: white !important;
-}
-.bg-color-primario{
-    background-color: #ee7236 !important;
-}
-*/

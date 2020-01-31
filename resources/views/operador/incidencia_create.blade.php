@@ -92,7 +92,7 @@
                     <div class="form-group row">
                         <div class="col">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" required></textarea>
+                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" maxlength="64" required></textarea>
                             <div class="invalid-feedback">
                                 Hay que introducir una descripción.
                             </div>
