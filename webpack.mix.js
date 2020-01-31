@@ -18,5 +18,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
 // los archivos TypeScript
-mix.ts('resources/js/prueba.ts', 'public/js');
+mix.ts('resources/js/modoNocturnoDiurno.ts', 'public/js');
 
