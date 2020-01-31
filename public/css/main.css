@@ -393,4 +393,10 @@ footer.container-fluid{
     .card-incidencia{
         height: 175px;
     }
+    .estado-label{
+        font-size: 0.75rem;
+    }
+    .date-label{
+        font-size: 0.7rem;
+    }
 }

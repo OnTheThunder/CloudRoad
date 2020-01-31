@@ -19,5 +19,5 @@ function fechaCastellano($fecha)
         $diaMes = "0" . $diaMes;
     }
 
-    echo $numeroDia . "/" . $diaMes . "/" . $anio . " -- " . substr($fecha, 11, strlen($fecha));
+    echo $numeroDia . "/" . $diaMes . "/" . $anio . " " . substr($fecha, 11, strlen($fecha));
 }
