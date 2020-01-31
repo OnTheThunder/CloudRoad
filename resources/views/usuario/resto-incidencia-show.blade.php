@@ -17,29 +17,20 @@
                 </div>
                 <div>
                     <h3 class="d-flex justify-content-center">Datos Vehiculo</h3>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p><strong>Matricula: </strong>{{ $vehiculo->matricula }}</p>
-                            <p><strong>Marca: </strong>{{ $vehiculo->marca }}</p>
-                        </div>
-                        <div>
-                            <p><strong>Modelo: </strong>{{ $vehiculo->modelo }}</p>
-                            <p><strong>Modelo: </strong>{{ $vehiculo->aseguradora }}</p>
-                        </div>
+                    <div class="d-flex justify-content-start datos-show">
+                        <p><strong>Matricula: </strong>{{ $vehiculo->matricula }}</p>
+                        <p><strong>Marca: </strong>{{ $vehiculo->marca }}</p>
+                        <p><strong>Modelo: </strong>{{ $vehiculo->modelo }}</p>
+                        <p><strong>Modelo: </strong>{{ $vehiculo->aseguradora }}</p>
                     </div>
-
                 </div>
                 <div>
                     <h3 class="d-flex justify-content-center">Datos Cliente</h3>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <p><strong>Nombre: </strong>{{ $cliente->nombre }}</p>
-                            <p><strong>Telefono: </strong>{{ $cliente->telefono }}</p>
-                        </div>
-                        <div>
-                            <p><strong>Apellidos: </strong>{{ $cliente->apellidos }}</p>
-                            <p><strong>DNI: </strong>{{ $cliente->dni }}</p>
-                        </div>
+                    <div class="d-flex justify-content-start datos-show">
+                        <p><strong>Nombre: </strong>{{ $cliente->nombre }}</p>
+                        <p><strong>Telefono: </strong>{{ $cliente->telefono }}</p>
+                        <p><strong>Apellidos: </strong>{{ $cliente->apellidos }}</p>
+                        <p><strong>DNI: </strong>{{ $cliente->dni }}</p>
                     </div>
                 </div>
                 @if(!$hideMap)
