@@ -13,7 +13,7 @@
     <!-- Font awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
-<body>
+<body class="overflow-hidden">
 <script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>
 <!-- Contenedor principal -->
 @yield('content')
