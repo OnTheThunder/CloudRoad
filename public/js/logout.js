@@ -5,6 +5,6 @@ window.onload = function () {
         //simular cerrar sesion y cambiar de pantalla
         setTimeout(function () {
             window.location.href = '/';
-        }, 250);
+        }, 1);
     });
 };
