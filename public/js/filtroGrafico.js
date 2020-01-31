@@ -1,4 +1,27 @@
 let chart;
+let c = getCookie('modo');
+var color;
+if(c === 'nocturno'){
+    color = '#666';
+}else
+    color ="white"
+
+function getCookie(nombreCookie) {
+    var name = nombreCookie + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 window.onload = function(){
     $( document ).ready(function() {
         if(chart !== undefined)
@@ -36,6 +59,7 @@ window.onload = function(){
                 console.log(result);
 
                 filtro = $('#filtro').val()
+
                 switch (filtro){
                     case 'Incidencias por hora':
                         porHora(result);
@@ -78,7 +102,7 @@ window.onload = function(){
                     {
                         label: 'Incidencias totales por hora ',
 
-                        borderColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255,106,94)',
                         backgroundColor: 'rgba(0,0,0,0)',
                         data: [result[0][0].length, result[0][1].length, result[0][2].length, result[0][3].length, result[0][4].length, result[0][5].length,
                             result[0][6].length, result[0][7].length, result[0][8].length, result[0][9].length, result[0][10].length, result[0][11].length,
@@ -88,7 +112,7 @@ window.onload = function(){
                     },{
                         label: 'Incidencias por hora el ultimo mes',
 
-                        borderColor: 'rgb(17,255,61)',
+                        borderColor: 'rgb(143,255,127)',
                         backgroundColor: 'rgba(0,0,0,0)',
                         data: [result[1][0].length, result[1][1].length, result[1][2].length, result[1][3].length, result[1][4].length, result[1][5].length,
                             result[1][6].length, result[1][7].length, result[1][8].length, result[1][9].length, result[1][10].length, result[1][11].length,
@@ -97,7 +121,7 @@ window.onload = function(){
                     },{
                         label: 'Incidencias por hora la ultima semana',
 
-                        borderColor: 'rgb(37,65,255)',
+                        borderColor: 'rgb(92,145,255)',
                         backgroundColor: 'rgba(0,0,0,0)',
                         data: [result[2][0].length, result[2][1].length, result[2][2].length, result[2][3].length, result[2][4].length, result[2][5].length,
                             result[2][6].length, result[2][7].length, result[2][8].length, result[2][9].length, result[2][10].length, result[2][11].length,
@@ -108,8 +132,25 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true,
-                maintainAspectRatio: true
+                legend: {
+                    labels: {
+                        fontColor: color
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
             }
         });
     }
@@ -132,14 +173,27 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
-                responsive : true,
+                legend: {
+                    labels: {
+                        fontColor: color
+                    }
+                },
+                responsive: true,
                 scales: {
                     xAxes: [{
                         display: true,
                         ticks: {
-                            beginAtZero: true   // minimum value will be 0.
+                            beginAtZero: true,   // minimum value will be 0.
+                            fontColor: color
                         }
-                    }]
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
                 }
             }
         });
@@ -156,12 +210,30 @@ window.onload = function(){
                 labels: ['Alava','Guipuzcoa','Vizcaya','Navarra'],
                 datasets: [{
                     data: [result[0].length, result[1].length, result[2].length, result[3].length],
-                    backgroundColor: ['rgb(143,35,255)','rgb(36,255,63)','rgb(41,45,255)','rgb(255,65,16)'],
+                    backgroundColor: ['rgb(92,145,255)','rgb(143,255,127)','rgb(255,119,129)','rgb(255,242,133)'],
                 }]
             },
             // Configuration options go here
             options: {
-                responsive : true
+                legend: {
+                    labels: {
+                        fontColor: color
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
             }
         });
     }
@@ -177,29 +249,42 @@ window.onload = function(){
                 datasets: [{
                     label: 'Estado de las incidencias totales',
                     data: [result[0][0].length, result[0][1].length, result[0][2].length],
-                    backgroundColor: ['rgb(143,35,255)','rgb(36,255,63)','rgb(159,206,255)'],
+                    backgroundColor: ['rgb(159,206,255)','rgb(159,206,255)','rgb(159,206,255)'],
                     hidden:true
                 },{
                     label: 'Estado de las incidencias el ultimo mes',
                     data: [result[1][0].length, result[1][1].length, result[1][2].length],
-                    backgroundColor: ['rgb(26,58,255)','rgb(255,7,34)','rgb(46,255,144)'],
+                    backgroundColor: ['rgb(255,162,217)','rgb(255,162,217)','rgb(255,162,217)'],
                 },{
                     label: 'Estado de las incidencias la ultima semana',
                     data: [result[2][0].length, result[2][1].length, result[2][2].length],
-                    backgroundColor: ['rgb(255,254,25)','rgb(255,104,255)','rgb(156,255,217)'],
+                    backgroundColor: ['rgb(172,255,122)','rgb(172,255,122)','rgb(172,255,122)'],
                     hidden:true
                 }]
             },
             // Configuration options go here
             options: {
-                responsive : true,
+                legend: {
+                    labels: {
+                        fontColor: color
+                    }
+                },
+                responsive: true,
                 scales: {
-                    yAxes: [{
+                    xAxes: [{
                         display: true,
                         ticks: {
-                            beginAtZero: true   // minimum value will be 0.
+                            beginAtZero: true,   // minimum value will be 0.
+                            fontColor: color
                         }
-                    }]
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
                 }
             }
         });
@@ -216,13 +301,30 @@ window.onload = function(){
                 labels: ['Golpe','Pinchazo','Averia','Otro'],
                 datasets: [{
                     data: [result[0].length, result[1].length, result[2].length, result[3].length],
-                    backgroundColor: ['rgb(143,35,255)','rgb(36,255,63)','rgb(41,45,255)','rgb(255,65,16)'],
+                    backgroundColor: ['rgb(92,145,255)','rgb(172,255,122)','rgb(255,106,94)','rgb(255,252,115)'],
                 }]
             },
             // Configuration options go here
             options: {
-                responsive : true,
-                maintainAspectRatio: true
+                legend: {
+                    labels: {
+                        fontColor: color
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontColor: color
+                        }
+                    }],
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
             }
         });
     }

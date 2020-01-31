@@ -15,20 +15,26 @@ class IncidenciasTablaSeeder extends Seeder
 
         $ids = array();
         $id = 1;
-        for ($x = 0; $x < 250; $x++){
+        // para heroku -- comentar/descomentar
+        for ($x = 0; $x < 250; $x++) {
             array_push($ids, $id);
             $id = $id + 10;
         }
 
-        for($i=0;$i<500;$i++){
+        // create para en local -- comentar/descomentar
+        /*  for ($x = 0; $x < 250; $x++) {
+              array_push($ids, $id);
+          }
+  */
+        for ($i = 0; $i < 500; $i++) {
             DB::table('incidencias')->insert([
-                'descripcion' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                'descripcion' => $faker->realText($faker->numberBetween(20,64)),
                 'longitud' => $faker->longitude(),
                 'latitud' => $faker->latitude(),
-                'provincia' => $faker->randomElement($array = array ('Alava','Vizcaya','Guipuzcoa','Navarra')),
+                'provincia' => $faker->randomElement($array = array('Alava', 'Vizcaya', 'Guipuzcoa', 'Navarra')),
                 'hora_fin' => $faker->time($format = 'H:i:s', $max = 'now'),
-                'estado' => $faker->randomElement($array = array ('Resuelta','En curso','Garaje')),
-                'tipo' => $faker->randomElement($array = array('Pinchazo','Otro','Averia','Golpe')),
+                'estado' => $faker->randomElement($array = array('Resuelta', 'En curso', 'Garaje')),
+                'tipo' => $faker->randomElement($array = array('Pinchazo', 'Otro', 'Averia', 'Golpe')),
                 'tecnico_id' => $faker->randomElement($ids),
                 'cliente_id' => $faker->randomElement($ids),
                 'operador_id' => $faker->randomElement($ids),

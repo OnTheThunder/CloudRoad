@@ -12,5 +12,12 @@ function fechaCastellano($fecha)
     $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
     $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
-    echo $nombredia . " " . $numeroDia . " de " . $nombreMes . " de " . $anio . " -- " . substr($fecha, 11, strlen($fecha));
+
+    //Get numero mes
+    $diaMes = array_search($mes, $meses_EN) + 1;
+    if($diaMes < 10){
+        $diaMes = "0" . $diaMes;
+    }
+
+    echo $numeroDia . "/" . $diaMes . "/" . $anio . " " . substr($fecha, 11, strlen($fecha));
 }

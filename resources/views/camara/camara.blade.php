@@ -1,20 +1,19 @@
 @extends('layouts.layout')
 @section('content')
-    <!-- Scripts especificos de la pagina de camaras -->
-    <script src="{{asset('js/camaras.js')}}"></script>
+
 
     <div class="main">
-        <div class="row sticky-top shadow bg-white">
+        <div class="row sticky-top shadow bg-color-cards">
             @include('usuario.aside')
             <div class="col-md-9 d-flex flex-column">
                 <div class="d-flex justify-content-center my-2">
                     <h1>Camaras</h1>
                 </div>
-                <div class="d-flex flex-row">
-                    <div id="imagen" class="col-md-6 col-12 bg-white d-flex justify-content-center">
+                <div class="d-flex flex-row img-thumbnail">
+                    <div id="imagen" class="col-md-6 col-12  d-flex justify-content-center">
                         <!-- Aqui se mete la imagen de la camara por JS dependiendo de la seleccionada -->
                     </div>
-                    <div id="mapa" class="col-md-6 bg-white d-none d-md-block">
+                    <div id="mapa" class="col-md-6 d-none d-md-block">
                         <div id="mapa-camaras" class="border img-thumbnail">
                         </div>
                     </div>
@@ -34,6 +33,7 @@
             </div>
         </div>
     </div>
-
+    <!-- Scripts especificos de la pagina de camaras -->
+    <script src="{{secure_asset('js/camaras.js')}}"></script>
 
 @endsection

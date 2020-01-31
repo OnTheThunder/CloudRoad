@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Comentario;
 use App\Tecnico;
 use App\Incidencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class TecnicoController extends Controller
 {
@@ -71,10 +74,13 @@ class TecnicoController extends Controller
     public function update(Request $request)
     {
         $tecnico = Tecnico::find(request('idTecnico'));
-
         $tecnico->notificacion_respondida = 1;
-
         $tecnico->save();
+
+        $comentario = new Comentario();
+        $comentario->texto = 'La incidencia ha sido aceptada por el tecnico' . $tecnico->nombre . $tecnico->apellidos . '(' . $tecnico->id . ')';
+        $comentario->incidencia_id = request('idIncidencia');
+        $comentario->save();
 
         return redirect()->route('incidencia.show', ['id' => request('idIncidencia')]);
     }

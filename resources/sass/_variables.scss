@@ -1,10 +1,15 @@
 // Body
 $body-bg: #f8fafc;
 
+//Headers
+$headings-font-weight: 300;
+
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: Roboto, Lato, Montserrat, sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+$font-weight-base: 300;
+
 
 // Colors
 $blue: #3490dc;
@@ -25,8 +30,27 @@ $colorRojoSuave: #ff7672;
 $colorNaranjaSuave: #ffa95b;
 $colorAmarilloSuave: #fffe85;
 $colorVerdeSuave: #87ff82;
-//$colorPrincipal: #ee7236;
+$colorHeader: #75cf93;
+$dark: #404b69;
 
+.resaltar { /* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader;
+    color: white;
+}
+
+.bg-color-cards {
+    background: whitesmoke; /* Color la vieja confiable*/
+}
+
+.list-group a.bg-color-cards:hover{
+    background: #545f80 !important;
+}
+.list-group a.bg-color-cards.text-color-borrar-suave:hover{
+    color: $colorRojoSuave !important;
+}
+.list-group-item.bg-color-cards{
+    background: $dark;
+}
 
 // modificado
 $theme-colors: (
@@ -35,5 +59,10 @@ $theme-colors: (
     "color-borrar-suave":$colorRojoSuave,
     "color-estadisticas-suave":$colorNaranjaSuave,
     "color-datos-suave":$colorAmarilloSuave,
-    "color-anyadir-suave":$colorVerdeSuave
+    "color-anyadir-suave":$colorVerdeSuave,
+    "color-header": $colorHeader,
+    "color-dark": $dark,
 );
+
+// tipo de letra añadida
+@import url("https://fonts.googleapis.com/css?family=Faster+One&display=swap");

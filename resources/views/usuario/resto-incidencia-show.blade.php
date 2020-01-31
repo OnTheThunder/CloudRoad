@@ -1,8 +1,10 @@
 @extends('layouts.layout')
 
+@include('php.funcionesPropias')
+
 @section('content')
     <div class="row">
-        <div class="col-md-3"></div>
+        @include('usuario.aside')
         <div class="col-md-6 d-flex flex-column">
             <div class="d-flex justify-content-center my-2">
                 <h2>Incidencia # {{ $incidencia->id }}</h2>
@@ -40,38 +42,35 @@
                         </div>
                     </div>
                 </div>
+                @if(!$hideMap)
                 <div class="final-map-container">
                     <div id="final-map"></div>
                 </div>
-                <div>
+                @else
+                    <a href="{{route('incidencia.map', ['incidenciaLatitud' => $incidencia->latitud, 'incidenciaLongitud' => $incidencia->longitud, 'idIncidencia' => $incidencia->id])}}" class="btn btn-warning btn-lg btn-block">Reasignar Incidencia</a>
+                @endif
+                <div class="mt-5">
+                    <h3 >Comentarios</h3>
                     @foreach($comentarios as $comentario)
-                        <a class="mt-3 text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
-                            <div class="card m-1 shadow">
+                            <div class="card m-1 shadow my-3">
                                 <div class="card-body">
-                                    <h3 class="card-title">{{ $incidencia->tipo }}</h3>
-                                    <p class="card-text">{{ $incidencia->descripcion }}</p>
-                                    <span>Lugar: </span>{{$incidencia->provincia}}
-                                    @if($incidencia->estado == 'Resuelta')
-                                        <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta</p>
-                                    @elseif($incidencia->estado == 'Garaje')
-                                        <p class="card-footer border text-color-primario font-weight-bold mt-2">Resuelta en taller</p>
-                                    @else
-                                        <p class="card-footer border text-color-borrar-suave font-weight-bold mt-2">En curso</p>
-                                    @endif
-                                    <div class="text-secondary text-right text-monospace font-weight-bolder">Creada
+                                    <p class="card-text">{{ $comentario->texto }}</p>
+                                    <div class="text-secondary text-right text-monospace font-weight-bolder">Creado
                                         <span class="font-italic font-weight-lighter">
                                     @php
-                                        fechaCastellano($incidencia->created_at);
+                                        fechaCastellano($comentario->created_at);
                                     @endphp
                                     </span>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
+    @if(!$hideMap)
     <script src="{{ asset('js/mapaTecnico.js') }}"></script>
+    @endif
 @endsection

@@ -19,9 +19,12 @@ Route::get('/incidencias/create', 'IncidenciaController@create')->name('incidenc
 
 
 Route::post('/incidencias/store', 'IncidenciaController@store')->name('incidencia.store');
+Route::get('/incidencias/rechazadas', 'IncidenciaController@rechazadas')->name('incidencia.rechazadas');
 Route::get('/incidencias/create/map', 'IncidenciaController@displayMap')->name('incidencia.map')->middleware('auth');
 Route::get('/incidencias', 'IncidenciaController@index')->name('incidencia.index');
 Route::get('/incidencias/update/{id}', 'IncidenciaController@update')->name('incidencia.update');
+
+
 
 
 
@@ -68,7 +71,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/usuario', 'UsuarioController@create')->name('usuario.create');
 Route::post('/usuario', 'UsuarioController@store')->name('usuario.store');
 //baja usuario
-Route::get('/usuario/edit', 'UsuarioController@edit')->name('usuario.edit');
+Route::get('/usuario/edit', 'UsuarioController@edit')->name('usuario.baja.edit');
+Route::get('/usuario/update', 'UsuarioController@update');// ajax para dar de baja o alta
 Route::post('/usuario/edit', 'UsuarioController@update')->name('usuario.update');
 // cambiar contraseña
 Route::get('/usuario/password', 'UsuarioController@edit')->name('usuario.password.edit');
@@ -96,7 +100,7 @@ Route::get('/incidencias/estado', 'IncidenciaController@getIncidenciasEstado')->
 Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name('incidencias.tipo');
 
 //Tecnico
-Route::get('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
+Route::post('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
 
 //Las rutas con id siempre deben de ir al final para no dar conflicto
 Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
@@ -106,3 +110,5 @@ Route::get('/cliente/find-by-dni/{dni}', 'ClienteController@findByDni')->name('f
 Route::get('/vehiculo/find-by-matricula/{matricula}', 'VehiculoController@findByMatricula')->name('find.by.matricula');
 
 Route::get('/incidencias/{idIncidencia}/getCoordenadas', 'IncidenciaController@getCoordenadas')->name('incidencias.getCoordenadas');
+
+Route::post('/incidencias/reasignarTecnico', 'IncidenciaController@reasignarTecnico');

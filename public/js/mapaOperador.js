@@ -10,75 +10,209 @@ let objetoResponse;
 let talleres;
 let tecnicos;
 let oTallerMasCercano;
+let incidenciaRechazadaLatitud;
+let incidenciaRechazadaLongitud;
+let incidenciaRechazadaId;
+let c
 
 window.onload = function () {
-    initMap();
+    let loadingLogo = $('.loading-logo').hide();
+    setLoadingLogoOnAjaxCall(loadingLogo);
+    getTalleresAJAX();
     $('html, body').scrollTop(0);
     $('body').css('overflow', 'hidden'); //Mapa en fullscreen
     $(function () {$('[data-toggle="tooltip"]').tooltip()});//Activate tooltips
 };
+function getCookie(nombreCookie) {
+    var name = nombreCookie + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 //Inicializar mapa
 function initMap() {
-    getTalleresAJAX();
-
     let searchBox = new google.maps.places.SearchBox(document.getElementById("mapsearch"));
     let defaultLatLng = {lat: 42.842326386012516, lng: -2.691612846296414}; //Punto en el que está centrado el mapa por defecto
     let directionsService = new google.maps.DirectionsService();
     let directionsRenderer = new google.maps.DirectionsRenderer();
 
+    console.log(document.cookie)
+    if(document.cookie)
+        c = getCookie('modo');
+    if (c != null && c != "") {
+        if(c === 'nocturno'){
+            //Crea el mapa diurno
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: defaultLatLng,
+                options: {
+                    gestureHandling: 'greedy'
+                }
+            });
+        }else{
+            //crea el mapa nocturno
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: defaultLatLng,
+                options: {
+                    gestureHandling: 'greedy'
+                },
+                styles: [
+                    {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                    {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                    {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                    {
+                        featureType: 'administrative.locality',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#d59563'}]
+                    },
+                    {
+                        featureType: 'poi',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#d59563'}]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'geometry',
+                        stylers: [{color: '#263c3f'}]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#6b9a76'}]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [{color: '#38414e'}]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry.stroke',
+                        stylers: [{color: '#212a37'}]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#9ca5b3'}]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry',
+                        stylers: [{color: '#746855'}]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry.stroke',
+                        stylers: [{color: '#1f2835'}]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#f3d19c'}]
+                    },
+                    {
+                        featureType: 'transit',
+                        elementType: 'geometry',
+                        stylers: [{color: '#2f3948'}]
+                    },
+                    {
+                        featureType: 'transit.station',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#d59563'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'geometry',
+                        stylers: [{color: '#1b4059'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#515c6d'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.stroke',
+                        stylers: [{color: '#1b4059'}]
+                    }
+                ]
+            });
+    }
 
-    //Crea el mapa
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 9,
-        center: defaultLatLng,
-        options: {
-            gestureHandling: 'greedy'
-        }
-    });
+    }else{
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 9,
+            center: defaultLatLng,
+            options: {
+                gestureHandling: 'greedy'
+            }
+        });
+    }
 
 
-    //RUTAS POR CLICK
-    google.maps.event.addDomListener(map, 'click', function( event ){
+    //Check si venimos a marcar una nueva incidencia o a reasingar una incidencia previamente rechazada
+    incidenciaRechazadaLatitud = $('#hiddenIncidenciaLatitud').val();
+    incidenciaRechazadaLongitud = $('#hiddenIncidenciaLongitud').val();
+    incidenciaRechazadaId = $('#hiddenIncidenciaId').val();
 
-        document.getElementById("mapsearch").value = "";
-
-        let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
-
-        //Eliminar el render de la anterior ruta
-        deleteRouteRender();
-
-        //createMarker(lugarIncidencia);
-
-        //Resetear los calculos de las rutas
-        resetRouteValues();
-
-        //Iterar a traves de los talleres para obtener el más cercano a la incidencia
+    if(incidenciaRechazadaLatitud && incidenciaRechazadaLongitud && incidenciaRechazadaId){
+        let lugarIncidencia = new google.maps.LatLng(incidenciaRechazadaLatitud, incidenciaRechazadaLongitud);
         iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
+    }
+    else{
+        //RUTAS POR CLICK
+        google.maps.event.addDomListener(map, 'click', function( event ){
 
-        //deletePreviousMarker();
-        //getLatLngOnClick(lugarIncidencia);
-    });
+            document.getElementById("mapsearch").value = "";
 
-    //RUTAS POR BUSQUEDAS
-    google.maps.event.addDomListener(searchBox, 'places_changed', function () {
+            let lugarIncidencia = {lat: event.latLng.lat(), lng: event.latLng.lng()};
 
-        //Eliminar el render de la anterior ruta
-        deleteRouteRender();
+            //Eliminar el render de la anterior ruta
+            deleteRouteRender();
 
-        let places = searchBox.getPlaces();
-        let lugarIncidencia = {lat: places[0].geometry.location.lat(), lng: places[0].geometry.location.lng()};
+            //createMarker(lugarIncidencia);
 
-        //createMarker(lugarIncidencia);
+            //Resetear los calculos de las rutas
+            resetRouteValues();
 
-        //Resetear los calculos de las rutas
-        resetRouteValues();
+            //Iterar a traves de los talleres para obtener el más cercano a la incidencia
+            iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
 
-        //Iterar a traves de los talleres para obtener el más cercano a la incidencia
-        iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
+            //deletePreviousMarker();
+            //getLatLngOnClick(lugarIncidencia);
+        });
 
-        //deletePreviousMarker();
-    })
+        //RUTAS POR BUSQUEDAS
+        google.maps.event.addDomListener(searchBox, 'places_changed', function () {
+
+            //Eliminar el render de la anterior ruta
+            deleteRouteRender();
+
+            let places = searchBox.getPlaces();
+            let lugarIncidencia = {lat: places[0].geometry.location.lat(), lng: places[0].geometry.location.lng()};
+
+            //createMarker(lugarIncidencia);
+
+            //Resetear los calculos de las rutas
+            resetRouteValues();
+
+            //Iterar a traves de los talleres para obtener el más cercano a la incidencia
+            iterateTalleresRoutes(lugarIncidencia, directionsService, directionsRenderer);
+
+            //deletePreviousMarker();
+        })
+    }
 }
 
 
@@ -250,6 +384,9 @@ function getTalleresAJAX() {
         dataType: 'json',
         success: function(result){
             talleres = result;
+            initMap();
+            $('#map-search-container').css('display', 'block');
+            $('#map-legend-container').css('display', 'block');
         }
     });
 }
@@ -309,17 +446,51 @@ function renderTecnicos() {
     let btnNotificarTecnico = $('.btn-notificar-tecnico');
 
     btnNotificarTecnico.on('click', function () {
-        //window.location.href = '/';
         let clickedIndex = btnNotificarTecnico.index(this);
         $('.mensaje-tecnico-notificado').eq(clickedIndex).fadeIn("1000");
-        let oDatosIncidencia = prepareIncidenciaData(this.value);
-        storeIncidenciaAJAX(oDatosIncidencia);
 
+        if(incidenciaRechazadaLatitud && incidenciaRechazadaLongitud && incidenciaRechazadaId){
+            let datosTecnico = getNewTecnico(this.value);
+            updateIncidenciaAJAX(datosTecnico);
+        }
+        else{
+            let oDatosIncidencia = prepareIncidenciaData(this.value);
+            storeIncidenciaAJAX(oDatosIncidencia);
+        }
         //FadeOut page
         setTimeout(function () {
             $('.fadeOut-wrapper').fadeOut('1000');
         }, 2000)
     })
+}
+
+function getNewTecnico(idEmailTecnico) {
+    let datosTecnico = {};
+    //Tecnico
+    let idTecnico = idEmailTecnico.substr(0, idEmailTecnico.indexOf(','));
+    let emailTecnico = idEmailTecnico.substr(idEmailTecnico.indexOf(',') + 1, idEmailTecnico.length-1);
+    datosTecnico.id = idTecnico;
+    datosTecnico.email = emailTecnico;
+    return datosTecnico;
+}
+
+function updateIncidenciaAJAX(datosTecnico) {
+    $.ajax({
+        type: 'POST',
+        url: '/incidencias/reasignarTecnico',
+        data: {'datosTecnico' : datosTecnico, 'incidenciaRechazadaId': incidenciaRechazadaId},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(){
+            console.log("SUCCESS");
+            sendEmailAJAX(datosTecnico.email);
+            window.location.href = '/'; //Si no envía el correo colocar el href dentro del success de sendemail
+        },
+        error: function (result) {
+            console.log("ERROR");
+        }
+    });
 }
 
 function sendEmailAJAX(emailTecnico) {
@@ -406,6 +577,17 @@ function getJSONfromCookie() {
     }
     return JSON.parse(handledCookie);
 }
+
+function setLoadingLogoOnAjaxCall(loadingLogo) {
+    $(document).ajaxStart(function () {
+        loadingLogo.show();
+    }).ajaxStop(function () {
+        loadingLogo.hide();
+    });
+}
+
+
+
 
 
 

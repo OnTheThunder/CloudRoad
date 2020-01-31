@@ -37,7 +37,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('operador/incidencia_create');
+        return view('operador/incidencia_create',['usuario' => Auth::user()]);
     }
 
     /**
@@ -110,6 +110,10 @@ class IncidenciaController extends Controller
 
         //COMENTARIOS
         //INSERT COMENTARIO INCIDENCIA CREADA
+        $comentario = new Comentario();
+        $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#' . $tecnico->id . ')';
+        $comentario->incidencia_id = $incidencia->id;
+        $comentario->save();
     }
 
 
@@ -130,7 +134,7 @@ class IncidenciaController extends Controller
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
                 $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
-                return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0], 'comentarios' => $comentarios]);
+                return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0], 'comentarios' => $comentarios,'usuario' => Auth::user()]);
                 break;
             default:
                 // coger incidencias para mostrar en una paginacion
@@ -138,7 +142,7 @@ class IncidenciaController extends Controller
                 $cliente = Cliente::find($incidencia->cliente_id);
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
                 $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
-                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios]);
+                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios, 'hideMap' => request('hideMap'), 'usuario' => Auth::user()]);
         }
     }
 
@@ -177,6 +181,16 @@ class IncidenciaController extends Controller
             $tecnico->disponibilidad = 1;
             $tecnico->notificacion_respondida = 0;
             $tecnico->save();
+
+            $comentario = new Comentario();
+            if($incidencia->estado == 'Resuelta'){
+                $comentario->texto = 'La incidencia esta resuelta';
+            }else{
+                $comentario->texto = 'La incidencia esta resuelta en garaje';
+            }
+
+            $comentario->incidencia_id = $incidencia->id;
+            $comentario->save();
         }
         //Incidencia ha sido rechazada y continua en curso
         else{
@@ -185,6 +199,11 @@ class IncidenciaController extends Controller
 
             $tecnico->disponibilidad = 1;
             $tecnico->save();
+
+            $comentario = new Comentario();
+            $comentario->texto = 'La incidencia ha sido rechazado por el tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#x' . $tecnico->id . ')';
+            $comentario->incidencia_id = $incidencia->id;
+            $comentario->save();
         }
         return redirect()->route('main.index');
     }
@@ -202,7 +221,15 @@ class IncidenciaController extends Controller
 
 
     public function getTalleres(){
-        return json_encode(Taller::all());
+        $talleresAll = Taller::all();
+        $talleresConTecnicos = [];
+        foreach($talleresAll as $taller){
+            $tecnicos = IncidenciaController::getTecnicosByTaller($taller->id);
+            if(count(json_decode($tecnicos)) > 0){
+                array_push($talleresConTecnicos, $taller);
+            }
+        }
+        return json_encode($talleresConTecnicos);
     }
 
     public function getTecnicosByTaller($idTaller){
@@ -224,7 +251,7 @@ class IncidenciaController extends Controller
     }
 
     public function displayMap(){
-        return view('operador/incidencia_ubicacion');
+        return view('operador/incidencia_ubicacion', ['incidenciaLatitud' => request('incidenciaLatitud'), 'incidenciaLongitud' => request('incidenciaLongitud'), 'idIncidencia' => request('idIncidencia')]);
     }
 
 
@@ -243,13 +270,13 @@ class IncidenciaController extends Controller
 
         switch (session('estado')){
             case 'resuelta':
-                $incidenciasEstado = Incidencia::where($findResuelta)->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = Incidencia::where($findResuelta)->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'taller':
-                $incidenciasEstado = Incidencia::where($findGaraje)->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = Incidencia::where($findGaraje)->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'en curso':
-                $incidenciasEstado = Incidencia::where($findEnCurso)->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = Incidencia::where($findEnCurso)->orderBy('updated_at', 'desc')->paginate(15);
             break;
         }
 
@@ -273,16 +300,16 @@ class IncidenciaController extends Controller
 
         switch (session('tipo')){
             case 'Pinchazo':
-                $incidenciasTipo = DB::table('incidencias')->where($findPinchazo)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findPinchazo)->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Averia':
-                $incidenciasTipo = DB::table('incidencias')->where($findAveria)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findAveria)->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Golpe':
-                $incidenciasTipo = DB::table('incidencias')->where($findGolpe)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findGolpe)->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Otro':
-                $incidenciasTipo = DB::table('incidencias')->where($findOtro)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findOtro)->orderBy('estado', 'asc')->paginate(15);
                 break;
         }
 
@@ -299,13 +326,13 @@ class IncidenciaController extends Controller
 
         switch (session('estado')){
             case 'resuelta':
-                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Resuelta')->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Resuelta')->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'taller':
-                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Garaje')->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Garaje')->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'en curso':
-                $incidenciasEstado = DB::table('incidencias')->where('estado', 'En curso')->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'En curso')->orderBy('updated_at', 'desc')->paginate(15);
             break;
         }
 
@@ -321,16 +348,16 @@ class IncidenciaController extends Controller
 
         switch (session('tipo')){
             case 'Pinchazo':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Pinchazo')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Pinchazo')->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Averia':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Averia')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Averia')->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Golpe':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Golpe')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Golpe')->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Otro':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Otro')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Otro')->orderBy('estado', 'asc')->paginate(15);
                 break;
         }
 
@@ -346,5 +373,27 @@ class IncidenciaController extends Controller
                 'longitudIncidencia' => $incidencia->longitud,
                 'latitudTaller' => $taller->latitud,
                 'longitudTaller' => $taller->longitud];
+    }
+
+    public function rechazadas(Request $request){
+        $incidenciasRechazadas = Incidencia::where('tecnico_id', null)->orderBy('updated_at', 'desc')->paginate(15);
+
+        return view('usuario/incidencias-rechazadas', ['incidenciasRechazadas' => $incidenciasRechazadas, 'usuario' => Auth::user()]);
+    }
+
+    public function reasignarTecnico(Request $request){
+        $incidencia = Incidencia::find(request('incidenciaRechazadaId'));
+        $incidencia->tecnico_id = request()->all()['datosTecnico']['id'];
+        $incidencia->save();
+
+        $tecnico = Tecnico::where('tecnico_id', $incidencia->tecnico_id)->get();
+
+
+        $comentario = new Comentario();
+        $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#' . $tecnico->id . ')';
+        $comentario->incidencia_id = $incidencia->id;
+        $comentario->save();
+
+        return redirect(route('incidencia.rechazadas'));
     }
 }

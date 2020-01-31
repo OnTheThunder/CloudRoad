@@ -5,10 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
 
 
 class Usuario extends Authenticatable
 {
+    use Sortable;
+    public $sortable = ['id', 'nombre', 'email', 'rol', 'created_at', 'updated_at'];
+
 
     public function coordinador()
     {
@@ -33,7 +37,7 @@ class Usuario extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'nombre', 'email', 'password',
+        'nombre', 'email', 'password',
     ];
 
     /**

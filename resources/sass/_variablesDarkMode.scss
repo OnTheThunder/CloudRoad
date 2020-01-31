@@ -1,0 +1,183 @@
+// Body
+$body-bg: #283149;
+$text-color: #dbedf3;
+
+//Headers
+$headings-font-weight: 300;
+
+// Typography
+$font-family-sans-serif: Roboto, Lato, Montserrat, sans-serif;
+$font-size-base: 0.9rem;
+$font-weight-base: 300;
+$line-height-base: 1.6;
+
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+
+//Nuevos añadidos
+$colorLogo: #fcda06;
+$colorPrincipal: #61cbd3;
+$colorRojoSuave: #ff7672;
+$colorNaranjaSuave: #ffa95b;
+$colorTurquesaSuave: #24fda4;
+$colorVerdeSuave: #87ff82;
+$colorCards: #404b69;
+$colorHeader: #00818a;
+
+//Escpecificos dark mode
+$body-color: $text-color;
+$navbar-light-color: $text-color;
+$card-bg: #404b69;
+$dark: $text-color;
+$secondary: #a8b1b9;
+$border-color: #283149;
+$primary: #165588;
+$danger: #f75955;
+
+
+.leyenda-filtro-default span, .leyenda-filtro-default i{
+    color: $text-color !important;
+}
+
+.card:hover{
+    background:$colorCards !important;
+}
+
+.card-incidencia:hover{
+    background: #545f80 !important;
+    color: $text-color;
+}
+.list-group a.bg-color-cards:hover{
+   background: #545f80 !important;
+}
+.list-group a.bg-color-cards.text-color-borrar-suave:hover{
+    color: $colorRojoSuave !important;
+}
+
+.btn-primary{
+    background-color: $body-bg !important;
+    border-color: #649ad0 !important;
+    color: #649ad0 !important;
+}
+
+.btn-primary:hover{
+    background-color: #404b69 !important;
+    border-color: #404b69 !important;
+}
+
+.pagination > li > a
+{
+    background-color: #404b69;
+    color: $text-color;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: $text-color;
+    background-color: #649ad0;
+}
+
+.pagination > .active > a
+{
+    color: #404b69;
+    background-color: #404b69 !important;
+    border: solid 1px #404b69 !important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: $text-color !important;
+    border: solid 1px $text-color;
+}
+.page-item.active, .page-link {
+    background-color: #404b69;
+    border-color: #649ad0 !important;
+}
+
+.page-item.disabled .page-link {
+    background-color: #404b69 !important;
+    color: $text-color !important;
+}
+
+.btn-lg{
+    font-size: 1rem !important;
+}
+.form-control{
+    background-color: #404b69 !important;
+    border-color: #404b69 !important;
+    color: $text-color !important;
+}
+#mapsearch{
+    background-color: white !important;
+    color: $body-bg !important;
+    border: 1px solid #ced4da !important;
+}
+
+#map-legend span{
+    color: $body-bg !important;
+}
+
+.infoBox, .infoBoxTecnico{
+    color: $body-bg !important;
+}
+
+.btn-scrollers{
+    color: $body-bg;
+}
+.btn-notificar-tecnico{
+    border-color: #649ad0 !important;
+    color: #649ad0 !important;
+}
+
+.table-datos a{
+    color: $text-color !important;
+}
+
+.btn-outline-danger{
+    color: #ff6763;
+    border-color: #ff6763;
+}
+
+#lugar-label{
+    color: $text-color !important;
+}
+
+.resaltar {/* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader;
+    color: $colorPrincipal;
+}
+
+
+
+// modificado
+$theme-colors: (
+    "color-primario": $colorPrincipal,
+    "color-secundario": $colorLogo,
+    "color-borrar-suave":$colorRojoSuave,
+    "color-estadisticas-suave":$colorNaranjaSuave,
+    "color-datos-suave":$colorTurquesaSuave,
+    "color-anyadir-suave":$colorVerdeSuave,
+    "color-cards": $colorCards,
+    "color-header": $colorHeader,
+);
+
+// tipo de letra añadida
+@import url("https://fonts.googleapis.com/css?family=Faster+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap");

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3"></div>
+        @include('usuario.aside')
         <div class="col-6">
             <div class="d-flex justify-content-between my-4">
                 <h2>Nueva Incidencia</h2>
-                <a href="{{ route('incidencia.index') }}" class="btn btn-primary">Volver</a>
+                <a href="{{ route('incidencia.index') }}" class="btn btn-primary btn-lg">Volver</a>
             </div>
             <div>
                 <form action="{{ route('incidencia.map') }}" method="get" class="needs-validation" novalidate>
@@ -92,7 +92,7 @@
                     <div class="form-group row">
                         <div class="col">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" required></textarea>
+                            <textarea class="form-control" id="descripcion" rows="3" name="descripcion" maxlength="64" required></textarea>
                             <div class="invalid-feedback">
                                 Hay que introducir una descripción.
                             </div>
