@@ -31,6 +31,7 @@ $colorNaranjaSuave: #ffa95b;
 $colorAmarilloSuave: #fffe85;
 $colorVerdeSuave: #87ff82;
 $colorHeader: #75cf93;
+$dark: #404b69;
 
 .resaltar { /* resaltar la row elegida en la tabla de camaras*/
     background: $colorHeader;
@@ -41,6 +42,15 @@ $colorHeader: #75cf93;
     background: whitesmoke; /* Color la vieja confiable*/
 }
 
+.list-group a.bg-color-cards:hover{
+    background: #545f80 !important;
+}
+.list-group a.bg-color-cards.text-color-borrar-suave:hover{
+    color: $colorRojoSuave !important;
+}
+.list-group-item.bg-color-cards{
+    background: $dark;
+}
 
 // modificado
 $theme-colors: (
@@ -51,6 +61,7 @@ $theme-colors: (
     "color-datos-suave":$colorAmarilloSuave,
     "color-anyadir-suave":$colorVerdeSuave,
     "color-header": $colorHeader,
+    "color-dark": $dark,
 );
 
 // tipo de letra añadida

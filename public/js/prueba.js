@@ -108,7 +108,7 @@ console.log('ts');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/vagrant/code/CloudRoad/resources/js/prueba.ts */"./resources/js/prueba.ts");
+module.exports = __webpack_require__(/*! /home/vagrant/code/OnTheThunder/CloudRoad/resources/js/prueba.ts */"./resources/js/prueba.ts");
 
 
 /***/ })
