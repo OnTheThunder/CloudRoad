@@ -29,7 +29,9 @@
                 @enderror
                 <button class="sign-up-button w-100 my-4 btn">LOG IN</button>
                 @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                    <!--<a class="btn btn-link" href="{{ route('password.request') }}">-->
+                    <a class="btn btn-link" href="">
+                        <i class="fas fa-hammer text-warning"></i>
                         (WIP)  {{ __('No recuerdo mi contraseña') }}
                     </a>
                 @endif
