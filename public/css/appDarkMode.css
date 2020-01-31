@@ -6,8 +6,20 @@
 }
 
 .card:hover {
+  background: #404b69 !important;
+}
+
+.card-incidencia:hover {
   background: #545f80 !important;
   color: #dbedf3;
+}
+
+.list-group a.bg-color-cards:hover {
+  background: #545f80 !important;
+}
+
+.list-group a.bg-color-cards.text-color-borrar-suave:hover {
+  color: #ff7672 !important;
 }
 
 .btn-primary {
@@ -6146,7 +6158,6 @@ input[type=button].btn-block {
   -webkit-box-direction: normal;
           flex-direction: column;
   min-width: 0;
-  height: 160px;
   word-wrap: break-word;
   background-color: #404b69;
   background-clip: border-box;

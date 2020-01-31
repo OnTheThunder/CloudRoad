@@ -28,7 +28,7 @@ class IncidenciasTablaSeeder extends Seeder
   */
         for ($i = 0; $i < 500; $i++) {
             DB::table('incidencias')->insert([
-                'descripcion' => $faker->realText($maxNbChars = 200, $indexSize = 2),
+                'descripcion' => $faker->realText($faker->numberBetween(20,64)),
                 'longitud' => $faker->longitude(),
                 'latitud' => $faker->latitude(),
                 'provincia' => $faker->randomElement($array = array('Alava', 'Vizcaya', 'Guipuzcoa', 'Navarra')),

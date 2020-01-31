@@ -7,28 +7,28 @@
         <div class="list-group">
             @if($usuario->rol == 'operario')
                 <a href="{{ route('incidencia.rechazadas') }}"
-                   class="list-group-item list-group-item-action text-color-borrar-suave bg-aside">
+                   class="list-group-item list-group-item-action text-color-borrar-suave bg-color-cards">
                     <i class="fas fa-ban mr-2"></i>Incidencias rechazadas</a>
             @endif
-            <a href="{{route('main.index')}}" class="list-group-item list-group-item-action text-white bg-aside">
+            <a href="{{route('main.index')}}" class="list-group-item list-group-item-action text-white bg-color-cards">
                 <i class="fas fa-user mr-2"></i>Historial incidencias</a>
             <!-- If de crear usuario -->
             @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador')
-                <a href="{{route('usuario.create')}}" class="list-group-item list-group-item-action text-color-anyadir-suave bg-aside">
+                <a href="{{route('usuario.create')}}" class="list-group-item list-group-item-action text-color-anyadir-suave bg-color-cards">
                     <i class="fas fa-user-plus mr-2"></i>Nuevo usuario</a>
-                <a href="{{route('usuario.baja.edit')}}" class="list-group-item list-group-item-action text-color-borrar-suave bg-aside">
+                <a href="{{route('usuario.baja.edit')}}" class="list-group-item list-group-item-action text-color-borrar-suave bg-color-cards">
                     <i class="fas fa-user-minus mr-2"></i>Alta/baja usuario</a>
             @endif
             <a href="{{ route('coordinador.estadisticas') }}"
-               class="list-group-item list-group-item-action text-color-estadisticas-suave bg-aside">
+               class="list-group-item list-group-item-action text-color-estadisticas-suave bg-color-cards">
                 <i class="fas fa-chart-bar mr-2"></i>Estadisticas</a>
             <a href="{{ route('coordinador.datos') }}"
-               class="list-group-item list-group-item-action text-color-datos-suave bg-aside">
+               class="list-group-item list-group-item-action text-color-datos-suave bg-color-cards">
                 <i class="fas fa-users mr-2"></i>Datos</a>
         </div>
         <div class="d-none d-sm-flex justify-content-center text-decoration-none">
             <a href="#" class="scroll-top d-none" title="Ir arriba">
-                <i class="fas fa-arrow-up shadow bg-aside mt-3 p-3 rounded-circle text-color-primario"></i>
+                <i class="fas fa-arrow-up shadow bg-color-cards mt-3 p-3 rounded-circle text-color-primario"></i>
             </a>
         </div>
     </div>

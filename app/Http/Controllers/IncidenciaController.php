@@ -111,7 +111,7 @@ class IncidenciaController extends Controller
         //COMENTARIOS
         //INSERT COMENTARIO INCIDENCIA CREADA
         $comentario = new Comentario();
-        $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . '(' . $tecnico->id . ')';
+        $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#' . $tecnico->id . ')';
         $comentario->incidencia_id = $incidencia->id;
         $comentario->save();
     }
@@ -201,7 +201,7 @@ class IncidenciaController extends Controller
             $tecnico->save();
 
             $comentario = new Comentario();
-            $comentario->texto = 'La incidencia ha sido rechazado por el tecnico ' . $tecnico->nombre . $tecnico->apellidos . '(' . $tecnico->id . ')';
+            $comentario->texto = 'La incidencia ha sido rechazado por el tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#x' . $tecnico->id . ')';
             $comentario->incidencia_id = $incidencia->id;
             $comentario->save();
         }
@@ -385,6 +385,14 @@ class IncidenciaController extends Controller
         $incidencia = Incidencia::find(request('incidenciaRechazadaId'));
         $incidencia->tecnico_id = request()->all()['datosTecnico']['id'];
         $incidencia->save();
+
+        $tecnico = Tecnico::where('tecnico_id', $incidencia->tecnico_id)->get();
+
+
+        $comentario = new Comentario();
+        $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#' . $tecnico->id . ')';
+        $comentario->incidencia_id = $incidencia->id;
+        $comentario->save();
 
         return redirect(route('incidencia.rechazadas'));
     }
