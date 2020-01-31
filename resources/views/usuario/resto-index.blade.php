@@ -86,17 +86,16 @@
                             <div class="mb-4 card shadow card-incidencia">
                                 <div class="card-body">
                                     <span class="card-title h4 clearfix">#{{$incidencia->id}} {{ $incidencia->tipo }}: </span>
-                                    <span id="lugar-label" class="float-right text-secondary lugar">Lugar: <span
+                                    <span id="lugar-label" class="text-secondary lugar">Lugar: <span
                                             class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
                                     <p class="my-2 card-footer border">{{ $incidencia->descripcion }}</p>
                                     @if($incidencia->estado == 'Resuelta')
                                         <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                        <span class="text-color-primario col-md-3 px-0">
+                                        <span class="text-color-primario col-md-3 col-5 px-0">
                                             Resuelta
                                           </span>
                                             <small
-                                                class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
-                                                Creada:
+                                                class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7">
                                                 <span class="font-italic">
                                                     @php
                                                         fechaCastellano($incidencia->created_at);
@@ -106,12 +105,11 @@
                                         </p>
                                     @elseif($incidencia->estado == 'Garaje')
                                         <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                            <span class="text-color-primario col-md-3 px-0">
+                                            <span class="text-color-primario col-md-3 col-5 px-0">
                                                 Resuelta en taller
                                                 </span>
                                             <small
-                                                class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
-                                                Creada:
+                                                class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7">
                                                 <span class="font-italic">
                                                     @php
                                                         fechaCastellano($incidencia->created_at);
@@ -121,14 +119,11 @@
                                         </p>
                                     @else
                                         <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                             <span class="text-color-borrar-suave col-md-3 px-0">
+                                             <span class="text-color-borrar-suave col-md-3 col-5 px-0">
                                             En curso
                                                 </span>
                                             <small
-                                                class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
-
-                                                Creada:
-
+                                                class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7">
                                                 <span class="font-italic">
                                                     @php
                                                         fechaCastellano($incidencia->created_at);
