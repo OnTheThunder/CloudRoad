@@ -360,12 +360,6 @@ button:focus {
     margin-top: 10rem;
 }
 
-#miGrafico {
-    height: 500px;
-    width: 600px;
-}
-
-
 .loading-logo {
     width: 150px;
     height: 150px;
@@ -381,6 +375,13 @@ button:focus {
     width: 100%;
     height: auto;
     animation: loading 2s infinite;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 60vh;
+    width: 50vw;
 }
 
 @keyframes loading {
@@ -404,7 +405,10 @@ footer.container-fluid{
     .date-label{
         font-size: 0.7rem;
     }
-    #miGrafico {
-        height: 300px;
+    .chart-container {
+        position: relative;
+        height: 60vh;
+        width: 50vw;
     }
 }
+

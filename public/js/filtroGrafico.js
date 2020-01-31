@@ -149,7 +149,6 @@ window.onload = function(){
                         }
                     }],
                 },
-                responsive: true,
                 maintainAspectRatio: false
             }
         });
@@ -178,7 +177,6 @@ window.onload = function(){
                         fontColor: color
                     }
                 },
-                responsive: true,
                 scales: {
                     xAxes: [{
                         display: true,
@@ -192,9 +190,8 @@ window.onload = function(){
                             fontColor: color
                         }
                     }],
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
+                },
+                maintainAspectRatio: false
             }
         });
     }
@@ -220,7 +217,6 @@ window.onload = function(){
                         fontColor: color
                     }
                 },
-                responsive: true,
                 maintainAspectRatio: false
             }
         });
@@ -257,7 +253,6 @@ window.onload = function(){
                         fontColor: color
                     }
                 },
-                responsive: true,
                 scales: {
                     xAxes: [{
                         display: true,
@@ -273,7 +268,6 @@ window.onload = function(){
                     }],
 
                 },
-                responsive: true,
                 maintainAspectRatio: false
             }
         });
@@ -300,7 +294,6 @@ window.onload = function(){
                         fontColor: color
                     }
                 },
-                responsive: true,
                 maintainAspectRatio: false
             }
         });
