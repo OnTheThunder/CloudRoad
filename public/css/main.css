@@ -360,6 +360,11 @@ button:focus {
     margin-top: 10rem;
 }
 
+#miGrafico {
+    height: 500px;
+    width: 600px;
+}
+
 
 .loading-logo {
     width: 150px;
@@ -398,5 +403,8 @@ footer.container-fluid{
     }
     .date-label{
         font-size: 0.7rem;
+    }
+    #miGrafico {
+        height: 300px;
     }
 }

@@ -148,9 +148,9 @@ window.onload = function(){
                             fontColor: color
                         }
                     }],
-                    responsive: true,
-                    maintainAspectRatio: true
-                }
+                },
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     }
@@ -193,7 +193,7 @@ window.onload = function(){
                         }
                     }],
                     responsive: true,
-                    maintainAspectRatio: true
+                    maintainAspectRatio: false
                 }
             }
         });
@@ -220,20 +220,8 @@ window.onload = function(){
                         fontColor: color
                     }
                 },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: color
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontColor: color
-                        }
-                    }],
-                    responsive: true,
-                    maintainAspectRatio: true
-                }
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     }
@@ -283,9 +271,10 @@ window.onload = function(){
                             fontColor: color
                         }
                     }],
-                    responsive: true,
-                    maintainAspectRatio: true
-                }
+
+                },
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     }
@@ -311,20 +300,8 @@ window.onload = function(){
                         fontColor: color
                     }
                 },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: color
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontColor: color
-                        }
-                    }],
-                    responsive: true,
-                    maintainAspectRatio: true
-                }
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     }
