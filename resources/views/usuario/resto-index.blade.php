@@ -83,14 +83,14 @@
                     <div class="col-xl-6">
                         <a class="text-decoration-none text-dark"
                            href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
-                            <div class="mb-4 card shadow card-incidencia">
-                                <div class="card-body">
+                            <div class="container mb-4 card shadow card-incidencia d-flex align-items-center justify-content-center">
+                                <div class="w-100">
                                     <span class="card-title h4 clearfix">#{{$incidencia->id}} {{ $incidencia->tipo }}: </span>
                                     <span id="lugar-label" class="text-secondary lugar">Lugar: <span
                                             class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
                                     <p class="my-2 card-footer border">{{ $incidencia->descripcion }}</p>
                                     @if($incidencia->estado == 'Resuelta')
-                                        <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
+                                        <p class="row flex-row flex-wrap font-weight-bold m-0 justify-content-between">
                                         <span class="text-color-primario col-5 estado-label px-0">
                                             Resuelta
                                           </span>
@@ -104,7 +104,7 @@
                                             </small>
                                         </p>
                                     @elseif($incidencia->estado == 'Garaje')
-                                        <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie justify-content-between">
+                                        <p class="row flex-row flex-wrap border-0 font-weight-bold m-0 justify-content-between">
                                             <span class="text-color-primario col-5 estado-label px-0">
                                                 Resuelta en taller
                                                 </span>
@@ -118,7 +118,7 @@
                                             </small>
                                         </p>
                                     @else
-                                        <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
+                                        <p class="row flex-row flex-wrap font-weight-bold m-0 justify-content-between">
                                              <span class="text-color-borrar-suave col-5 estado-label px-0">
                                             En curso
                                                 </span>
