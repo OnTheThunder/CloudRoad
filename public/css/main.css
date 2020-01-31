@@ -30,7 +30,9 @@ html {
 
 /* Incidencias */
 .lugar {
-    margin-top: -28px;
+    position: absolute;
+    top: 1.3rem;
+    right: 1.3rem;
 }
 
 .card-pie {
@@ -299,14 +301,14 @@ button:focus {
     animation: blinkerBorder 2s linear infinite;
 }
 
+.card-incidencia-nueva .card-title{
+    margin-left: 1.7rem;
+}
+
 .nueva-incidencia-container {
     position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 1rem 1rem 0 0;
+    top: 1.3rem;
+    left: 1.3rem;
 }
 
 .nueva-incidencia-container span {
@@ -387,3 +389,8 @@ footer.container-fluid{
     width: 100vw;
 }
 
+@media only screen and (max-width: 768px) {
+    .card-incidencia{
+        height: 175px;
+    }
+}

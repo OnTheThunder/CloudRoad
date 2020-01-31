@@ -91,13 +91,9 @@
   !*** ./resources/js/prueba.ts ***!
   \********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-var pruebas = 'pruebas';
-console.log('ts');
-
+throw new Error("Module build failed (from ./node_modules/ts-loader/index.js):\nError: ENOENT: no such file or directory, open '/home/vagrant/code/OnTheThunder/CloudRoad/resources/js/prueba.ts'");
 
 /***/ }),
 
