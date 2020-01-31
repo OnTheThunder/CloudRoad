@@ -29,10 +29,10 @@ html {
 }
 
 /* Incidencias */
-.lugar {
+.lugar-label-container {
     position: absolute;
-    top: 0.6rem;
-    right: 0.9rem;
+    top: 0.8rem;
+    right: 1rem;
 }
 
 .card-pie {
@@ -301,16 +301,6 @@ button:focus {
     animation: blinkerBorder 2s linear infinite;
 }
 
-.card-incidencia-nueva .card-title{
-    margin-left: 1.7rem;
-}
-
-.nueva-incidencia-container {
-    position: absolute;
-    top: 1.3rem;
-    left: 1.3rem;
-}
-
 .nueva-incidencia-container span {
     color: #0b7731;
 }
@@ -346,6 +336,23 @@ button:focus {
 #final-map {
     height: 500px;
 }
+
+.final-map-container{
+    margin: 1rem 0;
+}
+
+.incidencia-show-wrapper h2{
+    margin: 3rem 0 1rem 0;
+}
+
+.vista-show-buttons-container{
+    display: flex;
+    justify-content: space-between;
+}
+.vista-show-buttons-container a, .vista-show-buttons-container button{
+    width: 49%;
+}
+
 
 .infoBoxTecnico {
     width: 350px;
@@ -389,12 +396,21 @@ button:focus {
     border-bottom: 1px solid #727d98;
 }
 
+.table td{
+    vertical-align: bottom;
+}
+
 .leyenda-grafica{
     margin-top: 1.5rem;
 }
 
 .datos-show p{
-    margin: 1rem;
+    margin-right: 1rem;
+}
+
+
+.datos-show strong{
+    color: #0f8134;
 }
 
 .chart-container {

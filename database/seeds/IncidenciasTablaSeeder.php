@@ -26,7 +26,7 @@ class IncidenciasTablaSeeder extends Seeder
               array_push($ids, $id);
           }
   */
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 700; $i++) {
             DB::table('incidencias')->insert([
                 'descripcion' => $faker->realText($faker->numberBetween(20,64)),
                 'longitud' => $faker->longitude(),
