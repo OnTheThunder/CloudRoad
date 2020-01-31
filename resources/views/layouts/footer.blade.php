@@ -10,4 +10,7 @@
             <i class="fab fa-github-square"></i>
         </a>
     </div>
+    <example-component id="app"></example-component>
 </footer>
+
+
