@@ -23,6 +23,10 @@
   background: #404b69;
 }
 
+.table-bordered td {
+  border-bottom: 1px solid #d1d1d1 !important;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

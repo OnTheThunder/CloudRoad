@@ -3,7 +3,7 @@
     <div class="row">
 
         @include('usuario.aside')
-        <div class="col d-flex flex-column mr-2 ">
+        <div class="col col-lg-8 d-flex flex-column mr-2 ">
             <div class="h1 text-center">
                 <label for="selectFiltroDatos" class="col my-4 h1">Datos</label>
             </div>

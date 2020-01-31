@@ -24,7 +24,7 @@
     @endif
 
     @include('usuario.aside')
-        <div class="col d-flex flex-column mr-2 ">
+        <div class="col col-lg-8 d-flex flex-column mr-2 ">
             <div class="h1 text-center">Nuevo usuario</div>
             <div class="row justify-content-center">
                 <form class="col" method="post" action="{{route('usuario.store')}}">
