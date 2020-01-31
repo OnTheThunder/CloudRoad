@@ -15,21 +15,20 @@
                 </div>
                 <div>
                     <div>
-                        <h3 class="d-flex justify-content-center">Datos Incidencia</h3>
-                        <h4>{{ $incidencia->tipo }}</h4>
+                        <h3>{{ $incidencia->tipo }}</h3>
                         <p>{{ $incidencia->descripcion }}</p>
                     </div>
                     <div>
-                        <h3 class="d-flex justify-content-center">Datos Vehiculo</h3>
-                        <div class="d-flex justify-content-start">
+                        <h3>Datos Vehiculo</h3>
+                        <div class="d-flex datos-show">
                             <p><strong>Matricula: </strong>{{ $vehiculo->matricula }}</p>
                             <p><strong>Marca: </strong>{{ $vehiculo->marca }}</p>
                             <p><strong>Modelo: </strong>{{ $vehiculo->modelo }}</p>
                         </div>
                     </div>
                     <div>
-                        <h3 class="d-flex justify-content-center">Datos Cliente</h3>
-                        <div class="d-flex justify-content-start">
+                        <h3>Datos Cliente</h3>
+                        <div class="d-flex datos-show">
                             <p><strong>Nombre: </strong>{{ $cliente->nombre }}</p>
                             <p><strong>Telefono: </strong>{{ $cliente->telefono }}</p>
                             <p><strong>Apellidos: </strong>{{ $cliente->apellidos }}</p>
@@ -40,15 +39,15 @@
                         <div id="final-map"></div>
                     </div>
                 </div>
-                <form action="{{ route('tecnico.update', ['idTecnico' => $incidencia->tecnico_id, 'idIncidencia' => $incidencia->id]) }}" method="post">
+                <form class="vista-show-buttons-container" action="{{ route('tecnico.update', ['idTecnico' => $incidencia->tecnico_id, 'idIncidencia' => $incidencia->id]) }}" method="post">
                     @method('POST')
                     @csrf
                     @if($incidencia->estado == 'En curso' AND $tecnico->disponibilidad == 0 AND $tecnico->notificacion_respondida == 0)
                         <button class="btn btn-success btn-lg btn-block">Aceptar</button>
-                        <a href="{{ route('incidencia.update', ['id' => $incidencia->id]) }}" class="btn btn-danger btn-lg btn-block">Rechazar</a>
+                        <a href="{{ route('incidencia.update', ['id' => $incidencia->id]) }}" class="m-0 btn btn-danger btn-lg btn-block">Rechazar</a>
                     @elseif($incidencia->estado == 'En curso' AND $tecnico->notificacion_respondida)
-                        <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Resuelta'])  }}" class="btn btn-success btn-lg btn-block">Finalizado</a>
-                        <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Garaje']) }}" class="btn btn-danger btn-lg btn-block">Finalizado en garaje</a>
+                        <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Resuelta'])  }}" class="m-0 btn btn-success btn-lg btn-block">Finalizado</a>
+                        <a href="{{ route('incidencia.update', ['id' => $incidencia->id, 'estado' => 'Garaje']) }}" class="m-0 btn btn-danger btn-lg btn-block">Finalizado en taller</a>
                     @endif
                 </form>
                 <div class="mt-5">

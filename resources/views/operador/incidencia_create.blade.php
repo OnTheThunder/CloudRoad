@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         @include('usuario.aside')
-        <div class="col-6">
+        <div class="col-12 col-lg-7 col-xl-6 offset-lg-1">
             <div class="d-flex justify-content-between my-4">
                 <h2>Nueva Incidencia</h2>
                 <a href="{{ route('incidencia.index') }}" class="btn btn-primary btn-lg">Volver</a>

@@ -126,6 +126,10 @@
   border-bottom: 1px solid #727d98 !important;
 }
 
+.datos-show strong {
+  color: #38c171 !important;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
