@@ -10,6 +10,9 @@
     <!-- BOOTSTRAP CSS-->
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" id="light-css" disabled>
     <link href="{{ secure_asset('css/appDarkMode.css') }}" rel="stylesheet" id="dark-css" disabled>
+    <!-- Font awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+          integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
 <body>
 <script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>
 <!-- Contenedor principal -->
