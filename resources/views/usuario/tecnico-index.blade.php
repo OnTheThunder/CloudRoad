@@ -6,7 +6,7 @@
 @include('php.funcionesPropias')
 @section('content')
     <div class="row">
-        <div class="col col-lg-8 d-flex flex-column mr-2">
+        <div class="col d-flex flex-column mr-2">
             <div class="container mb-3">
                 <h2 class="d-flex justify-content-center p-2">Mis Incidencias</h2>
                 <div class="row">
@@ -81,17 +81,21 @@
                 <a class="text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                 <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
                 @if($incidencia->estado == 'En curso' AND isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
+                {{--Seteamos el borde verde--}}
                     <div class="container mb-4 card shadow card-incidencia card-incidencia-nueva d-flex align-items-center justify-content-center">
-                        <div class="nueva-incidencia-container">
-                            <div class="glow"></div>
-                        </div>
                 @else
-                        <div class="container mb-4 card shadow card-incidencia d-flex align-items-center justify-content-center">
+                    <div class="container mb-4 card shadow card-incidencia d-flex align-items-center justify-content-center">
                 @endif
                         <div class="w-100">
                             <span class="card-title h4 clearfix">#{{$incidencia->id}} {{ $incidencia->tipo }}: </span>
-                            <span id="lugar-label" class="text-secondary lugar">Lugar: <span
-                                    class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
+                            <div class="lugar-label-container d-flex justify-content-center align-items-center">
+                            @if($incidencia->estado == 'En curso' AND isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i)
+                                {{--Seteamos el circulo verde de notificacion--}}
+                                <div class="d-inline-block glow"></div>
+                            @endif
+                                <span id="lugar-label" class="text-secondary lugar">Lugar:
+                                <span class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
+                            </div>
                             <p class="my-2 card-footer border">{{ $incidencia->descripcion }}</p>
                             @if($incidencia->estado == 'Resuelta')
                                 <p class="row flex-row flex-wrap font-weight-bold m-0 justify-content-between">
