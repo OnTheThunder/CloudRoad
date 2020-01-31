@@ -18,10 +18,8 @@
                     </select>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="miGrafico"></canvas>
-                </div>
+            <div class="chart-container w-100">
+                <canvas id="miGrafico"></canvas>
             </div>
         </div>
     </div>
