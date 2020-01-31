@@ -61,4 +61,5 @@
             <small>{{Config::get('app.locale')}}</small>
         </div>
 </nav>
+<!-- el script que le pone el listener del modo nocturno y diurno-->
 <script src="{{secure_asset('js/modoNocturnoDiurno.js')}}"></script>
