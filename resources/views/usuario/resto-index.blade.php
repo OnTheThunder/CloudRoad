@@ -80,7 +80,7 @@
                     @if($i == 0 || $i%2 == 0)
                         <div class="row">
                     @endif
-                    <div class="col-md-6">
+                    <div class="col-xl-6">
                         <a class="text-decoration-none text-dark"
                            href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                             <div class="mb-4 card shadow card-incidencia">

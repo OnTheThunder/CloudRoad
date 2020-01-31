@@ -21,24 +21,19 @@
                     </div>
                     <div>
                         <h3 class="d-flex justify-content-center">Datos Vehiculo</h3>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-start">
                             <p><strong>Matricula: </strong>{{ $vehiculo->matricula }}</p>
                             <p><strong>Marca: </strong>{{ $vehiculo->marca }}</p>
                             <p><strong>Modelo: </strong>{{ $vehiculo->modelo }}</p>
                         </div>
-
                     </div>
                     <div>
                         <h3 class="d-flex justify-content-center">Datos Cliente</h3>
-                        <div class="d-flex justify-content-around">
-                            <div>
-                                <p><strong>Nombre: </strong>{{ $cliente->nombre }}</p>
-                                <p><strong>Telefono: </strong>{{ $cliente->telefono }}</p>
-                            </div>
-                            <div>
-                                <p><strong>Apellidos: </strong>{{ $cliente->apellidos }}</p>
-                                <p><strong>DNI: </strong>{{ $cliente->dni }}</p>
-                            </div>
+                        <div class="d-flex justify-content-start">
+                            <p><strong>Nombre: </strong>{{ $cliente->nombre }}</p>
+                            <p><strong>Telefono: </strong>{{ $cliente->telefono }}</p>
+                            <p><strong>Apellidos: </strong>{{ $cliente->apellidos }}</p>
+                            <p><strong>DNI: </strong>{{ $cliente->dni }}</p>
                         </div>
                     </div>
                     <div class="final-map-container">
