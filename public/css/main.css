@@ -360,7 +360,6 @@ button:focus {
     margin-top: 10rem;
 }
 
-
 .loading-logo {
     width: 150px;
     height: 150px;
@@ -400,6 +399,19 @@ button:focus {
     margin: 1rem;
 }
 
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 60vh;
+    width: 50vw;
+}
+
+@keyframes loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 footer.container-fluid{
     margin-left: -15px;
     width: 100vw;
@@ -425,4 +437,10 @@ footer.container-fluid{
     .date-label{
         font-size: 0.7rem;
     }
+    .chart-container {
+        position: relative;
+        height: 60vh;
+        width: 50vw;
+    }
 }
+

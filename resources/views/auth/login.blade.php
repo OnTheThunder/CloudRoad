@@ -1,15 +1,14 @@
 @extends('layouts.layout-login')
 
 @section('content')
-<div class="container-fluid" id="login-main-container">
-    <div class="row">
-        <div class="col-md-6 pr-0" id="login-form-container">
-            <div id="login-logo" class="col-md-3">
-                <img src="{{ asset('images/onTheThunderNoBorder.png') }}" alt="">
+<div class="row overflow-hidden" id="login-main-container">
+        <div class="col-12 col-md-6 pr-0" id="login-form-container">
+            <div id="login-logo" class="col-md-12 d-flex justify-content-center">
+                <img class="d-none d-md-block rounded-circle" src="{{ asset('images/onTheThunderNoBorder.png') }}" alt="">
             </div>
             <form method="POST" action="{{ route('login') }}" class="login-form d-flex flex-column justify-content-center align-items-center">
                 @csrf
-                <h1 id="login-title" class="mb-5">WELCOME TO CLOUDROAD</h1>
+                <h1 id="login-title" class=" col-md-12 mb-5 text-wrap text-center mt-4">WELCOME TO CLOUDROAD</h1>
                 <span class="login-input-label">Email</span>
                 <input id="email" type="email" class="mb-5 mt-1 form-control @error('email') is-invalid @enderror"
                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -30,14 +29,14 @@
                 <button class="sign-up-button w-100 my-4 btn">LOG IN</button>
                 @if (Route::has('password.request'))
                     <!--<a class="btn btn-link" href="{{ route('password.request') }}">-->
-                    <a class="btn btn-link" href="">
+                    <a class="btn btn-link bg-secondary text-light" href="">
                         <i class="fas fa-hammer text-warning"></i>
                         (WIP)  {{ __('No recuerdo mi contraseña') }}
                     </a>
                 @endif
             </form>
         </div>
-        <div class="col-md-6 px-0">
+        <div class="d-none d-md-block col-md-6 px-0">
             <div id="login-bg-image">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -76,7 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 <!-- CSS asociado a esta vista-->
 <link rel="stylesheet" href="{{secure_asset('css/login.css')}}">
