@@ -21,7 +21,8 @@ window.Vue = require('vue');
 /**
  * Exportaciones de componentes vue
  */
-Vue.component('example-component', require('../vue/ExampleComponent.vue').default);
+Vue.component('pie-de-pagina',
+    require('../vue/Footer.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,6 +34,7 @@ Vue.component('example-component', require('../vue/ExampleComponent.vue').defaul
  * @type {Vue}
  */
 
-const app = new Vue({
-    el: '#app',
+
+const pieDePagina = new Vue({
+    el: '#footer'
 });
