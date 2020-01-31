@@ -117,7 +117,7 @@ try {
     });
 }
 catch (e) {
-    console.log('en login no hace falta');
+    //console.log('en login no hace falta');
 }
 function ver(opcional) {
     // cambiar el valor de la cookie a nocturno/diurno
@@ -128,7 +128,6 @@ function ver(opcional) {
             light.disabled = true;
             dark.disabled = false;
             if (!opcional) {
-                console.log('nocturno');
                 setCookie('modo', 'nocturno', 7);
             }
         }
@@ -136,7 +135,6 @@ function ver(opcional) {
             light.disabled = false;
             dark.disabled = true;
             if (!opcional) {
-                console.log('diurno');
                 setCookie('modo', 'diurno', 7);
             }
         }
