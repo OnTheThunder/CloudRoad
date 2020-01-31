@@ -377,6 +377,28 @@ button:focus {
     animation: loading 2s infinite;
 }
 
+
+
+.table-bordered th, .table-bordered td {
+    border: none;
+}
+
+.table-bordered thead td{
+    border-bottom: none;
+}
+
+.table-bordered td{
+    border-bottom: 1px solid #727d98;
+}
+
+.leyenda-grafica{
+    margin-top: 1.5rem;
+}
+
+.datos-show p{
+    margin: 1rem;
+}
+
 .chart-container {
     position: relative;
     margin: auto;
@@ -394,6 +416,16 @@ footer.container-fluid{
     margin-left: -15px;
     width: 100vw;
 }
+
+/*ANIMATIONS*/
+
+@keyframes loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*MEDIA QUERIES*/
 
 @media only screen and (max-width: 768px) {
     .card-incidencia{

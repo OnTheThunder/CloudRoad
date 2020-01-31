@@ -76,7 +76,7 @@
                 @if($i == 0 || $i%2 == 0)
                     <div class="row">
                 @endif
-                <div class="col-md-6">
+                <div class="col-xl-6">
                 @php $incidenciasEnPagUno = count($incidencias) >= 15 ? 15 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag y poder mostrar la notificacion en la tarjeta correcta -->
                 <a class="text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                 <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
