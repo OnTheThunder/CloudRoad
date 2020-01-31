@@ -168,10 +168,10 @@ class MainController extends Controller
         $incidencias = null;
 
         if(session('orden') === 'reciente'){
-            $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(5);
+            $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'desc')->paginate(15);
         }
         elseif (session('orden') === 'antigua'){
-            $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'asc')->paginate(5);
+            $incidencias = Incidencia::where('tecnico_id', $tecnico['id'])->orderBy('created_at', 'asc')->paginate(15);
         }
 
         return $incidencias;
@@ -182,10 +182,10 @@ class MainController extends Controller
         $incidencias = null;
 
         if(session('orden') === 'reciente'){
-            $incidencias = DB::table('incidencias')->orderBy('created_at', 'desc')->paginate(5);
+            $incidencias = DB::table('incidencias')->orderBy('created_at', 'desc')->paginate(15);
         }
         elseif (session('orden') === 'antigua'){
-            $incidencias = DB::table('incidencias')->orderBy('created_at', 'asc')->paginate(5);
+            $incidencias = DB::table('incidencias')->orderBy('created_at', 'asc')->paginate(15);
         }
 
         return $incidencias;
