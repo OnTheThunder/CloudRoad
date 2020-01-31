@@ -89,11 +89,11 @@
                                         <p class="my-2 card-footer border">{{ $incidenciaRechazada->descripcion }}</p>
                                         @if($incidenciaRechazada->estado == 'Resuelta')
                                             <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                        <span class="text-color-primario col-md-3 col-5 px-0">
+                                        <span class="text-color-primario col-md-3 col-5 estado-label px-0">
                                             Resuelta
                                           </span>
                                                 <small
-                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7">
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
 
                                                     <span class="font-italic">
                                                     @php
@@ -104,11 +104,11 @@
                                             </p>
                                         @elseif($incidenciaRechazada->estado == 'Garaje')
                                             <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                            <span class="text-color-primario col-md-3 col-5 px-0">
+                                            <span class="text-color-primario col-md-3 col-5 estado-label px-0">
                                                 Resuelta en taller
                                                 </span>
                                                 <small
-                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7">
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
 
                                                     <span class="font-italic">
                                                     @php
@@ -119,11 +119,11 @@
                                             </p>
                                         @else
                                             <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                             <span class="text-color-borrar-suave col-md-3 col-5 px-0">
+                                             <span class="text-color-borrar-suave col-md-3 col-5 estado-label px-0">
                                             En curso
                                                 </span>
                                                 <small
-                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7">
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
 
 
 
