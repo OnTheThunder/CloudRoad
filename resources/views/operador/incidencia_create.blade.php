@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3"></div>
+        @include('usuario.aside')
         <div class="col-6">
             <div class="d-flex justify-content-between my-4">
                 <h2>Nueva Incidencia</h2>
