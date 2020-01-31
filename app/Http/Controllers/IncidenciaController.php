@@ -37,7 +37,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('operador/incidencia_create');
+        return view('operador/incidencia_create',['usuario' => Auth::user()]);
     }
 
     /**
@@ -134,7 +134,7 @@ class IncidenciaController extends Controller
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
                 $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
-                return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0], 'comentarios' => $comentarios]);
+                return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0], 'comentarios' => $comentarios,'usuario' => Auth::user()]);
                 break;
             default:
                 // coger incidencias para mostrar en una paginacion
@@ -142,7 +142,7 @@ class IncidenciaController extends Controller
                 $cliente = Cliente::find($incidencia->cliente_id);
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
                 $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
-                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios, 'hideMap' => request('hideMap')]);
+                return view('usuario/resto-incidencia-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'comentarios' => $comentarios, 'hideMap' => request('hideMap'), 'usuario' => Auth::user()]);
         }
     }
 
