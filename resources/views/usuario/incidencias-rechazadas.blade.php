@@ -8,7 +8,7 @@
         <div class="row">
         @include('usuario.aside')
         <!-- Main container de ver historial y filtrar -->
-            <div class="col d-flex flex-column mr-2 ">
+            <div class="col col-lg-8 d-flex flex-column mr-2 ">
                 @if($usuario->rol == 'operario')
                     <div class="d-flex justify-content-center">
                         <a href="{{ route('incidencia.create') }}" class="btn btn-primary btn-lg btn-block">
@@ -81,19 +81,19 @@
                         @endif
                         <div class="col-xl-6">
                             <a class="text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidenciaRechazada->id, 'hideMap' => true]) }}">
-                                <div class="mb-4 card shadow card-incidencia">
-                                    <div class="card-body">
+                                <div class="container mb-4 card shadow card-incidencia d-flex align-items-center justify-content-center">
+                                    <div class="w-100">
                                         <span class="card-title h4 clearfix">#{{$incidenciaRechazada->id}} {{ $incidenciaRechazada->tipo }}: </span>
                                         <span id="lugar-label" class="text-secondary lugar">Lugar: <span
                                                 class="text-color-primario font-weight-bolder">{{$incidenciaRechazada->provincia}}</span></span>
                                         <p class="my-2 card-footer border">{{ $incidenciaRechazada->descripcion }}</p>
                                         @if($incidenciaRechazada->estado == 'Resuelta')
-                                            <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                        <span class="text-color-primario col-md-3 col-5 estado-label px-0">
+                                            <p class="row flex-row flex-wrap font-weight-bold m-0 justify-content-between">
+                                        <span class="text-color-primario col-5 estado-label px-0">
                                             Resuelta
                                           </span>
                                                 <small
-                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-7 date-label">
 
                                                     <span class="font-italic">
                                                     @php
@@ -103,12 +103,12 @@
                                                 </small>
                                             </p>
                                         @elseif($incidenciaRechazada->estado == 'Garaje')
-                                            <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                            <span class="text-color-primario col-md-3 col-5 estado-label px-0">
+                                            <p class="row flex-row flex-wrap border-0 font-weight-bold m-0 justify-content-between">
+                                            <span class="text-color-primario col-5 estado-label px-0">
                                                 Resuelta en taller
                                                 </span>
                                                 <small
-                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-7 date-label">
 
                                                     <span class="font-italic">
                                                     @php
@@ -118,12 +118,12 @@
                                                 </small>
                                             </p>
                                         @else
-                                            <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                             <span class="text-color-borrar-suave col-md-3 col-5 estado-label px-0">
+                                            <p class="row flex-row flex-wrap font-weight-bold m-0 justify-content-between">
+                                             <span class="text-color-borrar-suave col-5 estado-label px-0">
                                             En curso
                                                 </span>
                                                 <small
-                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
+                                                    class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-7 date-label">
 
 
 
