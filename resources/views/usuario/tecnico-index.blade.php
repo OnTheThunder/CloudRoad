@@ -77,31 +77,30 @@
                     <div class="row">
                 @endif
                 <div class="col-md-6">
-                @php $incidenciasEnPagUno = count($incidencias) >= 5 ? 5 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag y poder mostrar la notificacion en la tarjeta correcta -->
+                @php $incidenciasEnPagUno = count($incidencias) >= 15 ? 15 : count($incidencias) @endphp <!-- Para calcular cuantas paginas quedarán en la primera pag y poder mostrar la notificacion en la tarjeta correcta -->
                 <a class="text-decoration-none text-dark" href="{{ route('incidencia.show', ['id' => $incidencia->id]) }}">
                 <!-- Si tenemos una notificacion estilizamos la incidencia mas reciente que nos han asignado -->
                 @if($incidencia->estado == 'En curso' AND isset($notificacion) AND $notificacion == 1 AND count($incidencias) - $incidenciasEnPagUno == $i) <!-- Asignar a la ultima incidencia la notificacion -->
-                    <div class="card m-1 shadow card-incidencia-nueva">
+                    <div class="mb-4 card shadow card-incidencia card-incidencia-nueva">
                         <div class="nueva-incidencia-container">
                             <div class="glow"></div>
-                            <span>Nueva incidencia</span>
                         </div>
                 @else
                     <div class="mb-4 card shadow card-incidencia">
                 @endif
                         <div class="card-body">
                             <span class="card-title h4 clearfix">#{{$incidencia->id}} {{ $incidencia->tipo }}: </span>
-                            <span id="lugar-label" class="float-right text-secondary lugar">Lugar: <span
+                            <span id="lugar-label" class="text-secondary lugar">Lugar: <span
                                     class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
                             <p class="my-2 card-footer border">{{ $incidencia->descripcion }}</p>
                             @if($incidencia->estado == 'Resuelta')
                                 <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                    <span class="text-color-primario col-md-3 px-0">
+                                    <span class="text-color-primario col-md-3 col-5 estado-label  px-0">
                                         Resuelta
                                     </span>
                                     <small
-                                        class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
-                                        Creada:
+                                        class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
+
                                         <span class="font-italic">
                                         @php
                                             fechaCastellano($incidencia->created_at);
@@ -111,12 +110,12 @@
                                 </p>
                             @elseif($incidencia->estado == 'Garaje')
                                 <p class="row flex-row flex-wrap border-0 font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                    <span class="text-color-primario col-md-3 px-0">
+                                    <span class="text-color-primario col-md-3 col-5 estado-label  px-0">
                                         Resuelta en taller
                                     </span>
                                     <small
-                                        class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
-                                        Creada:
+                                        class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
+
                                     <span class="font-italic">
                                     @php
                                         fechaCastellano($incidencia->created_at);
@@ -126,14 +125,11 @@
                                 </p>
                             @else
                                 <p class="row flex-row flex-wrap font-weight-bold ml-1 mr-1 card-pie justify-content-between">
-                                    <span class="text-color-borrar-suave col-md-3 px-0">
+                                    <span class="text-color-borrar-suave col-md-3 col-5 estado-label  px-0">
                                     En curso
                                     </span>
                                     <small
-                                        class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9">
-
-                                        Creada:
-
+                                        class="text-secondary d-flex justify-content-end text-monospace font-weight-bolder fecha pr-0 align-items-center col-md-9 col-7 date-label">
                                         <span class="font-italic">
                                         @php
                                             fechaCastellano($incidencia->created_at);

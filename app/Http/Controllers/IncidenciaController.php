@@ -270,13 +270,13 @@ class IncidenciaController extends Controller
 
         switch (session('estado')){
             case 'resuelta':
-                $incidenciasEstado = Incidencia::where($findResuelta)->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = Incidencia::where($findResuelta)->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'taller':
-                $incidenciasEstado = Incidencia::where($findGaraje)->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = Incidencia::where($findGaraje)->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'en curso':
-                $incidenciasEstado = Incidencia::where($findEnCurso)->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = Incidencia::where($findEnCurso)->orderBy('updated_at', 'desc')->paginate(15);
             break;
         }
 
@@ -300,16 +300,16 @@ class IncidenciaController extends Controller
 
         switch (session('tipo')){
             case 'Pinchazo':
-                $incidenciasTipo = DB::table('incidencias')->where($findPinchazo)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findPinchazo)->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Averia':
-                $incidenciasTipo = DB::table('incidencias')->where($findAveria)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findAveria)->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Golpe':
-                $incidenciasTipo = DB::table('incidencias')->where($findGolpe)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findGolpe)->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Otro':
-                $incidenciasTipo = DB::table('incidencias')->where($findOtro)->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where($findOtro)->orderBy('estado', 'asc')->paginate(15);
                 break;
         }
 
@@ -326,13 +326,13 @@ class IncidenciaController extends Controller
 
         switch (session('estado')){
             case 'resuelta':
-                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Resuelta')->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Resuelta')->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'taller':
-                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Garaje')->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'Garaje')->orderBy('updated_at', 'desc')->paginate(15);
             break;
             case 'en curso':
-                $incidenciasEstado = DB::table('incidencias')->where('estado', 'En curso')->orderBy('updated_at', 'desc')->paginate(5);
+                $incidenciasEstado = DB::table('incidencias')->where('estado', 'En curso')->orderBy('updated_at', 'desc')->paginate(15);
             break;
         }
 
@@ -348,16 +348,16 @@ class IncidenciaController extends Controller
 
         switch (session('tipo')){
             case 'Pinchazo':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Pinchazo')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Pinchazo')->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Averia':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Averia')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Averia')->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Golpe':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Golpe')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Golpe')->orderBy('estado', 'asc')->paginate(15);
                 break;
             case 'Otro':
-                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Otro')->orderBy('estado', 'asc')->paginate(5);
+                $incidenciasTipo = DB::table('incidencias')->where('tipo', 'Otro')->orderBy('estado', 'asc')->paginate(15);
                 break;
         }
 
@@ -376,7 +376,7 @@ class IncidenciaController extends Controller
     }
 
     public function rechazadas(Request $request){
-        $incidenciasRechazadas = Incidencia::where('tecnico_id', null)->orderBy('updated_at', 'desc')->paginate(5);
+        $incidenciasRechazadas = Incidencia::where('tecnico_id', null)->orderBy('updated_at', 'desc')->paginate(15);
 
         return view('usuario/incidencias-rechazadas', ['incidenciasRechazadas' => $incidenciasRechazadas, 'usuario' => Auth::user()]);
     }

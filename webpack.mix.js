@@ -10,13 +10,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-// los archivos sass
 mix.js('resources/js/app.js', 'public/js')
-    //modo nocturno
-    .sass('resources/sass/appDarkMode.scss', 'public/css')
-    //modo diurno
-    .sass('resources/sass/app.scss', 'public/css');
-
-// los archivos TypeScript
-mix.ts('resources/js/modoNocturnoDiurno.ts', 'public/js');
-
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/appDarkMode.scss', 'public/css');
+/**
+ * Para compilar los archivos TypeScript
+ *
+ * --Esta comentado para que no falle el Vue
+ */
+//mix.ts('resources/ts/modoNocturnoDiurno.ts', 'public/js');
