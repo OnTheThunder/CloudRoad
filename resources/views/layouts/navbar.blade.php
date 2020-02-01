@@ -41,7 +41,7 @@
                     aria-haspopup="true" aria-expanded="false">
                 <span class="text-capitalize">
                     <strong class="font-weight-bolder">{{Auth::user()->rol}}</strong>
-                    <span class="text-secondary">{{ Auth::user()->nombre }}</span>
+                    <span class="text-color-user">{{ Auth::user()->nombre }}</span>
                 </span>
                 <i class="fas fa-cog"></i>
             </button>

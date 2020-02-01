@@ -13,7 +13,7 @@ let oTallerMasCercano;
 let incidenciaRechazadaLatitud;
 let incidenciaRechazadaLongitud;
 let incidenciaRechazadaId;
-let c
+let c;
 
 window.onload = function () {
     let loadingLogo = $('.loading-logo').hide();

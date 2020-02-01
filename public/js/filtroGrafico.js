@@ -23,6 +23,8 @@ function getCookie(nombreCookie) {
 }
 
 window.onload = function(){
+    let loadingLogo = $('.loading-logo-estadisticas').hide();
+    setLoadingLogoOnAjaxCall(loadingLogo);
     $( document ).ready(function() {
         if(chart !== undefined)
             chart.destroy()
@@ -351,3 +353,12 @@ window.onload = function(){
     }
 
 };
+
+
+function setLoadingLogoOnAjaxCall(loadingLogo) {
+    $(document).ajaxStart(function () {
+        loadingLogo.show();
+    }).ajaxStop(function () {
+        loadingLogo.hide();
+    });
+}

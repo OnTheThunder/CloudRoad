@@ -44,6 +44,8 @@ $secondary: #a8b1b9;
 $border-color: #283149;
 $primary: #165588;
 $danger: #f75955;
+$lightgreen: #80ff89;
+
 
 
 .leyenda-filtro-default span, .leyenda-filtro-default i{
@@ -178,6 +180,13 @@ $danger: #f75955;
     color: #38c171 !important;
 }
 
+.navbar-light, .navbar-brand, .navbar-light strong {
+    color: white !important;
+}
+
+
+
+
 
 // modificado
 $theme-colors: (
@@ -189,6 +198,7 @@ $theme-colors: (
     "color-anyadir-suave":$colorVerdeSuave,
     "color-cards": $colorCards,
     "color-header": $colorHeader,
+    "color-user": $lightgreen,
 );
 
 // tipo de letra añadida
