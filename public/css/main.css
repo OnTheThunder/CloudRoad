@@ -276,7 +276,7 @@ button:focus {
 
 #btn-filtro-actual {
     padding: 0.375rem 0.75rem;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     background-color: #75CF92;
     border: 1px solid #75CF92;
 }
@@ -286,12 +286,12 @@ button:focus {
     display: flex;
 }
 
-.leyenda-filtro-default {
-    position: absolute;
-    bottom: 0;
-    right: 0.5rem;
-    user-select: none;
-}
+/*.leyenda-filtro-default {*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    right: 0.5rem;*/
+/*    user-select: none;*/
+/*}*/
 
 .leyenda-filtro-default button {
     border: none;
@@ -472,6 +472,9 @@ footer {
         height: 60vh;
         width: 50vw;
     }
+    .page-title{
+        font-size: 1.6rem;
+    }
 }
 
 
@@ -484,4 +487,5 @@ footer {
 .card-incidencia{
     height: 170px;
 }
+
 
