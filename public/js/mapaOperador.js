@@ -13,7 +13,7 @@ let oTallerMasCercano;
 let incidenciaRechazadaLatitud;
 let incidenciaRechazadaLongitud;
 let incidenciaRechazadaId;
-let c
+let c;
 
 window.onload = function () {
     let loadingLogo = $('.loading-logo').hide();
@@ -570,6 +570,7 @@ function storeIncidenciaAJAX(oDatosIncidencia) {
 
 
 function getJSONfromCookie() {
+    console.log(document.cookie)
     let cookiesString = document.cookie;
     let handledCookie = "";
     for (let i = 0; cookiesString.charAt(i) !== ";"; i++) {

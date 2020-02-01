@@ -1,10 +1,10 @@
 let chart;
 let c = getCookie('modo');
-var color;
+let color;
 if(c === 'nocturno'){
     color = '#666';
 }else
-    color ="white"
+    color ="white";
 
 function getCookie(nombreCookie) {
     var name = nombreCookie + "=";
@@ -23,6 +23,8 @@ function getCookie(nombreCookie) {
 }
 
 window.onload = function(){
+    let loadingLogo = $('.loading-logo-estadisticas').hide();
+    setLoadingLogoOnAjaxCall(loadingLogo);
     $( document ).ready(function() {
         if(chart !== undefined)
             chart.destroy()
@@ -93,15 +95,13 @@ window.onload = function(){
         chart = new Chart(ctx, {
             // The type of chart we want to create
             type: 'line',
-
             // The data for our dataset
             data: {
                 labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16',
                     '17', '18', '19', '20', '21', '22', '23'],
                 datasets: [
                     {
-                        label: 'Incidencias totales por hora ',
-
+                        label: 'Totales',
                         borderColor: 'rgb(255,106,94)',
                         backgroundColor: 'rgba(0,0,0,0)',
                         data: [result[0][0].length, result[0][1].length, result[0][2].length, result[0][3].length, result[0][4].length, result[0][5].length,
@@ -110,7 +110,7 @@ window.onload = function(){
                             result[0][18].length, result[0][19].length, result[0][20].length, result[0][21].length, result[0][22].length, result[0][23].length],
                         hidden:true
                     },{
-                        label: 'Incidencias por hora el ultimo mes',
+                        label: 'Ultimo mes',
 
                         borderColor: 'rgb(143,255,127)',
                         backgroundColor: 'rgba(0,0,0,0)',
@@ -119,7 +119,7 @@ window.onload = function(){
                             result[1][12].length, result[1][13].length, result[1][14].length, result[1][15].length, result[1][16].length, result[1][17].length,
                             result[1][18].length, result[1][19].length, result[1][20].length, result[1][21].length, result[1][22].length, result[1][23].length]
                     },{
-                        label: 'Incidencias por hora la ultima semana',
+                        label: 'Ultima semana',
 
                         borderColor: 'rgb(92,145,255)',
                         backgroundColor: 'rgba(0,0,0,0)',
@@ -132,6 +132,13 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
+                title: {
+                    display: true,
+                    text: 'Promedio de incidencias por hora',
+                    fontColor: color,
+                    fontFamily: 'Roboto',
+                    fontSize: 14,
+                },
                 legend: {
                     labels: {
                         fontColor: color
@@ -164,17 +171,39 @@ window.onload = function(){
             data: {
                 labels: [result[0][1],result[1][1],result[2][1],result[3][1],result[4][1],result[5][1],result[6][1],result[7][1],result[8][1],result[9][1]],
                 datasets: [{
-                    label: 'Tecnicos con mayor Nº de incidencias resueltas',
-
-                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: [
+                        '#94a4cb',
+                        '#818eb4',
+                        '#7e8db0',
+                        '#667394',
+                        '#586382',
+                        '#4a5675',
+                        '#404b69',
+                        '#404b69',
+                        '#404b69',
+                        '#404b69',
+                    ],
                     data: [result[0][0],result[1][0],result[2][0],result[3][0],result[4][0],result[5][0],result[6][0],result[7][0],result[8][0],result[8][0]]
                 }]
             },
             // Configuration options go here
             options: {
+                title: {
+                    display: true,
+                    text: 'Tecnicos con mayor Nº de incidencias resueltas',
+                    fontColor: color,
+                    fontFamily: 'Roboto',
+                    fontSize: 14,
+                    padding: 25
+                },
                 legend: {
-                    labels: {
-                        fontColor: color
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.yLabel;
+                        }
                     }
                 },
                 scales: {
@@ -212,6 +241,14 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
+                title: {
+                    display: true,
+                    text: 'Nº Incidencias por provincia',
+                    fontColor: color,
+                    fontFamily: 'Roboto',
+                    fontSize: 14,
+                    padding: 25
+                },
                 legend: {
                     labels: {
                         fontColor: color
@@ -231,16 +268,16 @@ window.onload = function(){
             data: {
                 labels: ['Terminado','Garaje','En curso'],
                 datasets: [{
-                    label: 'Estado de las incidencias totales',
+                    label: 'Total',
                     data: [result[0][0].length, result[0][1].length, result[0][2].length],
                     backgroundColor: ['rgb(159,206,255)','rgb(159,206,255)','rgb(159,206,255)'],
                     hidden:true
                 },{
-                    label: 'Estado de las incidencias el ultimo mes',
+                    label: 'Ultimo mes',
                     data: [result[1][0].length, result[1][1].length, result[1][2].length],
                     backgroundColor: ['rgb(255,162,217)','rgb(255,162,217)','rgb(255,162,217)'],
                 },{
-                    label: 'Estado de las incidencias la ultima semana',
+                    label: 'Ultima semana',
                     data: [result[2][0].length, result[2][1].length, result[2][2].length],
                     backgroundColor: ['rgb(172,255,122)','rgb(172,255,122)','rgb(172,255,122)'],
                     hidden:true
@@ -248,6 +285,14 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
+                title: {
+                    display: true,
+                    text: 'Incidencias por estado',
+                    fontColor: color,
+                    fontFamily: 'Roboto',
+                    fontSize: 14,
+                    padding: 25
+                },
                 legend: {
                     labels: {
                         fontColor: color
@@ -289,6 +334,14 @@ window.onload = function(){
             },
             // Configuration options go here
             options: {
+                title: {
+                    display: true,
+                    text: 'Nº Incidencias por tipo de avería',
+                    fontColor: color,
+                    fontFamily: 'Roboto',
+                    fontSize: 14,
+                    padding: 25
+                },
                 legend: {
                     labels: {
                         fontColor: color
@@ -300,3 +353,12 @@ window.onload = function(){
     }
 
 };
+
+
+function setLoadingLogoOnAjaxCall(loadingLogo) {
+    $(document).ajaxStart(function () {
+        loadingLogo.show();
+    }).ajaxStop(function () {
+        loadingLogo.hide();
+    });
+}

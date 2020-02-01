@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-color-header shadow-sm mb-2">
 
-    <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
+    <div class="navbar col d-flex justify-content-start w-25" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{{route('main.index')}}">{{ config('app.name') }}</a>
     </div>
 
@@ -41,7 +41,7 @@
                     aria-haspopup="true" aria-expanded="false">
                 <span class="text-capitalize">
                     <strong class="font-weight-bolder">{{Auth::user()->rol}}</strong>
-                    <span class="text-secondary">{{ Auth::user()->nombre }}</span>
+                    <span class="text-color-user">{{ Auth::user()->nombre }}</span>
                 </span>
                 <i class="fas fa-cog"></i>
             </button>

@@ -37306,18 +37306,19 @@ var render = function() {
     "footer",
     {
       staticClass:
-        "container-fluid text-small mt-5 pt-4 bg-secondary d-none d-sm-block"
+        "container-fluid text-small bg-color-header d-none d-sm-block"
     },
     [
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row d-flex align-items-center h-100" }, [
         _c(
           "p",
-          { staticClass: "offset-md-2 offset-1 col-3 col-md-2 text-nowrap" },
-          [_vm._v("Road Tech Assistance SL")]
+          { staticClass: "offset-md-2 col-3 col-md-2 ml-1 mb-0 text-nowrap" },
+          [_vm._v("CloudRoad")]
         ),
         _vm._v(" "),
         _c("img", {
-          staticClass: "offset-2 col-2img-fluid figure-img rounded-circle",
+          staticClass:
+            "offset-4 col-2img-fluid mb-0 mr-3 figure-img rounded-circle",
           attrs: { id: "img-footer", src: _vm.logo, alt: "img-equipo" }
         }),
         _vm._v(" "),
@@ -37336,7 +37337,7 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "text-dark",
+        staticClass: "text-dark ml-2",
         attrs: { href: "https://github.com/OnTheThunder/CloudRoad" }
       },
       [_c("i", { staticClass: "fab fa-github-square" })]

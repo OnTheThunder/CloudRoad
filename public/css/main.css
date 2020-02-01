@@ -11,9 +11,7 @@ html {
 
 #img-footer {
     width: 30px;
-    height: 30px;
-    margin-top: -5px;
-    margin-right: 5px;
+    height: auto;
 }
 
 .card:hover {
@@ -31,13 +29,18 @@ html {
 /* Incidencias */
 .lugar-label-container {
     position: absolute;
-    top: 0.8rem;
+    top: 0.7rem;
     right: 1rem;
 }
 
-.card-pie {
-    margin-bottom: -15px;
+.estado-label{
+    font-size: .85rem;
 }
+
+.card-title {
+    font-size: 1.2rem;
+}
+
 
 /* VISTA de las Cámaras*/
 #mapa-camaras {
@@ -60,6 +63,7 @@ html {
 
 #map {
     height: 100%;
+    z-index: 1;
 }
 
 #map-search-container {
@@ -272,7 +276,7 @@ button:focus {
 
 #btn-filtro-actual {
     padding: 0.375rem 0.75rem;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     background-color: #75CF92;
     border: 1px solid #75CF92;
 }
@@ -282,12 +286,12 @@ button:focus {
     display: flex;
 }
 
-.leyenda-filtro-default {
-    position: absolute;
-    bottom: 0;
-    right: 0.5rem;
-    user-select: none;
-}
+/*.leyenda-filtro-default {*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    right: 0.5rem;*/
+/*    user-select: none;*/
+/*}*/
 
 .leyenda-filtro-default button {
     border: none;
@@ -365,18 +369,28 @@ button:focus {
     margin-top: 10rem;
 }
 
+
 .loading-logo {
+    position: fixed;
+}
+
+.loading-logo-estadisticas{
+    position: absolute;
+}
+
+.loading-logo-estadisticas, .loading-logo{
     width: 150px;
     height: 150px;
     padding: 20px;
-    position: fixed;
     top: 50%;
     left: 50%;
     margin: -75px 0 0 -75px;
-    /*z-index: 10;*/
+    z-index: 1;
 }
 
-.loading-logo img {
+
+
+.loading-logo img, .loading-logo-estadisticas img {
     width: 100%;
     height: auto;
     animation: loading 2s infinite;
@@ -398,10 +412,6 @@ button:focus {
 
 .table td{
     vertical-align: bottom;
-}
-
-.leyenda-grafica{
-    margin-top: 1.5rem;
 }
 
 .datos-show p{
@@ -426,9 +436,21 @@ button:focus {
     }
 }
 
-footer.container-fluid{
-    margin-left: -15px;
-    width: 100vw;
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 4.5rem;    /* Footer height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.7rem;            /* Footer height */
 }
 
 /*ANIMATIONS*/
@@ -450,6 +472,9 @@ footer.container-fluid{
         height: 60vh;
         width: 50vw;
     }
+    .page-title{
+        font-size: 1.6rem;
+    }
 }
 
 
@@ -462,4 +487,13 @@ footer.container-fluid{
 .card-incidencia{
     height: 170px;
 }
+
+#tabla-lugares tr:hover{
+    cursor: pointer;
+}
+
+.media-container{
+    margin-top: 2rem;
+}
+
 

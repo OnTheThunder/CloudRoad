@@ -44,6 +44,8 @@ $secondary: #a8b1b9;
 $border-color: #283149;
 $primary: #165588;
 $danger: #f75955;
+$lightgreen: #80ff89;
+
 
 
 .leyenda-filtro-default span, .leyenda-filtro-default i{
@@ -139,8 +141,17 @@ $danger: #f75955;
     color: $body-bg;
 }
 .btn-notificar-tecnico{
-    border-color: #649ad0 !important;
-    color: #649ad0 !important;
+    border-color: #62ace1 !important;
+    color: #62ace1 !important;
+}
+
+.btn-notificar-tecnico:hover{
+    border-color: #2e5575 !important;
+    background-color: #1f4667 !important;
+}
+
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado {
+    color: #62ace1 !important;
 }
 
 .table-datos a{
@@ -156,10 +167,6 @@ $danger: #f75955;
     color: $text-color !important;
 }
 
-.resaltar {/* resaltar la row elegida en la tabla de camaras*/
-    background: $colorHeader;
-    color: $colorPrincipal;
-}
 
 .table-bordered td{
     border-bottom: 1px solid #727d98 !important;
@@ -168,6 +175,19 @@ $danger: #f75955;
 .datos-show strong{
     color: #38c171 !important;
 }
+
+.navbar-light, .navbar-brand, .navbar-light strong {
+    color: white !important;
+}
+
+.resaltar, .resaltar:hover {/* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader !important;
+    color: white;
+}
+
+
+
+
 
 
 // modificado
@@ -180,6 +200,8 @@ $theme-colors: (
     "color-anyadir-suave":$colorVerdeSuave,
     "color-cards": $colorCards,
     "color-header": $colorHeader,
+    "color-user": $lightgreen,
+    "color-body": $body-bg,
 );
 
 // tipo de letra añadida
