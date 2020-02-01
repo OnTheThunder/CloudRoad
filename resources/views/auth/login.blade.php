@@ -1,14 +1,14 @@
 @extends('layouts.layout-login')
 
 @section('content')
-<div class="row overflow-hidden" id="login-main-container">
-        <div class="col-12 col-md-6 pr-0" id="login-form-container">
+<div class="d-flex" id="login-main-container">
+        <div class="col-12 col-md-6 px-0" id="login-form-container">
             <div id="login-logo" class="col-md-12 d-flex justify-content-center">
                 <img class="d-none d-md-block rounded-circle" src="{{ asset('images/onTheThunderNoBorder.png') }}" alt="">
             </div>
             <form method="POST" action="{{ route('login') }}" class="login-form d-flex flex-column justify-content-center align-items-center">
                 @csrf
-                <h1 id="login-title" class=" col-md-12 mb-5 text-wrap text-center mt-4">WELCOME TO CLOUDROAD</h1>
+                <h1 id="login-title" class="col-md-12 px-0 mb-5 text-wrap text-center mt-4">WELCOME TO CLOUDROAD</h1>
                 <span class="login-input-label">Email</span>
                 <input id="email" type="email" class="mb-5 mt-1 form-control @error('email') is-invalid @enderror"
                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
