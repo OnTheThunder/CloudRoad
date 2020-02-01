@@ -167,10 +167,6 @@ $lightgreen: #80ff89;
     color: $text-color !important;
 }
 
-.resaltar {/* resaltar la row elegida en la tabla de camaras*/
-    background: $colorHeader;
-    color: $colorPrincipal;
-}
 
 .table-bordered td{
     border-bottom: 1px solid #727d98 !important;
@@ -183,6 +179,12 @@ $lightgreen: #80ff89;
 .navbar-light, .navbar-brand, .navbar-light strong {
     color: white !important;
 }
+
+.resaltar, .resaltar:hover {/* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader !important;
+    color: white;
+}
+
 
 
 
@@ -199,6 +201,7 @@ $theme-colors: (
     "color-cards": $colorCards,
     "color-header": $colorHeader,
     "color-user": $lightgreen,
+    "color-body": $body-bg,
 );
 
 // tipo de letra añadida

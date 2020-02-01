@@ -1,5 +1,5 @@
 <!-- Aside de navegacion usuario -->
-<div class="col-12 col-lg-3 bg-color-body border-right">
+<div class="col-12 bg-color-body">
     <div class="d-flex flex-column p-2  sticky-top mt-4">
         <a type="button" class="btn btn-primary mb-2" href="{{route('camaras.show')}}">
             <i class="fas fa-video mr-2"></i>Camaras de tráfico

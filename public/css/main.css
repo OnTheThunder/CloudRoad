@@ -488,4 +488,12 @@ footer {
     height: 170px;
 }
 
+#tabla-lugares tr:hover{
+    cursor: pointer;
+}
+
+.media-container{
+    margin-top: 2rem;
+}
+
 

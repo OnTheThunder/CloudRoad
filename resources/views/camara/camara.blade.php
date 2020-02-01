@@ -1,12 +1,12 @@
 @extends('layouts.layout')
 @section('content')
-
-
     <div class="main">
-        <div class="row sticky-top shadow bg-color-cards">
-            @include('usuario.aside')
-            <div class="col-md-9 d-flex flex-column">
-                <div class="d-flex justify-content-center my-2">
+        <div class="row sticky-top shadow bg-color-body pb-5">
+            <div class="col-12 col-lg-3 d-none d-sm-block">
+            @include('usuario.aside_movil')
+            </div>
+            <div class="col-lg-9 d-flex flex-column media-container">
+                <div class="d-flex justify-content-center my-4 page-title d-sm-none">
                     <h1>Camaras</h1>
                 </div>
                 <div class="d-flex flex-row img-thumbnail">
