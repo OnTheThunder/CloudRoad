@@ -20,7 +20,7 @@
                         <p><strong>Matricula: </strong>{{ $vehiculo->matricula }}</p>
                         <p><strong>Marca: </strong>{{ $vehiculo->marca }}</p>
                         <p><strong>Modelo: </strong>{{ $vehiculo->modelo }}</p>
-                        <p><strong>Modelo: </strong>{{ $vehiculo->aseguradora }}</p>
+                        <p><strong>Aseguradora: </strong>{{ $vehiculo->aseguradora }}</p>
                     </div>
                 </div>
                 <div>

@@ -5,7 +5,7 @@
 
         @include('usuario.aside')
 
-        <div class="col-md-6 d-flex flex-column">
+        <div class="col-12 col-lg-8 col-xl-6 offset-xl-1 mt-3 px-5 d-flex flex-column">
             <div class="row d-flex justify-content-between my-2">
                 <h2>Estadisticas</h2>
                 <div class="form-group">

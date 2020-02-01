@@ -570,6 +570,7 @@ function storeIncidenciaAJAX(oDatosIncidencia) {
 
 
 function getJSONfromCookie() {
+    console.log(document.cookie)
     let cookiesString = document.cookie;
     let handledCookie = "";
     for (let i = 0; cookiesString.charAt(i) !== ";"; i++) {

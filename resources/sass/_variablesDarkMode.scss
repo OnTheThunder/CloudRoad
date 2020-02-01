@@ -139,8 +139,17 @@ $danger: #f75955;
     color: $body-bg;
 }
 .btn-notificar-tecnico{
-    border-color: #649ad0 !important;
-    color: #649ad0 !important;
+    border-color: #62ace1 !important;
+    color: #62ace1 !important;
+}
+
+.btn-notificar-tecnico:hover{
+    border-color: #2e5575 !important;
+    background-color: #1f4667 !important;
+}
+
+#tabla-tecnicos-disponibles .mensaje-tecnico-notificado {
+    color: #62ace1 !important;
 }
 
 .table-datos a{
