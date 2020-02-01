@@ -4,6 +4,9 @@
 
         @include('usuario.aside')
         <div class="col col-lg-8 d-flex flex-column mr-2 ">
+            <div class="loading-logo-estadisticas">
+                <img src="{{asset('images/loading')}}" alt="">
+            </div>
             <div class="h1 text-center">
                 <label for="selectFiltroDatos" class="col my-4 h1">Datos</label>
             </div>

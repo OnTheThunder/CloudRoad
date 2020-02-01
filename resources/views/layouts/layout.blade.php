@@ -17,17 +17,23 @@
     <link href="{{ secure_asset('css/main.css') }}" rel="stylesheet">
 
 <body>
-<!-- Header/navbar -->
-@include('layouts.navbar')
-<!-- Contenedor principal -->
-<div class="container-fluid">
-    @yield('content')
-</div>
-</body>
+<!--Page container to keep footer at the bottom-->
+<div id="page-container">
+    <div id="content-wrap">
+        <!-- Header/navbar -->
+        @include('layouts.navbar')
+        <!-- Contenedor principal -->
+        <div class="container-fluid">
+            @yield('content')
+        </div>
+    </div>
 <!-- Footer -->
 @if($usuario ?? '' != null)
     @include('layouts.footer')
 @endif
+</div>
+</body>
+
 <!--GOOGLE MAPS-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtvT3u8mJZLBOy9ZZG7kQ-t9hE0X8ycs4&&libraries=places"
         async defer></script>

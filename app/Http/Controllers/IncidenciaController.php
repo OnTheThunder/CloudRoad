@@ -130,8 +130,8 @@ class IncidenciaController extends Controller
         switch (Auth::user()->rol){
             case 'tecnico':
                 $incidencia = Incidencia::find($id);
-                $cliente = Cliente::find($incidencia->cliente_id);
                 $vehiculo = Vehiculo::find($incidencia->vehiculo_id);
+                $cliente = Cliente::find($incidencia->cliente_id);
                 $tecnico = Tecnico::where('usuarios_id', Auth::user()->id)->get();
                 $comentarios = Comentario::where('incidencia_id', $incidencia->id)->get();
                 return view('usuario/tecnico-incidencias-show', ['incidencia' => $incidencia, 'cliente' => $cliente, 'vehiculo' => $vehiculo, 'tecnico' => $tecnico[0], 'comentarios' => $comentarios,'usuario' => Auth::user()]);
