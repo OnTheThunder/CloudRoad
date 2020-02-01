@@ -33,10 +33,7 @@ $colorVerdeSuave: #87ff82;
 $colorHeader: #75cf93;
 $dark: #404b69;
 
-.resaltar { /* resaltar la row elegida en la tabla de camaras*/
-    background: $colorHeader;
-    color: white;
-}
+
 
 .bg-color-cards {
     background: whitesmoke; /* Color la vieja confiable*/
@@ -56,6 +53,12 @@ $dark: #404b69;
     border-bottom: 1px solid #d1d1d1 !important;
 }
 
+.resaltar, .resaltar:hover { /* resaltar la row elegida en la tabla de camaras*/
+    background: $colorHeader !important;
+    color: white !important;
+}
+
+
 // modificado
 $theme-colors: (
     "color-primario": $colorPrincipal,
@@ -66,7 +69,8 @@ $theme-colors: (
     "color-anyadir-suave":$colorVerdeSuave,
     "color-header": $colorHeader,
     "color-dark": $dark,
-    "color-user": white
+    "color-user": white,
+    "color-body": $body-bg
 );
 
 // tipo de letra añadida

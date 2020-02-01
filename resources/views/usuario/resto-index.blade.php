@@ -7,6 +7,11 @@
     <div class="fadeIn-wrapper">
         <div class="row">
         @include('usuario.aside')
+        @if(isset($filtro))
+            @php $column = "col-12" @endphp
+        @else
+            @php $column = "col-6" @endphp
+        @endif
         <!-- Main container de ver historial y filtrar -->
             <div class="col col-lg-8 d-flex flex-column mr-2">
                 @if($usuario->rol == 'operario')
@@ -18,10 +23,10 @@
                 @endif
 
                 <div class="container mb-3">
-                    <h2 class="d-flex justify-content-center p-2">Historial de Incidencias</h2>
+                    <h2 class="d-flex justify-content-center p-2 mt-4 mb-3 page-title">Historial de Incidencias</h2>
                     <div class="row">
-                        <div class="col-md-12 mb-n1 filters-container">
-                            <div class="dropdown show">
+                        <div class="row col-md-12 mb-n1 filters-container pr-0">
+                            <div class="{{$column}} col-sm-6 dropdown show">
                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Filtrar
@@ -47,16 +52,16 @@
                                         </li>
                                     </form>
                                 </ul>
+                                @if(isset($filtro))
+                                    <form class="d-inline-block" action="{{route('main.index')}}" method="get">
+                                        <a href="#" id="btn-filtro-actual" class="btn btn-primary">
+                                            {{ucfirst($filtro)}}
+                                            <button id="cross-remove-filtro"><i class="fas fa-times"></i></button>
+                                        </a>
+                                    </form>
+                                @endif
                             </div>
-                            @if(isset($filtro))
-                                <form action="{{route('main.index')}}" method="get">
-                                    <a href="#" id="btn-filtro-actual" class="btn btn-primary">
-                                        {{ucfirst($filtro)}}
-                                        <button id="cross-remove-filtro"><i class="fas fa-times"></i></button>
-                                    </a>
-                                </form>
-                            @endif
-                            <form class="leyenda-filtro-default mr-1" action="{{route('main.index')}}" method="get">
+                            <form class="{{$column}} col-sm-6 pr-0 d-flex justify-content-end align-items-end leyenda-filtro-default mt-2" action="{{route('main.index')}}" method="get">
                                 <button>
                                     @if(session('orden') == 'reciente' || !session('orden'))
                                         <span>Más Recientes...</span>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-color-header shadow-sm mb-2">
 
-    <div class="navbar col d-flex justify-content-start " id="navbarTogglerDemo01">
+    <div class="navbar col d-flex justify-content-start w-25" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="{{route('main.index')}}">{{ config('app.name') }}</a>
     </div>
 
