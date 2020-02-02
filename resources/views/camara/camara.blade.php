@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
     <div class="main">
-        <div class="row sticky-top shadow bg-color-body pb-5">
+        <div class="row sticky-top shadow bg-color-body pb-3 pb-sm-5">
             <div class="col-12 col-lg-3 d-none d-sm-block">
             @include('usuario.aside_movil')
             </div>
