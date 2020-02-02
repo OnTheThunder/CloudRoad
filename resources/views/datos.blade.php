@@ -21,8 +21,7 @@
                     <option>Jefes</option>
                 </select>
                 <div class="row justify-content-center m-2 mt-3">
-                    <table class="col-12 table table-bordered table-striped table-hover overflow-auto"
-                           id="tabla-datos">
+                    <table id="tabla-datos" class="col-12 table table-responsive table-bordered table-striped table-hover">
                     </table>
                 </div>
             </div>

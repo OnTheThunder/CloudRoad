@@ -24,10 +24,10 @@
     @endif
 
     @include('usuario.aside')
-        <div class="col col-lg-8 d-flex flex-column mr-2 ">
-            <div class="h1 text-center">Nuevo usuario</div>
+        <div class="col col-lg-8 d-flex flex-column mr-2 mt-4">
+            <div class="h1 text-center mb-2">Nuevo usuario</div>
             <div class="row justify-content-center">
-                <form class="col" method="post" action="{{route('usuario.store')}}">
+                <form class="col-sm-8 col-xl-6 user-create-form" method="post" action="{{route('usuario.store')}}">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputName">Nombre</label>

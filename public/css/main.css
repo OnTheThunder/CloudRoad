@@ -286,12 +286,6 @@ button:focus {
     display: flex;
 }
 
-/*.leyenda-filtro-default {*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    right: 0.5rem;*/
-/*    user-select: none;*/
-/*}*/
 
 .leyenda-filtro-default button {
     border: none;
@@ -299,6 +293,14 @@ button:focus {
 }
 
 /*Card incidencia*/
+.card-incidencia .card-body{
+    padding: 0;
+}
+
+.card-incidencia{
+    height: 170px;
+}
+
 .card-incidencia-nueva {
     position: relative;
     border: 1px solid rgba(55, 207, 95, 1);
@@ -430,12 +432,14 @@ button:focus {
     width: 50vw;
 }
 
-@keyframes loading {
-    100% {
-        transform: rotate(360deg);
-    }
+
+#tabla-lugares tr:hover{
+    cursor: pointer;
 }
 
+.media-container{
+    margin-top: 2rem;
+}
 
 #page-container {
     position: relative;
@@ -443,7 +447,7 @@ button:focus {
 }
 
 #content-wrap {
-    padding-bottom: 4.5rem;    /* Footer height */
+    padding-bottom: 5.5rem;    /* Footer height */
 }
 
 footer {
@@ -461,6 +465,13 @@ footer {
     }
 }
 
+@keyframes loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 /*MEDIA QUERIES*/
 
 @media only screen and (max-width: 768px) {
@@ -475,25 +486,20 @@ footer {
     .page-title{
         font-size: 1.6rem;
     }
+    .infoBoxTecnico{
+        width: 87%;
+    }
+}
+
+.estado-cuenta-container{
+
 }
 
 
 
 
-.card-incidencia .card-body{
-    padding: 0;
-}
 
-.card-incidencia{
-    height: 170px;
-}
 
-#tabla-lugares tr:hover{
-    cursor: pointer;
-}
 
-.media-container{
-    margin-top: 2rem;
-}
 
 

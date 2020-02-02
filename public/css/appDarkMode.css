@@ -146,6 +146,26 @@
   color: white;
 }
 
+.user-create-form input::-webkit-input-placeholder {
+  color: #c1c1c1;
+}
+
+.user-create-form input::-moz-placeholder {
+  color: #c1c1c1;
+}
+
+.user-create-form input:-ms-input-placeholder {
+  color: #c1c1c1;
+}
+
+.user-create-form input::-ms-input-placeholder {
+  color: #c1c1c1;
+}
+
+.user-create-form input::placeholder {
+  color: #c1c1c1;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
