@@ -7,7 +7,7 @@
             </div>
             <div class="col-lg-9 d-flex flex-column media-container">
                 <div class="d-flex justify-content-center mb-2 page-title d-sm-none">
-                    <h1>Camaras</h1>
+                    <h1>Cámaras</h1>
                 </div>
                 <div class="d-flex flex-row img-thumbnail">
                     <div id="imagen" class="col-md-6 col-12  d-flex justify-content-center">
