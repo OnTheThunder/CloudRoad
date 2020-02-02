@@ -489,6 +489,9 @@ footer {
     .infoBoxTecnico{
         width: 87%;
     }
+    .media-container {
+        margin-top: 1rem;
+    }
 }
 
 .estado-cuenta-container{

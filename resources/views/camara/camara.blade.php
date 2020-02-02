@@ -6,7 +6,7 @@
             @include('usuario.aside_movil')
             </div>
             <div class="col-lg-9 d-flex flex-column media-container">
-                <div class="d-flex justify-content-center mb-4 page-title d-sm-none">
+                <div class="d-flex justify-content-center mb-3 page-title d-sm-none">
                     <h1>Camaras</h1>
                 </div>
                 <div class="d-flex flex-row img-thumbnail">
