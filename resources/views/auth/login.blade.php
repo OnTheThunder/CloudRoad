@@ -76,8 +76,6 @@
             </div>
         </div>
 </div>
-<!-- CSS asociado a esta vista-->
-<link rel="stylesheet" href="{{secure_asset('css/login.css')}}">
 @endsection
 
 

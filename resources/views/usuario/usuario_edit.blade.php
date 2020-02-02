@@ -29,37 +29,41 @@
             <div class="container">
                 <form class="col-12" method="get" action="{{route('usuario.baja.edit')}}">
                     @csrf
-                    <div id="buscador" class="row">
-                        <div class="col-6">
-                            <div class="row form-group p-3">
+                    <div id="buscador">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 form-group p-3">
                                 <label for="nombre">Nombre</label>
                                 <input class="form-control" name="nombre" id="nombre">
                             </div>
-                            <div class="row form-group p-3">
+                            <div class="col-12 col-sm-4 form-group  p-3">
                                 <label for="email">E-mail</label>
                                 <input class="form-control" name="email" id="email">
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group row p-3">
+                            <div class="col-12 col-sm-4 form-group p-3">
                                 <label for="rol">Rol</label>
                                 <input class="form-control" name="rol" id="rol">
                             </div>
-                            <div class="form-group row p-3 ">
-                                <label class="col-12">Activado</label>
-                                <input type="radio" class=" mr-2 ml-2 mt-1" name="activo" value="2" id="Ambos" checked><label for="Ambos">Ambos</label>
-                                <input type="radio" class=" mr-2 ml-4 mt-1" name="activo" value="1" id="Activo"><label for="Activo">Activo</label>
-                                <input type="radio" class=" mr-2 ml-4 mt-1" name="activo" value="0" id="NoActivo"><label for="NoActivo">No activo</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-8">
+                            <div class="form-group row estado-cuenta-container m-0">
+                                <label class="col-12">Estado de la cuenta</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" class=" mr-2 ml-2" name="activo" value="1" id="Activo"><label class="mb-0" for="Activo">Activo</label>
+                                    <input type="radio" class=" mr-2 ml-4" name="activo" value="0" id="NoActivo"><label class="mb-0" for="NoActivo">No activo</label>
+                                    <input type="radio" class=" mr-2 ml-4" name="activo" value="2" id="Ambos" checked><label class="mb-0" for="Ambos">Cualquiera</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end col-12">
-                            <button class="btn btn-primary col-md-2" type="submit">Buscar</button>
+                        <div class="align-items-end col-12 col-sm-4 pl-4 d-flex justify-content-center justify-content-sm-end mt-3">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
                         </div>
                     </div>
                 </form>
 
                 <div class="row justify-content-center m-2 mt-5">
-                    <table class="table table-bordered table-striped table-hover table-datos overflow-auto">
+                    <table class="table table-responsive table-bordered table-striped table-hover table-datos">
                         <thead class="bg-color-cards">
                         <tr>
                             <th>@sortablelink('nombre', 'Nombre')</th>
