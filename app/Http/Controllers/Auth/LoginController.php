@@ -64,6 +64,6 @@ class LoginController extends Controller
         $request->session()->flush();
         $request->session()->regenerate();
         //return redirect('/logout');
-        return view('auth.logout');
+        return view('auth.login');
     }
 }

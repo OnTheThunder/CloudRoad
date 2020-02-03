@@ -1,4 +1,6 @@
 window.onload = function () {
+    let loadingLogo = $('.loading-logo-estadisticas').hide();
+    setLoadingLogoOnAjaxCall(loadingLogo);
 
     //Datos por defecto
     $.ajax({
@@ -76,3 +78,11 @@ window.onload = function () {
         tablaDatos.append('</tr>');
     }
 };
+
+function setLoadingLogoOnAjaxCall(loadingLogo) {
+    $(document).ajaxStart(function () {
+        loadingLogo.show();
+    }).ajaxStop(function () {
+        loadingLogo.hide();
+    });
+}

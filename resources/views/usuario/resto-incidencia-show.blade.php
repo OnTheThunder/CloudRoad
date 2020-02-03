@@ -5,28 +5,27 @@
 @section('content')
     <div class="row">
         @include('usuario.aside')
-        <div class="col-md-6 d-flex flex-column">
-            <div class="d-flex justify-content-center my-2">
+        <div class="col-12 col-lg-7 col-xl-6 offset-lg-1">
+            <div class="d-flex justify-content-center mb-3 mt-5">
                 <h2>Incidencia # {{ $incidencia->id }}</h2>
             </div>
             <div>
                 <div>
-                    <h3 class="d-flex justify-content-center">Datos Incidencia</h3>
-                    <h4>{{ $incidencia->tipo }}</h4>
+                    <h3>{{ $incidencia->tipo }}</h3>
                     <p>{{ $incidencia->descripcion }}</p>
                 </div>
                 <div>
-                    <h3 class="d-flex justify-content-center">Datos Vehiculo</h3>
-                    <div class="d-flex justify-content-start datos-show">
+                    <h3>Datos Vehiculo</h3>
+                    <div class="d-flex datos-show">
                         <p><strong>Matricula: </strong>{{ $vehiculo->matricula }}</p>
                         <p><strong>Marca: </strong>{{ $vehiculo->marca }}</p>
                         <p><strong>Modelo: </strong>{{ $vehiculo->modelo }}</p>
-                        <p><strong>Modelo: </strong>{{ $vehiculo->aseguradora }}</p>
+                        <p><strong>Aseguradora: </strong>{{ $vehiculo->aseguradora }}</p>
                     </div>
                 </div>
                 <div>
-                    <h3 class="d-flex justify-content-center">Datos Cliente</h3>
-                    <div class="d-flex justify-content-start datos-show">
+                    <h3>Datos Cliente</h3>
+                    <div class="d-flex datos-show">
                         <p><strong>Nombre: </strong>{{ $cliente->nombre }}</p>
                         <p><strong>Telefono: </strong>{{ $cliente->telefono }}</p>
                         <p><strong>Apellidos: </strong>{{ $cliente->apellidos }}</p>

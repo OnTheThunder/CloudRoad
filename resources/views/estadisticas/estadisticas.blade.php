@@ -4,9 +4,11 @@
     <div class="row">
 
         @include('usuario.aside')
-
-        <div class="col-md-6 d-flex flex-column">
-            <div class="row d-flex justify-content-between my-2">
+        <div class="col-12 col-lg-8 col-xl-6 offset-xl-1 mt-3 d-flex flex-column">
+            <div class="loading-logo-estadisticas">
+                <img src="{{asset('images/loading')}}" alt="">
+            </div>
+            <div class="row d-flex justify-content-between my-2 px-4">
                 <h2>Estadisticas</h2>
                 <div class="form-group">
                     <select class="form-control" id="filtro">
@@ -18,10 +20,8 @@
                     </select>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="miGrafico"></canvas>
-                </div>
+            <div class="chart-container w-100">
+                <canvas id="miGrafico"></canvas>
             </div>
         </div>
     </div>
