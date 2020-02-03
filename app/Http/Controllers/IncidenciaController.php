@@ -386,14 +386,16 @@ class IncidenciaController extends Controller
         $incidencia->tecnico_id = request()->all()['datosTecnico']['id'];
         $incidencia->save();
 
-        $tecnico = Tecnico::where('tecnico_id', $incidencia->tecnico_id)->get();
-
+        $tecnico = Tecnico::where('id', $incidencia->tecnico_id)->get();
+        $tecnico = $tecnico[0];
+        $tecnico->disponibilidad = 0;
+        $tecnico->save();
 
         $comentario = new Comentario();
         $comentario->texto = 'La incidencia ha sido asignada al tecnico ' . $tecnico->nombre . $tecnico->apellidos . ' (#' . $tecnico->id . ')';
         $comentario->incidencia_id = $incidencia->id;
         $comentario->save();
 
-        return redirect(route('incidencia.rechazadas'));
+        return redirect()->route('incidencia.rechazadas');
     }
 }
