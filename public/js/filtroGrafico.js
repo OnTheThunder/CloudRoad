@@ -280,6 +280,7 @@ window.onload = function(){
                     }],
                     yAxes: [{
                         ticks: {
+                            beginAtZero: true,
                             fontColor: color
                         }
                     }],
