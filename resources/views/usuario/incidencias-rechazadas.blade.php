@@ -91,7 +91,7 @@
                                         <span class="card-title h4 clearfix">#{{$incidenciaRechazada->id}} {{ $incidenciaRechazada->tipo }}: </span>
                                         <div class="lugar-label-container d-flex justify-content-center align-items-center">
                                             <span id="lugar-label" class="text-secondary lugar">Lugar:
-                                            <span class="text-color-primario font-weight-bolder">{{$incidencia->provincia}}</span></span>
+                                            <span class="text-color-primario font-weight-bolder">{{$incidenciaRechazada->provincia}}</span></span>
                                         </div>
                                         <p class="my-2 card-footer border">{{ $incidenciaRechazada->descripcion }}</p>
                                         @if($incidenciaRechazada->estado == 'Resuelta')
