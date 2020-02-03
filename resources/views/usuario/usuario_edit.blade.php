@@ -62,8 +62,8 @@
                     </div>
                 </form>
 
-                <div class="row justify-content-center m-2 mt-5">
-                    <table class="table table-responsive table-bordered table-striped table-hover table-datos">
+                <div class="row justify-content-center m-2 mt-5 table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-datos">
                         <thead class="bg-color-cards">
                         <tr>
                             <th>@sortablelink('nombre', 'Nombre')</th>

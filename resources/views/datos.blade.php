@@ -16,12 +16,12 @@
                     <option>Clientes</option>
                     <option>Tecnicos</option>
                     <option>Talleres</option>
-                    <option>Operadores</option>
+                    <option selected>Operadores</option>
                     <option>Coordinadores</option>
                     <option>Jefes</option>
                 </select>
-                <div class="row justify-content-center m-2 mt-3">
-                    <table id="tabla-datos" class="col-12 table table-responsive table-bordered table-striped table-hover">
+                <div class="row justify-content-center m-2 mt-3 table-responsive">
+                    <table id="tabla-datos" class="col-12 table table-bordered table-striped table-hover">
                     </table>
                 </div>
             </div>

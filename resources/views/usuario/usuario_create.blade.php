@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDni">DNI</label>
-                        <input name="dni" type="number" class="form-control" id="exampleInputDni"
+                        <input name="dni" type="text" class="form-control" id="exampleInputDni"
                                placeholder="Inserta DNI">
                     </div>
                     <div class="form-group">

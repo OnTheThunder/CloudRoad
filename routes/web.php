@@ -103,7 +103,7 @@ Route::get('/incidencias/tipo', 'IncidenciaController@getIncidenciasTipo')->name
 Route::post('/tecnico/update/{idTecnico}', 'TecnicoController@update')->name('tecnico.update');
 
 //Las rutas con id siempre deben de ir al final para no dar conflicto
-Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show');
+Route::get('/incidencias/{id}', 'IncidenciaController@show')->name('incidencia.show')->middleware('auth');
 
 Route::get('/cliente/find-by-dni/{dni}', 'ClienteController@findByDni')->name('find.by.dni');
 

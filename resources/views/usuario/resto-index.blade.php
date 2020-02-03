@@ -31,6 +31,14 @@
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Filtrar
                                 </a>
+                                @if(isset($filtro))
+                                    <form class="d-inline-block" action="{{route('main.index')}}" method="get">
+                                        <a href="#" id="btn-filtro-actual" class="btn btn-primary">
+                                            {{ucfirst($filtro)}}
+                                            <button id="cross-remove-filtro"><i class="fas fa-times"></i></button>
+                                        </a>
+                                    </form>
+                                @endif
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <form action="{{route('incidencias.estado')}}" method="get">
                                         <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Estado</a>
@@ -52,14 +60,6 @@
                                         </li>
                                     </form>
                                 </ul>
-                                @if(isset($filtro))
-                                    <form class="d-inline-block" action="{{route('main.index')}}" method="get">
-                                        <a href="#" id="btn-filtro-actual" class="btn btn-primary">
-                                            {{ucfirst($filtro)}}
-                                            <button id="cross-remove-filtro"><i class="fas fa-times"></i></button>
-                                        </a>
-                                    </form>
-                                @endif
                             </div>
                             <form class="{{$column}} col-sm-6 pr-0 d-flex justify-content-end align-items-end leyenda-filtro-default mt-2" action="{{route('main.index')}}" method="get">
                                 <button>
