@@ -10,7 +10,7 @@
             <div class="h1 text-center">
                 <label for="selectFiltroDatos" class="col my-4 h1">Datos</label>
             </div>
-            <div class="container overflow-auto">
+            <div class="container">
                 <select class="form-control col-md-2 ml-2" name="selectFiltro" id="selectFiltroDatos">
                     <option selected="selected" disabled="disabled">Filter</option>
                     <option>Clientes</option>
