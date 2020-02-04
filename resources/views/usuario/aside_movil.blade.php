@@ -13,7 +13,7 @@
             <a href="{{route('main.index')}}" class="list-group-item list-group-item-action text-white bg-color-cards">
                 <i class="fas fa-user mr-2"></i>Historial incidencias</a>
             <!-- If de crear usuario -->
-            @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador')
+            @if($usuario->rol == 'jefe' || $usuario->rol == 'coordinador' && Auth::user()->email != 'prueba@prueba.com')
                 <a href="{{route('usuario.create')}}" class="list-group-item list-group-item-action text-color-anyadir-suave bg-color-cards">
                     <i class="fas fa-user-plus mr-2"></i>Nuevo usuario</a>
                 <a href="{{route('usuario.baja.edit')}}" class="list-group-item list-group-item-action text-color-borrar-suave bg-color-cards">

@@ -54,7 +54,7 @@
                 @endif
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">{{ __('auth.logout') }}</a>
+               document.getElementById('logout-form').submit();">{{ __('auth.logout') }} <i class="fas fa-sign-out-alt"></i></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>

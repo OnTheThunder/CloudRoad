@@ -60,10 +60,14 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
+        $email = Auth::user()->email;
         $this->guard()->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        //return redirect('/logout');
-        return view('auth.login');
+        if ($email == 'prueba@prueba.com') {
+            return view('auth.logout');
+        } else {
+            return view('auth.login');
+        }
     }
 }
