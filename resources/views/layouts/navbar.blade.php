@@ -47,9 +47,11 @@
             </button>
             <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="" id="modo-nocturno-diurno">{{__('general.modo')}}</a>
-
+                @if(Auth::user()->email != 'prueba@prueba.com')
                 <a class="dropdown-item"
-                   href="{{ route('usuario.password.edit',['modo'=>'password']) }}">{{__('general.change.password')}}</a>
+                   href="{{ route('usuario.password.edit',['modo'=>'password']) }}">{{__('general.change.password')}}
+                </a>
+                @endif
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                document.getElementById('logout-form').submit();">{{ __('auth.logout') }}</a>
